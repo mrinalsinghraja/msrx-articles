@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "how-to-use-claude",
+    title: "How to use Claude: web, desktop, mobile, terminal and API",
+    subtitle: "Anthropic’s story, how Claude is trained, every way to use it step by step, Claude Code in the terminal, and building with the API",
+    description:
+      "A beginner-to-advanced guide to Anthropic’s Claude: its history and Constitutional AI, choosing a model, using Claude in the browser, desktop, phone and Chrome, Projects and Artifacts, Claude Code in the terminal, MCP, and building with the Claude API.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 20,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Claude", "Anthropic", "Claude Code", "MCP", "Claude API", "Prompt caching"],
+    accent: "#B45309",
+  },
+  {
     slug: "chatgpt-101",
     title: "ChatGPT 101: from your first chat to the API",
     subtitle: "Its history, how it works, step-by-step setup, prompting that works, every major feature, and building with it in code",
