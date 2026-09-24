@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "deepseek-101",
+    title: "DeepSeek 101: from the app to running it on your own computer",
+    subtitle: "The Chinese lab that shook Silicon Valley, how R1 learned to reason, mixture-of-experts and latent attention, the app, the API, open weights and privacy",
+    description:
+      "A beginner-to-advanced guide to DeepSeek: its story from a Hangzhou hedge fund to the V4 models, the January 2025 shock, how R1 learned to reason with GRPO, DeepSeekMoE and multi-head latent attention, the app, the API, running open weights locally with Ollama, and privacy trade-offs.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 18,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["DeepSeek", "DeepSeek-R1", "Open weights", "GRPO", "Mixture of experts", "Ollama"],
+    accent: "#1E40AF",
+  },
+  {
     slug: "microsoft-copilot-101",
     title: "Microsoft Copilot 101: from your first chat to building agents",
     subtitle: "Every Copilot explained — at home, in Office, at work and in code — how it grounds answers in your data, prompting with GCSE, GitHub Copilot, Copilot Studio and Microsoft Foundry",
