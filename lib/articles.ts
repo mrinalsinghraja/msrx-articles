@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "google-gemini-101",
+    title: "Google Gemini 101: from your first chat to the API",
+    subtitle: "Google’s AI story, why Gemini is built multimodal, the app on web and Android, Gems and Deep Research, Workspace, AI Studio, the Gemini API and the Gemini CLI",
+    description:
+      "A beginner-to-advanced guide to Google Gemini: its history from the Transformer to Gemini 3, native multimodality and mixture-of-experts, the app on web, Android and iPhone, Gems, Deep Research, Live, Gmail and Docs, grounding, AI Studio, the Gemini API and the Gemini CLI.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 19,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Google Gemini", "Gemini API", "Gemini CLI", "Google AI Studio", "Multimodal AI", "Deep Research"],
+    accent: "#1D4ED8",
+  },
+  {
     slug: "how-to-use-claude",
     title: "How to use Claude: web, desktop, mobile, terminal and API",
     subtitle: "Anthropic’s story, how Claude is trained, every way to use it step by step, Claude Code in the terminal, and building with the API",
