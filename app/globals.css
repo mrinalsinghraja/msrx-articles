@@ -1,0 +1,954 @@
+@import "tailwindcss";
+
+/* ── Design tokens ───────────────────────────────────────────────────────────
+   Two themes, one token set. Light is the flagship and the default; dark is
+   selected by the header toggle (persisted) or, on first visit only, by
+   prefers-color-scheme. The inline script in layout.tsx stamps
+   html[data-theme] before first paint, so there is no flash.
+
+   The hero and CTA sit on the --stage surface: in light it matches the paper
+   so the whole page stays light; in dark it deepens to near-black ink, where
+   the cyan→violet gradient reads at full saturation. Stage text tokens flip
+   with it.
+
+   Text colours are documented with their contrast ratio against the surface
+   they sit on. Everything meets WCAG AA for its size. */
+:root {
+  color-scheme: light;
+
+  /* Surfaces. Page is a warm off-white; cards are pure white on top of it. */
+  --paper: #fafafa;
+  --paper-tint: #f3f3f6;
+  --paper-sunk: #ebebf0;
+  --card: #ffffff;
+
+  /* Stage — the hero and CTA surface. Light theme keeps it on paper. */
+  --stage: #fafafa;
+  --stage-raised: #ffffff;
+  --stage-line: rgba(9, 9, 20, 0.08);
+  --stage-text-primary: #16161a;   /* 16.4:1 */
+  --stage-text-secondary: #55555e; /*  7.2:1 */
+  --stage-text-tertiary: #6e6e78;  /*  5.1:1 */
+
+  /* Hairlines */
+  --border: rgba(9, 9, 20, 0.08);
+  --border-strong: rgba(9, 9, 20, 0.14);
+
+  /* Text on paper */
+  --text-primary: #16161a;   /* 16.4:1 */
+  --text-secondary: #55555e; /*  7.2:1 */
+  --text-tertiary: #6e6e78;  /*  5.1:1 */
+
+  /* Brand — locked. The MSRX gradient runs cyan → violet. */
+  --cyan: #00c4df;
+  --violet: #8b5cf6;
+  --cyan-deep: #0e7490;  /* AA-safe cyan for text on paper */
+  --violet-deep: #6d28d9;
+
+  /* Gradient-text stops. Deep on light paper, lifted on dark ink — the raw
+     brand colours fail as text on both. */
+  --grad-a: #0e7490;
+  --grad-b: #6d28d9;
+
+  /* Per-app accents are AA against white. On dark surfaces they run too dim
+     as text, so .accent-text lifts them toward white by this amount. */
+  --accent-lift: 0%;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(9, 9, 20, 0.04), 0 8px 24px rgba(9, 9, 20, 0.05);
+  --shadow-card-hover: 0 2px 4px rgba(9, 9, 20, 0.05), 0 16px 48px rgba(9, 9, 20, 0.09);
+
+  /* Rhythm */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Typography — next/font declarations live in layout.tsx */
+  --font-display: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Cascadia Mono", monospace;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #101017;
+  --paper-tint: #15151d;
+  --paper-sunk: #1c1c27;
+  --card: #17171f;
+
+  /* Dark is where the stage goes to ink — slightly deeper than the paper so
+     the hero and CTA read as their own surface. */
+  --stage: #0b0b12;
+  --stage-raised: #14141f;
+  --stage-line: rgba(255, 255, 255, 0.09);
+  --stage-text-primary: #f5f5f8;   /* 16.1:1 */
+  --stage-text-secondary: #a8a8b8; /*  7.3:1 */
+  --stage-text-tertiary: #85859a;  /*  4.9:1 */
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.17);
+
+  --grad-a: #38d9f0;
+  --grad-b: #a78bfa;
+
+  /* Text on dark paper */
+  --text-primary: #f2f2f7;   /* 16.0:1 */
+  --text-secondary: #a9a9bb; /*  7.4:1 */
+  --text-tertiary: #8d8da0;  /*  5.2:1 */
+
+  /* AA-safe brand accents flip light on dark paper */
+  --cyan-deep: #2fc8e0;
+  --violet-deep: #a78bfa;
+
+  /* 40% lifts the darkest catalog accent to 5.2:1 on --card (measured). */
+  --accent-lift: 40%;
+
+  /* On dark, borders do the lifting; shadows only ground the card. */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Sticky header is 56px; keeps anchor targets clear of it. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Typography roles ────────────────────────────────────────────────────────
+   Bricolage Grotesque carries the display voice. It is set tight and heavy; at
+   these sizes its default tracking is far too loose. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.display-sm {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
+}
+
+/* Column labels, index numbers, platform tags. Mono earns its place by keeping
+   the catalog index columns aligned across names of unequal length. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ── Brand gradient ──────────────────────────────────────────────────────────*/
+/* The filled CTA. Its stops are the DEEP pair and are deliberately not the
+   brand gradient used for decoration.
+
+   White text on the bright gradient measured 2.11:1 at the cyan end, rising
+   to 4.23:1 at the violet end — failing AA across the whole button, worst
+   exactly where the eye lands first. Brand cyan cannot carry text; the deep
+   pair this file already defines for "text on paper" carries it at 5.4:1 to
+   7.1:1, at the same two hues.
+
+   Pinned literals rather than var(--cyan-deep): that token brightens under
+   the dark theme, for accent text ON dark, which would undo this in the one
+   place the fix has to hold. A solid accent surface looks the same in both
+   themes because it is its own surface. */
+.msrx-gradient {
+  background: linear-gradient(115deg, #0e7490 0%, #6d28d9 100%);
+}
+
+/* Stops flip with the theme — see --grad-a / --grad-b. */
+.msrx-gradient-text {
+  background: linear-gradient(115deg, var(--grad-a) 0%, var(--grad-b) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Per-app accent utilities ────────────────────────────────────────────────
+   Render sites set --accent from app data; these classes derive every accent
+   treatment from it, so one inline custom property replaces per-theme inline
+   styles. --accent-lift is 0% in light and >0 in dark, which brightens accent
+   TEXT on dark surfaces while backgrounds keep mixing against the live theme
+   tokens. */
+.accent-text {
+  color: color-mix(in srgb, white var(--accent-lift), var(--accent));
+}
+
+/* Initials squares and small chips: a wash of the accent over the card. */
+.tint-chip {
+  background: color-mix(in srgb, var(--accent) 10%, var(--card));
+}
+
+/* The initials sit at 12-13px on a 10% wash of their own accent, which is the
+   thinnest contrast on the site. Measured on the live page, three of the
+   twenty-two landed just under AA — AI Calculator 4.38, Planner 4.39, Shield
+   4.48 against the 4.5 small-text threshold. Sinking the ink a little clears
+   all three without touching the accent anywhere else.
+
+   Light only: the dark theme lifts accent text towards white instead, and
+   darkening there would push it the wrong way. */
+html[data-theme="light"] .tint-chip.accent-text {
+  color: color-mix(in srgb, black 14%, var(--accent));
+}
+
+/* Full-width page headers: a fainter wash over the page itself. */
+.tint-surface {
+  background: color-mix(in srgb, var(--accent) 7%, var(--paper));
+}
+
+/* Hairline that fades at both ends. Closes a section without a hard rule. */
+.rule-fade {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-strong) 15%,
+    var(--border-strong) 85%,
+    transparent
+  );
+}
+
+.rule-fade-stage {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--stage-line) 12%,
+    var(--stage-line) 88%,
+    transparent
+  );
+}
+
+/* The CTA panel: a white card in light, a raised ink slab with a hairline in
+   dark (shadows vanish against dark paper). */
+.stage-panel {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+html[data-theme="dark"] .stage-panel {
+  border-color: var(--stage-line);
+  box-shadow: none;
+}
+
+/* ── Focus ───────────────────────────────────────────────────────────────────
+   Every interactive element gets a visible ring, via :focus-visible so it
+   appears for keyboard users without trailing the mouse. */
+:where(a, button, summary, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Violet is too dim against dark surfaces; switch the ring to cyan there. */
+html[data-theme="dark"] :where(a, button, summary, input, textarea, [tabindex]):focus-visible {
+  outline-color: var(--cyan);
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────────────*/
+.card-hover {
+  transition: box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.3, 1),
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1),
+    border-color 0.28s ease;
+}
+
+.card-hover:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+}
+
+/* Index rows light up in their own app's accent. --row-accent is set per row
+   from the app data, so the interaction differs for all twenty apps. */
+.index-row {
+  transition: background-color 0.2s ease;
+}
+
+.index-row:hover,
+.index-row:focus-visible {
+  background-color: color-mix(in srgb, var(--row-accent) 18%, transparent);
+}
+
+.index-row .index-name {
+  transition: color 0.2s ease;
+}
+
+.index-row:hover .index-name,
+.index-row:focus-visible .index-name {
+  color: var(--row-accent);
+}
+
+.index-row .index-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.index-row:hover .index-arrow,
+.index-row:focus-visible .index-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal {
+  animation: reveal 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+
+  .index-row .index-arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Chrome ──────────────────────────────────────────────────────────────────*/
+.nav-blur {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(250, 250, 250, 0.82);
+}
+
+html[data-theme="dark"] .nav-blur {
+  background: rgba(16, 16, 23, 0.78);
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -140%);
+  z-index: 100;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 0;
+  /* Fixed ink-on-white overlay — a floating control, deliberately theme-proof. */
+  background: #0b0b12;
+  color: #f5f5f8;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* ── Spotlight ────────────────────────────────────────────────────────────────
+   The homepage feature for the newest app. It sits on --stage, which is paper
+   in light and ink in dark, so the panel is tinted from the app's own accent
+   against the live surface rather than being given two hardcoded backgrounds.
+
+   6% was tried first and the panel just read grey — the accent has to be felt
+   for this to announce anything. 13% tints it clearly while leaving the name the
+   loudest thing in the box. */
+.spotlight {
+  position: relative;
+  background: color-mix(in srgb, var(--accent) 13%, var(--stage-raised));
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  transition: border-color 0.24s ease, box-shadow 0.24s ease, transform 0.24s ease;
+}
+
+.spotlight:hover {
+  border-color: color-mix(in srgb, var(--accent) 42%, transparent);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--accent) 14%, transparent);
+  transform: translateY(-2px);
+}
+
+/* The accent is chosen to pass AA on white; on the light stage it is used as
+   text here, so it keeps that contrast. In dark it is lifted by the same
+   --accent-lift the catalog tiles use. */
+.spotlight-cta {
+  color: color-mix(in srgb, white var(--accent-lift), var(--accent));
+}
+
+.spotlight-chip {
+  background: var(--stage-raised);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  color: var(--stage-text-secondary);
+}
+
+/* A small pulsing dot marks the launch. It is the only animated element on the
+   page, which is what makes it read as "new" rather than as decoration. */
+.dot-new {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+  animation: dot-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes dot-pulse {
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-new {
+    animation: none;
+  }
+
+  .spotlight:hover {
+    transform: none;
+  }
+}
+
+/* The "+ N more" chip is a count, not a tool — outlined rather than filled so
+   it does not read as one more thing you can click. */
+.spotlight-chip-more {
+  border: 1px dashed color-mix(in srgb, var(--accent) 30%, transparent);
+  /* Secondary rather than tertiary — the tinted panel takes tertiary ink to
+     4.2:1 in light, which fails AA. Measured on the panel itself. */
+  color: var(--stage-text-secondary);
+}
+
+/* ── Search ───────────────────────────────────────────────────────────────────
+   The trigger sits in the header at every breakpoint; on small screens it
+   collapses to the icon, because the word and the shortcut hint are both
+   useless on a phone. Unlayered, like everything else in this file — layered
+   rules here would lose to Tailwind's own utilities rather than beat them. */
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.2rem;
+  padding: 0 0.3rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  background: var(--card);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  color: var(--text-tertiary);
+}
+
+.search-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text-tertiary);
+  font-size: 13.5px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.search-trigger:hover {
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+}
+
+.search-trigger-label {
+  display: none;
+}
+
+.search-trigger-kbd {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .search-trigger {
+    padding: 0 0.4rem 0 0.7rem;
+    min-width: 13rem;
+    justify-content: flex-start;
+  }
+  .search-trigger-label {
+    display: inline;
+    flex: 1;
+    text-align: left;
+  }
+  .search-trigger-kbd {
+    display: inline-flex;
+  }
+}
+
+.palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  /* Not centred: a dialog that grows downward from a fixed point does not
+     jump about as results come and go while someone is typing. */
+  align-items: flex-start;
+  padding: 4.5rem 1rem 1rem;
+  background: rgba(9, 9, 20, 0.45);
+  backdrop-filter: blur(3px);
+  animation: palette-fade 0.14s ease-out;
+}
+
+@media (min-width: 640px) {
+  .palette-backdrop {
+    padding-top: 8vh;
+  }
+}
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 34rem;
+  max-height: min(30rem, calc(100dvh - 6rem));
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  box-shadow: var(--shadow-card-hover);
+  animation: palette-rise 0.16s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes palette-fade {
+  from { opacity: 0; }
+}
+
+@keyframes palette-rise {
+  from { opacity: 0; transform: translateY(-6px) scale(0.99); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .palette-backdrop,
+  .palette {
+    animation: none;
+  }
+}
+
+.palette-field {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 0.85rem 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.palette-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 15.5px;
+  outline: none;
+}
+
+.palette-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.palette-close {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  color: var(--text-tertiary);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.palette-close:hover {
+  color: var(--text-primary);
+  background: var(--paper-tint);
+}
+
+.palette-list {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.4rem;
+}
+
+.palette-heading {
+  padding: 0.5rem 0.7rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.palette-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius-sm);
+}
+
+/* One highlight, driven by the active index, so the mouse and the arrow keys
+   can never light up two different rows at once. */
+.palette-row[data-active] {
+  background: var(--paper-tint);
+}
+
+.palette-foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  border-top: 1px solid var(--border);
+  background: var(--paper-tint);
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+}
+
+/* The hints are a nicety for a pointer-less visitor; on a phone there is no
+   keyboard to hint at, and the row would wrap into two lines of noise. */
+.palette-foot > span {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .palette-foot > span {
+    display: inline-flex;
+  }
+}
+
+.palette-foot-link {
+  margin-left: auto;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.palette-foot-link:hover {
+  color: var(--text-primary);
+}
+
+/* The search page's own field: same input, given room to be the first thing
+   on the page rather than a control in a toolbar. */
+.search-page-field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.search-page-field:focus-within {
+  border-color: var(--violet-deep);
+}
+
+/* Safari paints its own clear button inside type="search". */
+.search-page-field input::-webkit-search-decoration,
+.search-page-field input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* ── What's new: the time axis ───────────────────────────────────────────────
+   A hairline down the gutter between the date and the entry, with a marker in
+   each app's own accent where the row meets it. The line is the structure —
+   the page is a sequence, and the order is the information — so it is drawn
+   rather than implied by spacing.
+
+   The last row in a month stops the line at its marker instead of trailing
+   it into the gap before the next month, which read as a line to nowhere. */
+.changelog-row > div {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border-strong);
+}
+
+.changelog-row:last-child > div {
+  border-left-color: transparent;
+}
+
+.changelog-row:last-child > div::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: 0.85rem;
+  background: var(--border-strong);
+}
+
+.changelog-row > div::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 0.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Arriving from an app page's "latest update" link lands on the row itself;
+   a brief wash says which one, then gets out of the way. */
+.changelog-row:target > div {
+  animation: changelog-arrive 1.8s ease-out;
+}
+
+@keyframes changelog-arrive {
+  from {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  to {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .changelog-row:target > div {
+    animation: none;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+}
+
+/* ── /apps filters ────────────────────────────────────────────────────────────
+   Radios + :has(), no JavaScript (see app/apps/page.tsx). The inputs stay in
+   the accessibility tree and take focus; only their native box is hidden, and
+   the label is drawn as the chip. Unlayered on purpose so the display:none
+   rules beat Tailwind's `flex` utility on the card. */
+.filter-group { border: 0; margin: 0; padding: 0; min-width: 0; }
+
+.filter-chip { position: relative; display: inline-flex; }
+.filter-chip input {
+  position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer;
+}
+.filter-chip label {
+  display: inline-flex; align-items: center;
+  padding: 6px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border-strong);
+  background: var(--card);
+  color: var(--text-secondary);
+  font-size: 13.5px; font-weight: 500;
+  transition: color .15s, background-color .15s, border-color .15s;
+}
+.filter-chip:hover label { color: var(--text-primary); }
+.filter-chip input:checked + label {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--paper);
+}
+.filter-chip input:focus-visible + label {
+  outline: 2px solid var(--violet-deep);
+  outline-offset: 2px;
+}
+.filter-toggle label::before {
+  content: ""; width: 14px; height: 14px; margin-right: 8px; border-radius: 4px;
+  border: 1.5px solid currentColor; opacity: .7;
+}
+.filter-toggle input:checked + label::before {
+  opacity: 1;
+  background: currentColor;
+  box-shadow: inset 0 0 0 2px var(--text-primary);
+}
+
+/* Counting what is left. display:none cards do not increment the counter. */
+.catalog-results { display: flex; flex-direction: column; gap: 16px; counter-reset: shown; }
+.catalog-count { order: -1; }
+.catalog-count::before { content: counter(shown) " "; color: var(--text-primary); font-weight: 500; }
+.app-card { counter-increment: shown; }
+.catalog-empty { display: none; }
+
+.catalog:has(#pf-web:checked)   .app-card:not([data-web]),
+.catalog:has(#pf-macos:checked) .app-card:not([data-macos]),
+.catalog:has(#pf-ios:checked)   .app-card:not([data-ios]),
+.catalog:has(#uf-study:checked)    .app-card:not([data-use="study"]),
+.catalog:has(#uf-create:checked)   .app-card:not([data-use="create"]),
+.catalog:has(#uf-work:checked)     .app-card:not([data-use="work"]),
+.catalog:has(#uf-everyday:checked) .app-card:not([data-use="everyday"]),
+.catalog:has(#nf-account:checked)  .app-card[data-account] {
+  display: none;
+}
+
+/* ── /status ─────────────────────────────────────────────────────────────────
+   Colour is never the only signal: every dot sits beside its label in words. */
+.status-dot { width: 10px; height: 10px; border-radius: 999px; flex-shrink: 0; }
+.status-up   { background: #15803d; box-shadow: 0 0 0 4px rgba(21, 128, 61, .14); }
+.status-slow { background: #b45309; box-shadow: 0 0 0 4px rgba(180, 83, 9, .14); }
+.status-down { background: #b91c1c; box-shadow: 0 0 0 4px rgba(185, 28, 28, .14); }
+
+/* ── /articles ───────────────────────────────────────────────────────────────
+   Long-form reading. Prose sits at 17px on a ~68ch measure; diagrams are
+   inline SVG that draw every colour from the tokens below, so one drawing
+   reads in both themes without a second copy. The CSP allows images from
+   'self' only, which is another reason the figures are markup, not files. */
+:root {
+  --fig-ink: var(--text-primary);
+  --fig-muted: var(--text-secondary);
+  --fig-faint: var(--text-tertiary);
+  --fig-line: rgba(9, 9, 20, 0.28);
+  --fig-card: #ffffff;
+  --fig-sunk: #f1f1f5;
+  --fig-cyan: #0e7490;
+  --fig-cyan-soft: #e0f6fa;
+  --fig-violet: #6d28d9;
+  --fig-violet-soft: #efe8fd;
+  --fig-amber: #b45309;
+  --fig-amber-soft: #fdf1e1;
+  --fig-green: #15803d;
+  --fig-green-soft: #e3f5e9;
+  --fig-rose: #be123c;
+  --fig-rose-soft: #fde6ec;
+}
+html[data-theme="dark"] {
+  --fig-line: rgba(255, 255, 255, 0.32);
+  --fig-card: #1b1b25;
+  --fig-sunk: #13131b;
+  --fig-cyan: #38d9f0;
+  --fig-cyan-soft: #0f2a31;
+  --fig-violet: #b69cfb;
+  --fig-violet-soft: #251b3d;
+  --fig-amber: #f5b454;
+  --fig-amber-soft: #33240f;
+  --fig-green: #5fd68b;
+  --fig-green-soft: #12301f;
+  --fig-rose: #fb7196;
+  --fig-rose-soft: #3a1520;
+}
+
+.fig svg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.fig .t      { fill: var(--fig-ink); }
+.fig .t2     { fill: var(--fig-muted); }
+.fig .t3     { fill: var(--fig-faint); }
+.fig .ln     { stroke: var(--fig-line); fill: none; }
+.fig .box    { fill: var(--fig-card); stroke: var(--fig-line); }
+.fig .sunk   { fill: var(--fig-sunk); }
+.fig .c      { fill: var(--fig-cyan); }
+.fig .c-s    { fill: var(--fig-cyan-soft); stroke: var(--fig-cyan); }
+.fig .c-ln   { stroke: var(--fig-cyan); fill: none; }
+.fig .v      { fill: var(--fig-violet); }
+.fig .v-s    { fill: var(--fig-violet-soft); stroke: var(--fig-violet); }
+.fig .v-ln   { stroke: var(--fig-violet); fill: none; }
+.fig .a      { fill: var(--fig-amber); }
+.fig .a-s    { fill: var(--fig-amber-soft); stroke: var(--fig-amber); }
+.fig .a-ln   { stroke: var(--fig-amber); fill: none; }
+.fig .g      { fill: var(--fig-green); }
+.fig .g-s    { fill: var(--fig-green-soft); stroke: var(--fig-green); }
+.fig .g-ln   { stroke: var(--fig-green); fill: none; }
+.fig .r      { fill: var(--fig-rose); }
+.fig .r-s    { fill: var(--fig-rose-soft); stroke: var(--fig-rose); }
+.fig .r-ln   { stroke: var(--fig-rose); fill: none; }
+.fig .arrowhead { fill: var(--fig-line); }
+
+.article-prose { color: var(--text-secondary); font-size: 17px; line-height: 1.75; }
+.article-prose > * + * { margin-top: 1.15em; }
+.article-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text-primary);
+  font-size: clamp(24px, 3.2vw, 32px);
+  margin-top: 2.6em;
+  scroll-margin-top: 90px;
+}
+.article-prose h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  font-size: 20px;
+  margin-top: 2em;
+  scroll-margin-top: 90px;
+}
+.article-prose strong { color: var(--text-primary); font-weight: 600; }
+.article-prose a { color: var(--violet-deep); text-decoration: underline; text-underline-offset: 3px; }
+.article-prose ul, .article-prose ol { padding-left: 1.3em; }
+.article-prose ul { list-style: disc; }
+.article-prose ol { list-style: decimal; }
+.article-prose li + li { margin-top: 0.4em; }
+.article-prose li::marker { color: var(--text-tertiary); }
+.article-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.12em 0.4em;
+  border-radius: 6px;
+  background: var(--paper-sunk);
+  color: var(--text-primary);
+}
+.article-prose table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.55; }
+.article-prose th, .article-prose td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.article-prose thead th { color: var(--text-primary); font-weight: 600; border-bottom: 1px solid var(--border-strong); }
+.article-prose tbody th { color: var(--text-primary); font-weight: 600; white-space: nowrap; }
+
+.math {
+  font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", Georgia, serif;
+  font-size: 1.12em;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
+/* Thin progress bar under the sticky header. Scaled, not resized, so it
+   animates on the compositor and never triggers layout. */
+.read-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 60;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+}
+
+.toc a { display: block; padding: 5px 0 5px 12px; border-left: 2px solid var(--border); color: var(--text-tertiary); font-size: 13.5px; line-height: 1.4; }
+.toc a:hover { color: var(--text-primary); }
+.toc a[data-active] { color: var(--text-primary); border-left-color: var(--violet-deep); font-weight: 500; }
+
+.range-input { width: 100%; accent-color: var(--violet-deep); }
+/* Figures reuse <ol>/<ul> for structure, not for bullets. */
+.article-prose .fig ol, .article-prose .fig ul { list-style: none; padding-left: 0; }
+.article-prose .fig li + li { margin-top: 0; }

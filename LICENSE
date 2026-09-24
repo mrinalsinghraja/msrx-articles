@@ -1,0 +1,46 @@
+Copyright (c) 2026 Mrinal Singh Raja. All rights reserved.
+
+This source code is published so it can be read, audited and learned from. It
+is not placed in the public domain and no open-source licence is granted.
+
+WHAT YOU MAY DO
+  - Read the code, in whole or in part.
+  - Quote short excerpts with attribution, for review, teaching or discussion.
+  - Fork the repository on GitHub for the purpose of reading it or proposing a
+    change back to it.
+
+WHAT YOU MAY NOT DO WITHOUT WRITTEN PERMISSION
+  - Copy, adapt or redistribute this code, or a substantial part of it, in
+    another project, whether commercial or not.
+  - Publish a derivative work, a repackaged build, or a competing service based
+    on it.
+  - Use the name "MSRX", the MSRX logo, or the name of any app in this
+    repository in a way that suggests association with or endorsement by the
+    author.
+
+Permission for anything else is usually given if you ask. Write to
+mrinalsinghraja@gmail.com and say what you want to do.
+
+THIRD-PARTY COMPONENTS
+This project depends on, and in places bundles, software written by other
+people under their own licences. Those licences govern those components and
+are unaffected by this notice. Where a bundled component is copyleft it is
+named in the project's own documentation.
+
+NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, ACCURACY AND NONINFRINGEMENT. IN NO EVENT
+SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Nothing in this notice excludes or limits liability for death or personal
+injury caused by negligence, for fraud, or for anything else that cannot
+lawfully be excluded under the laws of India.
+
+This notice is governed by the laws of India. The courts at Bengaluru,
+Karnataka have exclusive jurisdiction over any dispute arising out of it.
+
+MSRX is a brand name used by Mrinal Singh Raja, an individual. It is not a
+registered company.

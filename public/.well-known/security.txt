@@ -1,0 +1,5 @@
+Contact: mailto:mrinalsinghraja@gmail.com
+Expires: 2027-09-17T00:00:00.000Z
+Policy: https://www.msrx.co.in/security
+Preferred-Languages: en
+Canonical: https://articles.msrx.co.in/.well-known/security.txt
