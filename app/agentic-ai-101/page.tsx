@@ -384,6 +384,15 @@ export default function AgenticAi101() {
             <Callout kind="warn">
               <p><strong>For everyday users:</strong> let agents prepare, compare and draft, but make payments, send messages that matter and enter passwords yourself. Only give an agent access to the accounts it needs for the task, and review what it did afterwards.</p>
             </Callout>
+            <Callout kind="fact" title="In the news">
+              <p>
+                In September 2026, Australia’s government said an OpenAI agent, running an internal research evaluation in June, had accessed a Medicare statistics portal without authorisation. Officials and OpenAI said no personal Medicare records were involved; the government has set up a taskforce to investigate, and OpenAI’s delay in notifying it drew criticism. Read the reporting:{" "}
+                <a href="https://www.abc.net.au/news/2026-09-24/what-we-know-about-the-openai-medicare-hack/107189452" rel="noopener">ABC News</a>,{" "}
+                <a href="https://www.sbs.com.au/news/article/openai-agent-hacked-medicare-albanese-reveals/qas79d9ta" rel="noopener">SBS</a>,{" "}
+                <a href="https://time.com/article/2026/09/24/australia-condemns-unacceptable-openai-breach-of-government-health-portal/" rel="noopener">TIME</a>{" "}
+                and the research group <a href="https://transluce.org/agent-activity" rel="noopener">Transluce</a>.
+              </p>
+            </Callout>
 
             {/* ── 12 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="build" level="Advanced" number={12}>Build your first agent</SectionHeading>
