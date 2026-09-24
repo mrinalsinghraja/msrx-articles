@@ -33,6 +33,7 @@ import {
 } from "@/components/articles/AiFigures";
 
 const article = getArticle("welcome-to-the-world-of-ai") as Article;
+const next = getArticle("chatgpt-101") as Article;
 const path = `/${article.slug}`;
 
 export const metadata: Metadata = {
@@ -664,14 +665,14 @@ for epoch in range(5):
       <section className="border-t border-[var(--border)] bg-[var(--paper-tint)]">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 py-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div>
-            <p className="eyebrow text-[var(--text-tertiary)] mb-2">{article.series}</p>
-            <p className="display-sm text-[22px] text-[var(--text-primary)]">More articles on the way</p>
+            <p className="eyebrow text-[var(--text-tertiary)] mb-2">Next in {article.series}</p>
+            <p className="display-sm text-[22px] text-[var(--text-primary)]">{next.title}</p>
           </div>
           <Link
-            href="/"
+            href={`/${next.slug}`}
             className="msrx-gradient inline-flex shrink-0 items-center gap-2 rounded-2xl px-6 py-3 text-[15px] font-semibold text-white transition-opacity hover:opacity-90"
           >
-            All articles
+            Read next
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>

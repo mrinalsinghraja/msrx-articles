@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "chatgpt-101",
+    title: "ChatGPT 101: from your first chat to the API",
+    subtitle: "Its history, how it works, step-by-step setup, prompting that works, every major feature, and building with it in code",
+    description:
+      "A complete beginner-to-advanced guide to ChatGPT: where it came from, what happens when you press Enter, setting it up, the six ingredients of a great prompt, features from files to agents, staying safe, context windows, tool calls and your first API call.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 22,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["ChatGPT", "Prompting", "Custom GPTs", "OpenAI API", "Structured outputs", "AI for beginners"],
+    accent: "#15803D",
+  },
+  {
     slug: "welcome-to-the-world-of-ai",
     title: "Welcome to the awesome world of Artificial Intelligence",
     subtitle: "From “what even is AI?” to attention heads, gradients and agents, in one sitting",

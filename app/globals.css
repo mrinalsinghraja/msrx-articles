@@ -952,3 +952,5 @@ html[data-theme="dark"] {
 /* Figures reuse <ol>/<ul> for structure, not for bullets. */
 .article-prose .fig ol, .article-prose .fig ul { list-style: none; padding-left: 0; }
 .article-prose .fig li + li { margin-top: 0; }
+/* Code blocks: the inline-code chip must not apply line by line inside <pre>. */
+.article-prose pre code { background: none; padding: 0; border-radius: 0; font-size: inherit; color: inherit; }
