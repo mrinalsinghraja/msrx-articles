@@ -26,6 +26,7 @@ import {
 
 const article = getArticle("deepseek-101") as Article;
 const previous = getArticle("microsoft-copilot-101") as Article;
+const next = getArticle("typesafe-jev-101") as Article;
 const first = getArticle("welcome-to-the-world-of-ai") as Article;
 const chatgpt = getArticle("chatgpt-101") as Article;
 const gemini = getArticle("google-gemini-101") as Article;
@@ -456,11 +457,11 @@ ollama run deepseek-r1:8b       # pick a size: 1.5b, 7b, 8b, 14b, 32b, 70b…`} 
             </p>
             <p className="display-sm text-[18px] text-[var(--text-primary)]">{previous.title}</p>
           </Link>
-          <Link href="/" className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
+          <Link href={`/${next.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
             <p className="flex sm:justify-end items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
-              All articles <ArrowRight size={13} aria-hidden="true" />
+              Next article <ArrowRight size={13} aria-hidden="true" />
             </p>
-            <p className="display-sm text-[18px] text-[var(--text-primary)]">{article.series}</p>
+            <p className="display-sm text-[18px] text-[var(--text-primary)]">{next.title}</p>
           </Link>
         </div>
       </section>

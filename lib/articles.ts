@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "typesafe-jev-101",
+    title: "TypeSafe and Jev: how typed AI judgments are changing the way we use AI",
+    subtitle: "Why software shouldn’t chat with AI, System One models, Choice, Noul and Score, calibrated confidence, your first app step by step, and the patterns that cut AI costs by orders of magnitude",
+    description:
+      "A beginner-to-advanced guide to TypeSafe’s Jev: from prompt-and-parse to typed judgments, Kahneman’s System 1, the three question types, calibration and RLCD, building a support-ticket sorter step by step, batching and cost, the layered blueprint, patterns, limits and the Claude Code skill.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 19,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["TypeSafe", "Jev", "System One models", "Calibrated AI", "AI cost", "AI engineering"],
+    accent: "#047857",
+  },
+  {
     slug: "deepseek-101",
     title: "DeepSeek 101: from the app to running it on your own computer",
     subtitle: "The Chinese lab that shook Silicon Valley, how R1 learned to reason, mixture-of-experts and latent attention, the app, the API, open weights and privacy",
