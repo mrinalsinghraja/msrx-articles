@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "microsoft-copilot-101",
+    title: "Microsoft Copilot 101: from your first chat to building agents",
+    subtitle: "Every Copilot explained — at home, in Office, at work and in code — how it grounds answers in your data, prompting with GCSE, GitHub Copilot, Copilot Studio and Microsoft Foundry",
+    description:
+      "A beginner-to-advanced guide to Microsoft Copilot: its history from Cortana and the OpenAI partnership, the consumer app on Windows, Edge and phones, Copilot in Word, Excel, PowerPoint, Outlook and Teams, how Microsoft 365 Copilot grounds answers in your permissions, GitHub Copilot, agents in Copilot Studio, and Microsoft Foundry.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 18,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Microsoft Copilot", "Microsoft 365 Copilot", "GitHub Copilot", "Copilot Studio", "Microsoft Foundry", "AI agents"],
+    accent: "#0E7490",
+  },
+  {
     slug: "google-gemini-101",
     title: "Google Gemini 101: from your first chat to the API",
     subtitle: "Google’s AI story, why Gemini is built multimodal, the app on web and Android, Gems and Deep Research, Workspace, AI Studio, the Gemini API and the Gemini CLI",

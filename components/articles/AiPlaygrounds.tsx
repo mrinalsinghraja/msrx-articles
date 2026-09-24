@@ -166,7 +166,7 @@ export function TemperatureDemo() {
 
       <Slider label="Temperature (T)" value={t} min={0.1} max={2.5} step={0.1} onChange={setT} hint="Low = safe and repetitive · High = creative and chaotic" />
 
-      <ul className="mt-5 space-y-2">
+      <ul className="mt-5 space-y-2 !pl-0 !list-none">
         {CANDIDATES.map((c, i) => (
           <li key={c.token} className="grid grid-cols-[5.5rem_1fr_3.5rem] items-center gap-3">
             <span className="mono text-[13px] text-[var(--text-primary)] truncate">{c.token}</span>
