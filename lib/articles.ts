@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "agentic-ai-101",
+    title: "Agentic AI 101: from AI that answers to AI that acts",
+    subtitle: "What agents are, where they came from, how the think–act–observe loop works, what they change at home and at work, how to keep them safe, and how to start your own agentic journey",
+    description:
+      "A beginner-to-advanced guide to agentic AI: from Shakey the robot to today’s coding and browser agents, levels of autonomy, the anatomy and ReAct loop of an agent, examples from daily life and every office team, workflow patterns, MCP and A2A, memory, reliability, guardrails, a first agent in code, and a five-step journey to get started.",
+    published: "2026-09-24",
+    updated: "2026-09-24",
+    readingMinutes: 18,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Agentic AI", "AI agents", "ReAct", "MCP", "AI safety", "Future of work"],
+    accent: "#7C3AED",
+  },
+  {
     slug: "typesafe-jev-101",
     title: "TypeSafe and Jev: how typed AI judgments are changing the way we use AI",
     subtitle: "Why software shouldn’t chat with AI, System One models, Choice, Noul and Score, calibrated confidence, your first app step by step, and the patterns that cut AI costs by orders of magnitude",
