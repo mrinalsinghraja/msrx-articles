@@ -15,6 +15,12 @@ npm run lint
 npm run build
 ```
 
+## Writing a new article
+
+Use the standard brief in [`docs/PROMPT.md`](docs/PROMPT.md): paste it into a Claude Code
+session, fill in the topic, and it researches, writes, verifies and publishes to these
+standards. `CLAUDE.md` points every session at it.
+
 ## Checks that run by themselves
 
 - **Build:** every article must have 5–10 references, and every `<Cite>` must match exactly one.
