@@ -228,7 +228,7 @@ export default function DeepSeek101() {
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="moment" level="Beginner" number={3}>The January 2025 shock</SectionHeading>
             <p>
-              Why did one model move markets? Until then, the assumption was that frontier AI required tens of billions of dollars and the most advanced chips — a game only a few American giants could play. DeepSeek, working under export restrictions that limited it to less powerful Nvidia chips, reported that the final training run of V3 used about 2.8 million GPU-hours, roughly $5.6 million at rental prices,<Cite slug={article.slug} src="2412.19437" /> and then released R1, which matched OpenAI’s o1 on many maths and coding tests.<Cite slug={article.slug} src="2501.12948" />
+              Why did one model move markets? Until then, the assumption was that frontier AI required tens of billions of dollars and the most advanced chips — a game only a few American giants could play. DeepSeek, working under export restrictions that limited it to less powerful Nvidia chips, reported that the final training run of V3 used about 2.8 million GPU-hours, roughly $5.6 million at rental prices,<Cite slug={article.slug} src="2412.19437" /> and then released R1, which matched OpenAI’s o1 on many maths and coding tests.<Cite slug={article.slug} src="s41586-025-09422-z" />
             </p>
             <Figure number={2} caption="The DeepSeek moment in numbers. The $5.6 million covers GPU time for the final V3 run only — not the research, experiments, staff or hardware before it.">
               <DeepSeekMoment />
@@ -376,7 +376,7 @@ ollama run deepseek-r1:8b       # pick a size: 1.5b, 7b, 8b, 14b, 32b, 70b…`} 
             {/* ── 12 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="api" level="Advanced" number={12}>The DeepSeek API</SectionHeading>
             <p>
-              DeepSeek’s API uses the same request format as OpenAI’s (and it also accepts Anthropic’s format), so existing code and tools work by changing two settings.<Cite slug={article.slug} src="https://api-docs.deepseek.com/" /> Create an account at <code>platform.deepseek.com</code>, add a small balance, create a key and set it as <code>DEEPSEEK_API_KEY</code>. The current models are <code>deepseek-flash</code> (DeepSeek-V4.1-Flash, recommended, and it understands images) and <code>deepseek-v4-pro</code>, both with a <strong>1-million-token</strong> context window.<Cite slug={article.slug} src="deepseek.com/updates" />
+              DeepSeek’s API uses the same request format as OpenAI’s (and it also accepts Anthropic’s format), so existing code and tools work by changing two settings.<Cite slug={article.slug} src="quick_start/pricing" /> Create an account at <code>platform.deepseek.com</code>, add a small balance, create a key and set it as <code>DEEPSEEK_API_KEY</code>. The current models are <code>deepseek-flash</code> (DeepSeek-V4.1-Flash, recommended, and it understands images) and <code>deepseek-v4-pro</code>, both with a <strong>1-million-token</strong> context window.<Cite slug={article.slug} src="quick_start/pricing" />
             </p>
             <Figure number={12} caption="A first call with thinking on, following DeepSeek’s documentation. The reasoning comes back in its own field, separate from the answer.">
               <Code title="first_call.py — Python" code={PY_API} />
@@ -390,7 +390,7 @@ ollama run deepseek-r1:8b       # pick a size: 1.5b, 7b, 8b, 14b, 32b, 70b…`} 
             <Code title="local.py — Python" code={PY_LOCAL} />
             <h3 className="!mt-10">Cost and features</h3>
             <p>
-              API prices are per million tokens and very low: at the time of writing, <code>deepseek-flash</code> costs about $0.15–$0.30 per million input tokens and $0.60–$1.20 per million output tokens, with off-peak hours half price. Repeated prompt prefixes are cached automatically and billed at a small fraction of the normal rate. The API also supports JSON output, tool calling and a thinking <code>reasoning_effort</code> setting.
+              API prices are per million tokens and very low: at the time of writing, <code>deepseek-flash</code> costs about $0.15–$0.30 per million input tokens and $0.60–$1.20 per million output tokens, with off-peak hours half price.<Cite slug={article.slug} src="quick_start/pricing" /> Repeated prompt prefixes are cached automatically and billed at a small fraction of the normal rate. The API also supports JSON output, tool calling and a thinking <code>reasoning_effort</code> setting.
             </p>
             <Callout kind="warn">
               <p><strong>When using tools with thinking on</strong>, DeepSeek’s docs require you to send back the earlier turns’ <code>reasoning_content</code>; without tools you can drop it. And as always, keep your API key on a server, never in a web page or app.</p>
@@ -399,7 +399,7 @@ ollama run deepseek-r1:8b       # pick a size: 1.5b, 7b, 8b, 14b, 32b, 70b…`} 
             {/* ── 13 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="privacy" level="Beginner" number={13}>Privacy and trust</SectionHeading>
             <p>
-              This is the section to read carefully. DeepSeek’s privacy policy says the data it collects from its app and API is stored on servers in the People’s Republic of China, where companies can be required to cooperate with authorities. In early 2025, Italy’s data-protection regulator blocked the app, and several governments — including Australia, Taiwan and South Korea — restricted it on official devices; India’s finance ministry advised staff not to use AI tools such as DeepSeek on office computers.
+              This is the section to read carefully. DeepSeek’s privacy policy says it collects, processes and stores users’ personal data in the People’s Republic of China,<Cite slug={article.slug} src="deepseek-privacy-policy" /> where, as experts quoted by Al Jazeera point out, laws such as the National Intelligence Law can allow the state access to company data.<Cite slug={article.slug} src="which-countries-have-banned-deepseek" /> On 30 January 2025, Italy’s data-protection authority ordered DeepSeek to stop processing Italian users’ data, and governments including Australia, Taiwan and South Korea restricted it on official devices;<Cite slug={article.slug} src="which-countries-have-banned-deepseek" /> India’s finance ministry advised its staff to avoid AI tools such as ChatGPT and DeepSeek on office computers and devices.<Cite slug={article.slug} src="reuters.com" />
             </p>
             <p>
               The hosted app also follows Chinese content rules: on topics that are politically sensitive in China, it may decline to answer or give a one-sided account. The open weights carry some of that tuning too, though independent hosts can and do adjust it.
