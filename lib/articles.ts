@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "meta-muse-everyday-automation",
+    title: "Democratizing automation: bringing Meta’s Muse into everyday life",
+    subtitle: "What Meta’s personal AI agent is, how to hand it real errands step by step, how much access to give it, how it pays, and how its secure computer, Sentinel and surrogate passwords try to keep an agent for everyone safe",
+    description:
+      "A beginner-to-advanced guide to Muse, Meta’s personal AI agent: what makes it an agent rather than a chatbot, where it came from, everyday uses, getting started, writing goals, least-privilege access, paying with Link, the Muse Secure VM and Sentinel, prompt injection and the lethal trifecta, privacy and ads, and a first-month plan — from Meta’s own posts and independent reporting.",
+    published: "2026-09-28",
+    updated: "2026-09-28",
+    readingMinutes: 18,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Meta", "Muse", "Personal AI agent", "AI agents", "Automation", "Prompt injection", "AI safety", "Privacy"],
+    accent: "#1D4ED8",
+  },
+  {
     slug: "typesafe-jev-with-claude",
     title: "How to use TypeSafe Jev with Claude: a step-by-step guide",
     subtitle: "Five ways to make a fast judgment model and a thinking model work as one team — the Claude Code skill, an MCP tool, hooks that guard what runs, a router in front of Claude and a verifier behind it — with real runs, real code and the thresholds that hold it together",

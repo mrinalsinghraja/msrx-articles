@@ -148,6 +148,17 @@ const references: Record<string, Reference[]> = {
     { authors: "TypeSafe AI", title: "SDE cascade", container: "TypeSafe cookbooks", url: "https://docs.typesafe.ai/cookbooks/sde_cascade", kind: "Documentation", note: "The cascade pattern" },
     { authors: "Anthropic", title: "Tool use with Claude", container: "Claude Platform documentation", url: "https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview", kind: "Documentation", note: "The Jev tool inside your own agent" },
   ],
+  "meta-muse-everyday-automation": [
+    { authors: "Meta", date: "8 September 2026", title: "Introducing Muse: The World’s First Personal AI Agent Built for Everyone", container: "Meta Newsroom", url: "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/", kind: "Announcement", note: "What Muse is, how to reach it, approvals, privacy controls, availability and price" },
+    { authors: "Sarantakos, M., with Awad, C.", date: "September 2026", title: "How We Designed Muse", container: "Meta", url: "https://introducing.muse.ai/", kind: "Announcement", note: "Goals, background work, proactivity, activity log, approval cards and artifacts" },
+    { authors: "Meta", date: "8 April 2026", title: "Introducing Muse Spark: MSL’s First Model, Purpose-Built to Prioritize People", container: "Meta Newsroom", url: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/", kind: "Announcement", note: "The model behind Muse" },
+    { authors: "Sheasha, T.", date: "8 September 2026", title: "How We Built Safety Into Muse", container: "Meta AI Research", url: "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse", kind: "Announcement", note: "The Secure VM, Sentinel, surrogate credentials, prompt-injection defences, purchases, data and training policy" },
+    { authors: "Meta", date: "24 September 2026", title: "Everything We Announced at Meta Connect 2026", container: "Meta", url: "https://www.meta.com/blog/meta-connect-2026-everything-we-announced/", kind: "Announcement", note: "Voice, glasses, Mac computer use, new connectors and Muse Charm" },
+    { authors: "Perez, S.", date: "25 September 2026", title: "Meta is putting its muscle behind Muse as the AI app takes off", container: "TechCrunch", url: "https://techcrunch.com/2026/09/25/meta-is-putting-its-muscle-behind-muse-as-the-ai-app-takes-off/", kind: "Reporting", note: "Download estimates, app-store rankings and Meta’s promotion" },
+    { authors: "Ha, A.", date: "27 September 2026", title: "Can Muse overcome Meta’s trust issues?", container: "TechCrunch", url: "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/", kind: "Reporting", note: "A reviewer’s first weeks with Muse, and the trust question" },
+    { authors: "Stripe", date: "8 September 2026", title: "Stripe helps Muse, Meta’s new personal AI agent, shop across the internet with Link", container: "Stripe Newsroom", url: "https://stripe.com/newsroom/news/stripe-helps-meta-muse-shop-with-link", kind: "Announcement", note: "How Muse pays: Link, single-use cards and approvals" },
+    { authors: "Willison, S.", date: "16 June 2025", title: "The lethal trifecta for AI agents: private data, untrusted content, and external communication", container: "simonwillison.net", url: "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/", kind: "Guide", note: "The three conditions that make prompt injection dangerous" },
+  ],
 };
 
 export function getReferences(slug: string): Reference[] {

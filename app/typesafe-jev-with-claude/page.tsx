@@ -46,6 +46,7 @@ const article = getArticle("typesafe-jev-with-claude") as Article;
 const previous = getArticle("agentic-ai-101") as Article;
 const basics = getArticle("typesafe-jev-101") as Article;
 const claude = getArticle("how-to-use-claude") as Article;
+const next = getArticle("meta-muse-everyday-automation") as Article;
 const path = `/${article.slug}`;
 const DOCS = "https://docs.typesafe.ai";
 
@@ -561,11 +562,11 @@ export default function TypesafeJevWithClaude() {
             </p>
             <p className="display-sm text-[18px] text-[var(--text-primary)]">{previous.title}</p>
           </Link>
-          <Link href={`/${basics.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
+          <Link href={`/${next.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
             <p className="flex sm:justify-end items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
-              The basics first <ArrowRight size={13} aria-hidden="true" />
+              Next article <ArrowRight size={13} aria-hidden="true" />
             </p>
-            <p className="display-sm text-[18px] text-[var(--text-primary)]">{basics.title}</p>
+            <p className="display-sm text-[18px] text-[var(--text-primary)]">{next.title}</p>
           </Link>
         </div>
       </section>
