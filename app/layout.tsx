@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import { Inter, Bricolage_Grotesque } from "next/font/google";
+import localFont from "next/font/local";
 import { ArrowUpRight } from "lucide-react";
 import "./globals.css";
 import { MsrxWordmark } from "@/components/MsrxLogo";
@@ -9,12 +9,20 @@ import { SiteAnalytics } from "@/components/SiteAnalytics";
 import { AUTHOR, MAIN_SITE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Same faces as the main MSRX site, so moving between the two feels like one place.
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
+// Self-hosted from @fontsource-variable (OFL) rather than next/font/google: the
+// Google variant downloads the fonts during `next build`, and on 28 Sep 2026 that
+// download failed on Vercel's builder and failed the whole git-push deploy.
+const inter = localFont({
+  src: "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
+  weight: "100 900",
+  variable: "--font-inter",
+  display: "swap",
+});
+const bricolage = localFont({
+  src: "../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-standard-normal.woff2",
+  weight: "200 800",
   variable: "--font-bricolage",
   display: "swap",
-  weight: ["600", "700"],
 });
 
 const DESCRIPTION =
