@@ -15,6 +15,13 @@ npm run lint
 npm run build
 ```
 
+## Checks that run by themselves
+
+- **Build:** every article must have 5–10 references, and every `<Cite>` must match exactly one.
+- **Monthly:** `.github/workflows/link-check.yml` opens every reference on the 1st of each month
+  (`node scripts/check-links.mjs lib/references.ts` runs it locally) and fails, which emails the
+  owner, if a link is dead. Bot-walled sites are listed for a manual look.
+
 ## Layout
 
 | Path | What it is |
@@ -47,7 +54,10 @@ npm run build
    source (paper, official announcement, docs page), with authors and dates taken from the
    source's own metadata (arXiv, Crossref, the page's published date). Open every link before
    adding it. The build fails outside 5–10, and each page lists them at the end and publishes
-   them as JSON-LD `citation`. [Editorial standards](https://articles.msrx.co.in/standards)
+   them as JSON-LD `citation`. Then place a marker after each claim a source supports:
+   `<Cite slug={article.slug} src="1706.03762" />`, where `src` is the exact URL or a fragment of
+   it that matches one entry. The build fails on a fragment that matches none or several, and
+   lists are numbered in order of first appearance. [Editorial standards](https://articles.msrx.co.in/standards)
    describe these rules to readers.
 6. **Check before publishing.**
    - Check each date, name, number and prize against its primary source.

@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import {
@@ -155,7 +155,7 @@ export default function TypesafeJevWithClaude() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -193,7 +193,7 @@ export default function TypesafeJevWithClaude() {
               Claude is brilliant at the slow, careful work: writing, reasoning, coding, planning. But a surprising amount of what happens around Claude is tiny decisions. Is this request something a database can answer? Is this shell command about to delete a folder? Did this draft just promise a refund we don’t offer? Asking Claude each of those is like asking a senior engineer to sort the post.
             </p>
             <p>
-              <strong>Jev</strong>, from a company called TypeSafe, is built for exactly those tiny decisions. You give it a situation and a few typed questions; it gives back a choice, a probability or a position on a scale — in a fraction of a second, for a fraction of a cent, with an honest measure of how sure it is. Our <Link href={`/${basics.slug}`}>last TypeSafe article</Link> explained what Jev is and why it works. This one is the practical sequel: <strong>five concrete ways to make Jev and Claude work as one team</strong>, each with steps you can follow today.
+              <strong>Jev</strong>, from a company called TypeSafe, is built for exactly those tiny decisions. You give it a situation and a few typed questions; it gives back a choice, a probability or a position on a scale<Cite slug={article.slug} src="docs.typesafe.ai/api" /> — in a fraction of a second, for a fraction of a cent, with an honest measure of how sure it is. Our <Link href={`/${basics.slug}`}>last TypeSafe article</Link> explained what Jev is and why it works. This one is the practical sequel: <strong>five concrete ways to make Jev and Claude work as one team</strong>, each with steps you can follow today.
             </p>
             <Callout kind="fact" title="Everything here was run for real">
               <p>Every terminal frame marked “real run” shows output captured on 28 September 2026 against <code>jev-1.13.0</code> and Claude Code 2.1.281. Every code sample was either run against the live API or type-checked against the current SDKs (<code>@typesafe-ai/sdk</code> 0.6.0, <code>typesafe-sdk</code> 0.7.2, <code>@anthropic-ai/sdk</code> 0.128.0). Diagrams are drawings. MSRX is not affiliated with TypeSafe or Anthropic.</p>
@@ -211,7 +211,7 @@ export default function TypesafeJevWithClaude() {
               That is the whole idea of this guide. <strong>Jev makes the quick calls. Claude does the thinking and the writing. Plain code sits between them and owns the rules</strong> — which thresholds to trust, what happens when a model is unsure, what happens when one is unavailable.
             </p>
             <Callout kind="warn" title="One thing Jev is not">
-              <p>Jev is not a replacement for the model inside Claude Code. It doesn’t write text or code, and there is no setting that turns Claude Code into “Claude Code powered by Jev”. TypeSafe’s own docs say so plainly. Everything in this guide uses the two <em>side by side</em>.</p>
+              <p>Jev is not a replacement for the model inside Claude Code. It doesn’t write text or code, and there is no setting that turns Claude Code into “Claude Code powered by Jev”. TypeSafe’s own docs say so plainly.<Cite slug={article.slug} src="coding-agents" /> Everything in this guide uses the two <em>side by side</em>.</p>
             </Callout>
             <Callout kind="eli5">
               <p>Claude is the essay writer. Jev is the multiple-choice marker. You wouldn’t ask the essay writer to tick a thousand boxes, and you wouldn’t ask the marker to write the essay. Use both, each for its own job.</p>
@@ -254,7 +254,7 @@ export default function TypesafeJevWithClaude() {
               <p>Never paste it into a chat, a prompt, a config file you commit, or front-end code. On Linux or Windows, use your platform’s secret store or an environment variable set outside the project. Claude Code itself needs <em>no</em> Anthropic API key — it uses your Claude login. You only need an Anthropic key for Ways 4 and 5, where your own app calls the Claude API.</p>
             </Callout>
             <p>
-              A quick word on cost, because it shapes every design choice below. Jev charges only for <strong>input</strong> tokens — $0.042 per million at the time of writing — and output is free. Our router call in Way 4 used 522 input tokens: about <strong>$0.000022</strong>, or roughly $22 for a million customer messages.
+              A quick word on cost, because it shapes every design choice below. Jev charges only for <strong>input</strong> tokens — $0.042 per million at the time of writing — and output is free.<Cite slug={article.slug} src="typesafe.ai/models" /> Our router call in Way 4 used 522 input tokens: about <strong>$0.000022</strong>, or roughly $22 for a million customer messages.
             </p>
             <MathBlock reading="522 tokens × $0.042 per million tokens ≈ $0.0000219 per call">
               cost = input tokens × $0.042 / 10<sup>6</sup>
@@ -263,7 +263,7 @@ export default function TypesafeJevWithClaude() {
             {/* ── 4 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="skill" level="Intermediate" number={4}>Way 1: the TypeSafe skill in Claude Code</SectionHeading>
             <p>
-              The fastest win. A <strong>skill</strong> is a briefing that Claude Code loads when it’s relevant: instructions, rules and pointers to documentation. TypeSafe publishes one as a Claude Code plugin. With it installed, Claude Code knows the three question types, the design patterns and the pitfalls — and, importantly, it reads TypeSafe’s <em>live</em> documentation before writing code, rather than relying on memory.
+              The fastest win. A <strong>skill</strong> is a briefing that Claude Code loads when it’s relevant: instructions, rules and pointers to documentation. TypeSafe publishes one as a Claude Code plugin.<Cite slug={article.slug} src="agent-skill" /> With it installed, Claude Code knows the three question types, the design patterns and the pitfalls — and, importantly, it reads TypeSafe’s <em>live</em> documentation before writing code, rather than relying on memory.
             </p>
             <Figure number={5} caption="Real screenshot of TypeSafe’s “Agent skill” documentation page, captured on 28 September 2026. The two commands are all it takes.">
               {/* The site CSP allows only same-origin images, so screenshots ship from public/. */}
@@ -303,7 +303,7 @@ export default function TypesafeJevWithClaude() {
               The skill helps Claude <em>write code</em> that calls Jev. Sometimes you want Claude to <em>call Jev itself</em>, right in the middle of a task: “which of these 60 log lines are relevant?”, “which of these five commit messages is clearest?”. For that, give Claude a tool.
             </p>
             <p>
-              <strong>MCP</strong> — the Model Context Protocol — is the standard way to plug tools into Claude Code and Claude Desktop. (Our <Link href={`/${previous.slug}#protocols`}>agentic AI article</Link> explains it.) An MCP server is just a small program that announces its tools and runs them when asked. TypeSafe doesn’t ship an official one today, so we’ll build one — about 80 lines, no dependencies.
+              <strong>MCP</strong> — the Model Context Protocol — is the standard way to plug tools into Claude Code and Claude Desktop.<Cite slug={article.slug} src="specification/2025-06-18" /> (Our <Link href={`/${previous.slug}#protocols`}>agentic AI article</Link> explains it.) An MCP server is just a small program that announces its tools and runs them when asked. TypeSafe doesn’t ship an official one today, so we’ll build one — about 80 lines, no dependencies.
             </p>
             <Figure number={7} caption="What happens when Claude uses the tool. The API key is read by the server and never enters Claude’s context.">
               <McpSequence />
@@ -335,7 +335,7 @@ export default function TypesafeJevWithClaude() {
             </p>
             <h3>A guard for destructive commands</h3>
             <p>
-              A <code>PreToolUse</code> hook receives the command Claude wants to run as JSON on standard input. Ours asks Jev two questions and, if the answers look risky, tells Claude Code to <strong>ask you</strong> before running it.
+              A <code>PreToolUse</code> hook receives the command Claude wants to run as JSON on standard input.<Cite slug={article.slug} src="code.claude.com/docs/en/hooks" /> Ours asks Jev two questions and, if the answers look risky, tells Claude Code to <strong>ask you</strong> before running it.
             </p>
             <Figure number={8} caption="The guard hook. It can only add a confirmation step; it never approves anything, and it stays silent when Jev can’t help." wide>
               <HookFlow />
@@ -394,7 +394,7 @@ export default function TypesafeJevWithClaude() {
             <Figure number={10} caption="The routing rules, drawn. Jev supplies judgments; the branches and thresholds are ordinary code you can read and test." wide>
               <RouterFlow />
             </Figure>
-            <p>Here is the whole router in TypeScript, using both official SDKs:</p>
+            <p>Here is the whole router in TypeScript, using both official SDKs:<Cite slug={article.slug} src="sdk/javascript" /></p>
             <Code title="support/router.ts" code={ROUTER} />
             <p className="!mt-6">Four decisions in that file are worth copying anywhere:</p>
             <ul>
@@ -410,7 +410,7 @@ export default function TypesafeJevWithClaude() {
             {/* ── 8 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="verifier" level="Advanced" number={8}>Way 5: verify what Claude writes</SectionHeading>
             <p>
-              Claude writes wonderful, warm replies. Occasionally, a wonderful, warm reply promises something your policy doesn’t allow. A human reviewer catches that by checking the draft against the rules. Jev can do the same check in a third of a second, before anyone sees the draft.
+              Claude writes wonderful, warm replies. Occasionally, a wonderful, warm reply promises something your policy doesn’t allow. A human reviewer catches that by checking the draft against the rules. Jev can do the same check in a third of a second, before anyone sees the draft.<Cite slug={article.slug} src="llm_guardrails" />
             </p>
             <p>We gave Jev a refund policy, the facts of the case, and a draft reply that sounds lovely:</p>
             <Figure number={11} caption="A real run. The draft scored 1.92 out of 2 for tone — and failed both factual checks. Sounding right and being right are different questions.">
@@ -443,7 +443,7 @@ export default function TypesafeJevWithClaude() {
             </p>
             <h3>The cascade: cheap draft, check, strong redraft</h3>
             <p>
-              Put the check inside a loop and you get a <strong>cascade</strong>. A fast model drafts; Jev checks; only failures go to a stronger model, with Jev’s flags as instructions; anything that still fails goes to a person. TypeSafe’s own extraction cookbook uses the same shape — a small model, a Jev verifier, and a big reasoning model only when a check fires — to get most of the big model’s quality at a fraction of the cost.
+              Put the check inside a loop and you get a <strong>cascade</strong>. A fast model drafts; Jev checks; only failures go to a stronger model, with Jev’s flags as instructions; anything that still fails goes to a person. TypeSafe’s own extraction cookbook<Cite slug={article.slug} src="sde_cascade" /> uses the same shape — a small model, a Jev verifier, and a big reasoning model only when a check fires — to get most of the big model’s quality at a fraction of the cost.
             </p>
             <Figure number={13} caption="A draft-and-verify cascade. Most drafts stop at the first green box; the strong model and the person only see the hard cases.">
               <Cascade />
@@ -456,7 +456,7 @@ export default function TypesafeJevWithClaude() {
             {/* ── 9 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="agent-tool" level="Advanced" number={9}>Bonus: Jev as a tool inside your own agent</SectionHeading>
             <p>
-              Way 2 gave Claude Code a Jev tool. You can do the same inside your own agent on the Claude API: define a tool, and let Claude decide when a fast judgment would help. The Anthropic SDK’s tool runner handles the loop — Claude calls the tool, your function runs, the result goes back, until Claude is done.
+              Way 2 gave Claude Code a Jev tool. You can do the same inside your own agent on the Claude API: define a tool, and let Claude decide when a fast judgment would help. The Anthropic SDK’s tool runner handles the loop<Cite slug={article.slug} src="tool-use/overview" /> — Claude calls the tool, your function runs, the result goes back, until Claude is done.
             </p>
             <Code title="agent/ask-jev-tool.ts" code={TOOL_RUNNER} />
             <Callout kind="tip" title="Tool or code — which should call Jev?">

@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { BatchCalculator, ThresholdTuner } from "@/components/figures/TypesafePlaygrounds";
@@ -188,7 +188,7 @@ export default function TypesafeJev101() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -226,10 +226,10 @@ export default function TypesafeJev101() {
               Over the last six articles we have met the great AI chatbots — ChatGPT, Claude, Gemini, Copilot, DeepSeek. All of them are built to <em>talk</em>. But a huge share of what software actually needs from AI isn’t conversation at all. It’s tiny decisions: is this email urgent? Which team should get this ticket? Does this review mention a crash? How angry is this customer?
             </p>
             <p>
-              <strong>TypeSafe</strong> is a company built around that observation, and <strong>Jev</strong> is its model. Jev doesn’t write a single word. You give it some text and a list of typed questions, and it returns typed answers — a choice from your list, a probability, a position on a scale — with calibrated confidence, in about a tenth of a second, for a tiny fraction of a cent. This article explains why that is a genuinely different way of engaging AI, and how to build with it, from the first idea to production patterns.
+              <strong>TypeSafe</strong> is a company built around that observation, and <strong>Jev</strong> is its model.<Cite slug={article.slug} src="https://docs.typesafe.ai/introduction" /> Jev doesn’t write a single word. You give it some text and a list of typed questions, and it returns typed answers — a choice from your list, a probability, a position on a scale — with calibrated confidence, in about a tenth of a second, for a tiny fraction of a cent. This article explains why that is a genuinely different way of engaging AI, and how to build with it, from the first idea to production patterns.
             </p>
             <Callout kind="fact" title="Before we start">
-              <p>This article is based on the <a href={GUIDE} rel="noopener">TypeSafe Easy Guide</a>, an unofficial community guide, with every model fact, price, API shape and benchmark checked against TypeSafe’s documentation at <code>docs.typesafe.ai</code> on the day of publishing. MSRX is not affiliated with TypeSafe. Screens are illustrations; the terminal output in Fig. 10 is from a real run described in the guide.</p>
+              <p>This article is based on the <a href={GUIDE} rel="noopener">TypeSafe Easy Guide</a>,<Cite slug={article.slug} src="easy-guide" /> an unofficial community guide, with every model fact, price, API shape and benchmark checked against TypeSafe’s documentation at <code>docs.typesafe.ai</code> on the day of publishing. MSRX is not affiliated with TypeSafe. Screens are illustrations; the terminal output in Fig. 10 is from a real run described in the guide.</p>
             </Callout>
 
             {/* ── 1 ─────────────────────────────────────────────────────────*/}
@@ -278,7 +278,7 @@ export default function TypesafeJev101() {
             </Figure>
             <Code title="Terminal — a raw API call" code={CURL} />
             <p className="!mt-6">
-              Three details matter. The <strong>question IDs</strong> (<code>is_urgent</code>, <code>department</code>) are for your code only and are never sent to the model, so the instructions must carry the full meaning. You <strong>pay only for input tokens</strong> — at the time of writing $0.042 per million, with output free. And the model version comes back in every response, so you can log exactly which model made each decision.
+              Three details matter. The <strong>question IDs</strong> (<code>is_urgent</code>, <code>department</code>) are for your code only and are never sent to the model, so the instructions must carry the full meaning. You <strong>pay only for input tokens</strong> — at the time of writing $0.042 per million, with output free.<Cite slug={article.slug} src="typesafe.ai/models" /> And the model version comes back in every response, so you can log exactly which model made each decision.
             </p>
             <Callout kind="deep">
               <p>The current model is <code>jev-1.13.0</code>, reachable through the moving alias <code>jev-latest</code>. Per TypeSafe’s models page, a request can carry up to 64k tokens (32k for the state plus the longest question), input is text only, English is where accuracy is best, rate limits are 250,000 tokens per second and 1,200 requests per minute, and Jev is not trained on customer data, with zero data retention available for enterprise customers.</p>
@@ -287,7 +287,7 @@ export default function TypesafeJev101() {
             {/* ── 5 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="primitives" level="Intermediate" number={5}>Choice, Noul and Score</SectionHeading>
             <p>
-              Every question is one of three types — TypeSafe calls them <em>primitives</em> — and you choose by what the answer <em>means</em>:
+              Every question is one of three types — TypeSafe calls them <em>primitives</em><Cite slug={article.slug} src="primitives" /> — and you choose by what the answer <em>means</em>:
             </p>
             <Figure number={5} caption="The three primitives with the answers from TypeSafe’s API example: one choice, one probability, one position on a ladder." wide>
               <ThreePrimitives />
@@ -304,13 +304,13 @@ export default function TypesafeJev101() {
             {/* ── 6 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="calibration" level="Advanced" number={6}>Calibration and confidence</SectionHeading>
             <p>
-              The probabilities are the point. Jev is trained to be <strong>calibrated</strong>: across many predictions, things it gives 0.8 to happen about 80% of the time. That turns uncertainty into something code can act on — which a chatbot’s confident tone never can.
+              The probabilities are the point. Jev is trained to be <strong>calibrated</strong>: across many predictions, things it gives 0.8 to happen about 80% of the time.<Cite slug={article.slug} src="1706.04599" /> That turns uncertainty into something code can act on — which a chatbot’s confident tone never can.
             </p>
             <Figure number={6} caption="A reliability diagram, illustrative. Calibration is a property over many predictions; it never guarantees any single answer.">
               <CalibrationChart />
             </Figure>
             <p>
-              For Choice and Score answers, Jev also returns a <strong>confidence</strong>: how concentrated the probability distribution is. For a three-option Choice, TypeSafe’s docs give it as:
+              For Choice and Score answers, Jev also returns a <strong>confidence</strong>: how concentrated the probability distribution is. For a three-option Choice, TypeSafe’s docs give it as:<Cite slug={article.slug} src="confidence" />
             </p>
             <MathBlock reading="three options, top probability 0.85 → confidence ≈ 0.78 — concentrated, but not certain">
               confidence = ( 3 × p<sub>max</sub> − 1 ) / 2
@@ -331,7 +331,7 @@ export default function TypesafeJev101() {
               <TrainingTargets />
             </Figure>
             <p>
-              TypeSafe’s argument, from its machine-learning primer: RLHF — a technique its co-founder Diogo Almeida helped pioneer, according to TypeSafe — optimises for answers <em>people prefer</em>, and that can reward confident-sounding answers over honest uncertainty. In the primer’s words: “An output can be compelling to a person without being reliable enough for unattended automation. Human preference and machine trustworthiness are different optimization targets.”
+              TypeSafe’s argument, from its machine-learning primer: RLHF<Cite slug={article.slug} src="1706.03741" /> — a technique its co-founder Diogo Almeida helped pioneer, according to TypeSafe — optimises for answers <em>people prefer</em>, and that can reward confident-sounding answers over honest uncertainty. In the primer’s words: “An output can be compelling to a person without being reliable enough for unattended automation. Human preference and machine trustworthiness are different optimization targets.”<Cite slug={article.slug} src="machine-learning-primer" />
             </p>
             <Callout kind="deep">
               <p>The primer describes the failure mode as <strong>mode dropping</strong>: preference tuning narrows a model’s output distribution towards favoured styles, so its stated confidence stops reflecting real uncertainty. Training directly against outcomes, as RLCD does, keeps the distribution honest — which is exactly what thresholds and confidence routing rely on. (For how RLHF works, see our <Link href={`/${first.slug}#making-a-chatbot`}>first article</Link>.)</p>
@@ -394,7 +394,7 @@ pip install typesafe-sdk`} />
               separate: N × (D + q) &nbsp;&nbsp;vs&nbsp;&nbsp; batched: D + N × q
             </MathBlock>
             <p>
-              TypeSafe measured it: 13 questions about the ~54,000-character Wikipedia article on the GDPR came out <strong>12.2× cheaper and 10× faster</strong> batched than as separate calls, with the same answers. Play with the numbers:
+              TypeSafe measured it: 13 questions about the ~54,000-character Wikipedia article on the GDPR came out <strong>12.2× cheaper and 10× faster</strong> batched than as separate calls, with the same answers.<Cite slug={article.slug} src="parallel_questions" /> Play with the numbers:
             </p>
             <div className="!my-8">
               <BatchCalculator />
@@ -463,7 +463,7 @@ npx skills add typesafe-ai/skills --skill typesafe-ai`} />
             {/* ── 13 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="limits" level="Beginner" number={13}>Limits and mistakes to avoid</SectionHeading>
             <p>
-              TypeSafe publishes a candid “jaggedness” page for each model version, listing where it is weak. Knowing these is what separates a demo from a system:
+              TypeSafe publishes a candid “jaggedness” page for each model version, listing where it is weak.<Cite slug={article.slug} src="jev-1.13" /> Knowing these is what separates a demo from a system:
             </p>
             <Figure number={14} caption="Known weak spots of jev-1.13, from TypeSafe’s jaggedness page and the guide, with the standard workaround for each.">
               <Limits />

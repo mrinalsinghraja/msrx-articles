@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { PermissionDemo } from "@/components/figures/PermissionDemo";
@@ -161,7 +161,7 @@ export default function MicrosoftCopilot101() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -223,7 +223,7 @@ export default function MicrosoftCopilot101() {
             {/* ── 2 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="history" level="Beginner" number={2}>Microsoft’s AI story</SectionHeading>
             <p>
-              Microsoft did not build the first Copilot models itself. Its big bet was a partnership with OpenAI, the maker of ChatGPT, starting in 2019: Microsoft’s Azure cloud provided the computing power, and Microsoft got to build OpenAI’s models into its products. Today Copilot uses models from several makers, including OpenAI, Anthropic and Microsoft’s own MAI team.
+              Microsoft did not build the first Copilot models itself. Its big bet was a partnership with OpenAI, the maker of ChatGPT, starting in 2019:<Cite slug={article.slug} src="2019/07/22" /> Microsoft’s Azure cloud provided the computing power, and Microsoft got to build OpenAI’s models into its products.<Cite slug={article.slug} src="2023/01/23" /> Today Copilot uses models from several makers, including OpenAI, Anthropic and Microsoft’s own MAI team.
             </p>
             <Figure number={2} caption="From Cortana to agents. Only the major milestones are shown.">
               <CopilotTimeline />
@@ -232,13 +232,13 @@ export default function MicrosoftCopilot101() {
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="how-it-works" level="Intermediate" number={3}>How Copilot works</SectionHeading>
             <p>
-              At the core of every Copilot is a large language model — the same kind of technology behind ChatGPT, Claude and Gemini. What makes Microsoft 365 Copilot different is what happens <em>around</em> the model. Before the model writes a word, an <strong>orchestrator</strong> gathers relevant material from your work world, a step called <strong>grounding</strong>.
+              At the core of every Copilot is a large language model — the same kind of technology behind ChatGPT, Claude and Gemini. What makes Microsoft 365 Copilot different is what happens <em>around</em> the model.<Cite slug={article.slug} src="2023/03/16" /> Before the model writes a word, an <strong>orchestrator</strong> gathers relevant material from your work world, a step called <strong>grounding</strong>.
             </p>
             <Figure number={3} caption="How Microsoft 365 Copilot answers a work question, simplified from Microsoft’s documentation. The permission step is the one that matters most to your company." wide>
               <OrchestrationFlow />
             </Figure>
             <p>
-              <strong>Microsoft Graph</strong> is the map of your work: your emails, files, meetings, chats, calendar and colleagues. <strong>Work IQ</strong> is Microsoft’s intelligence layer that lets Copilot and agents reason over that organisational knowledge, and the <strong>semantic index</strong> finds content by meaning, so “the Pune expansion deck” can match a file called “West-region growth v3”. Crucially, all of it is <strong>security-trimmed</strong>: Copilot only sees what you, personally, already have permission to open.
+              <strong>Microsoft Graph</strong> is the map of your work: your emails, files, meetings, chats, calendar and colleagues. <strong>Work IQ</strong> is Microsoft’s intelligence layer that lets Copilot and agents reason over that organisational knowledge, and the <strong>semantic index</strong> finds content by meaning, so “the Pune expansion deck” can match a file called “West-region growth v3”. Crucially, all of it is <strong>security-trimmed</strong>: Copilot only sees what you, personally, already have permission to open.<Cite slug={article.slug} src="copilot-privacy" />
             </p>
             <Callout kind="deep">
               <p>This is a textbook example of <strong>retrieval-augmented generation (RAG)</strong> at enterprise scale. The model itself doesn’t “know” your company; the orchestrator retrieves permitted content at question time and places it in the prompt, then the answer cites it. Copilot also chooses among models: a real-time router picks a fast model for routine asks and a deeper reasoning model (“Think deeper”) for complex ones, unless you choose yourself.</p>
@@ -275,7 +275,7 @@ export default function MicrosoftCopilot101() {
             <SectionHeading id="windows-edge-mobile" level="Beginner" number={5}>Copilot on Windows, in Edge and on your phone</SectionHeading>
             <ul>
               <li><strong>Windows.</strong> Press the <strong>Copilot key</strong> on newer keyboards, or click Copilot on the taskbar. With <strong>Copilot Vision</strong> you can share a window or your screen and ask about what’s on it: “why is this Excel formula giving #REF?”, “which of these settings turns off notifications?”</li>
-              <li><strong>Edge.</strong> The Copilot button summarises the page you’re reading, compares products across tabs and answers questions about a PDF open in the browser. Copilot Mode in Edge goes further, helping with multi-step tasks across tabs — with your permission.</li>
+              <li><strong>Edge.</strong> The Copilot button summarises the page you’re reading,<Cite slug={article.slug} src="2023/02/07" /> compares products across tabs and answers questions about a PDF open in the browser. Copilot Mode in Edge goes further, helping with multi-step tasks across tabs — with your permission.</li>
               <li><strong>Phone.</strong> Install the Copilot app for iPhone or Android. The camera is the highlight: point it at a plant, a restaurant menu in Marathi, or a maths problem and ask away. Voice conversations are natural enough for language practice.</li>
             </ul>
             <Callout kind="tip">
@@ -300,7 +300,7 @@ export default function MicrosoftCopilot101() {
             {/* ── 7 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="work" level="Intermediate" number={7}>Copilot at work: Chat and Microsoft 365 Copilot</SectionHeading>
             <p>
-              At work, what you get depends on the licences your organisation has assigned. Microsoft Learn describes three levels:
+              At work, what you get depends on the licences your organisation has assigned. Microsoft Learn describes three levels:<Cite slug={article.slug} src="copilot-overview" />
             </p>
             <Figure number={7} caption="Work licence levels, from Microsoft Learn’s Microsoft 365 Copilot overview. Your IT team decides which you have." wide>
               <WorkLicences />
@@ -357,7 +357,7 @@ export default function MicrosoftCopilot101() {
             </p>
             <ol>
               <li><strong>Agent Builder</strong> inside Microsoft 365 Copilot: describe what you want in plain words, point it at SharePoint sites or files, and share it with your team.</li>
-              <li><strong>Copilot Studio</strong>: Microsoft’s low-code tool for richer agents with triggers, workflows, connectors to hundreds of business systems, and hand-off to people.</li>
+              <li><strong>Copilot Studio</strong>:<Cite slug={article.slug} src="copilot-studio" /> Microsoft’s low-code tool for richer agents with triggers, workflows, connectors to hundreds of business systems, and hand-off to people.</li>
               <li><strong>Microsoft 365 Agents Toolkit</strong> in Visual Studio Code: professional developers define agents as code and ship them through the normal release process.</li>
             </ol>
             <Figure number={10} caption="Anatomy of a Copilot Studio agent. Agents can be triggered by events, not just by chat — a new email or a schedule can start one.">
@@ -376,7 +376,7 @@ export default function MicrosoftCopilot101() {
             {/* ── 11 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="github" level="Advanced" number={11}>GitHub Copilot: Copilot for code</SectionHeading>
             <p>
-              <strong>GitHub Copilot</strong> — owned by Microsoft through GitHub — was the original Copilot and remains one of the most widely used AI coding tools. It lives in VS Code, Visual Studio, JetBrains IDEs and other editors, on GitHub.com, in a desktop app and in the terminal.
+              <strong>GitHub Copilot</strong> — owned by Microsoft through GitHub — was the original Copilot<Cite slug={article.slug} src="generally-available" /> and remains one of the most widely used AI coding tools. It lives in VS Code, Visual Studio, JetBrains IDEs and other editors, on GitHub.com, in a desktop app and in the terminal.
             </p>
             <Figure number={12} caption="Illustration: a “ghost text” completion accepted with Tab, and agent mode fixing a bug and writing tests." wide>
               <VsCodeMock />
@@ -388,7 +388,7 @@ export default function MicrosoftCopilot101() {
               <li><strong>Code review, CLI and MCP:</strong> AI review comments on pull requests, a terminal agent, and connections to other tools through the Model Context Protocol.</li>
             </ul>
             <p>
-              There is a free plan with a monthly allowance, free access for verified students, individual paid tiers (Pro, Pro+ and Max) and Business and Enterprise plans for organisations.
+              There is a free plan with a monthly allowance, free access for verified students, individual paid tiers (Pro, Pro+ and Max) and Business and Enterprise plans for organisations.<Cite slug={article.slug} src="docs.github.com" />
             </p>
 
             {/* ── 12 ────────────────────────────────────────────────────────*/}

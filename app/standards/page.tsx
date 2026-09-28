@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const path = "/standards";
 const DESCRIPTION =
-  "How MSRX Articles are researched, sourced, checked, illustrated and corrected: primary sources, 5–10 checked references per article, labelled illustrations, and dated updates.";
+  "How MSRX Articles are researched, sourced, checked, illustrated and corrected: primary sources, 5–10 checked references per article, numbered citations, openness about AI assistance, and dated updates.";
 
 export const metadata: Metadata = {
   title: "Editorial standards",
@@ -37,7 +37,7 @@ export default function Standards() {
             Every dated fact, name, number and prize in an article is checked against its primary source before publishing: the original paper, the official announcement, or the product’s own documentation, rather than coverage of it.
           </p>
           <p>
-            Each article ends with a numbered list of <strong>five to ten references</strong>. For each one we give the authors, the date, where it was published, and what in the article it supports. Every link is opened and checked before it is listed. Documentation changes over time, so undated documentation is cited as it read on the day it was checked.
+            Each article ends with a numbered list of <strong>five to ten references</strong>. For each one we give the authors, the date, where it was published, and what in the article it supports, and a numbered marker such as [3] next to the claim links straight to it. Every link is opened and checked before it is listed. Documentation changes over time, so undated documentation is cited as it read on the day it was checked.
           </p>
 
           <h2 id="illustrations">Illustrations and examples</h2>
@@ -52,7 +52,15 @@ export default function Standards() {
 
           <h2 id="independence">Independence</h2>
           <p>
-            Articles are written by {AUTHOR.name}. {SITE_NAME} is independent and is not affiliated with, or endorsed by, the companies whose products it explains. Each article says so, and names the products and their makers.
+            Articles are published by <Link href="/author">{AUTHOR.name}</Link>. {SITE_NAME} is independent and is not affiliated with, or endorsed by, the companies whose products it explains. Each article says so, and names the products and their makers.
+          </p>
+
+          <h2 id="ai">How we use AI</h2>
+          <p>
+            <em>The AI World</em> is about artificial intelligence, and it is made with its help too. AI assistants support the research, the drafting, the diagrams and the code examples. That help comes with the same rules as everything else here: facts are checked against the primary sources listed at the end of each article, code examples are labelled, and anything illustrative is marked as such.
+          </p>
+          <p>
+            Every article is published by <Link href="/author">{AUTHOR.name}</Link>, who decides what appears on this site and is responsible for what it says. We mention this at the end of every article because readers deserve to know how what they read is made.
           </p>
 
           <h2 id="updates">Updates and corrections</h2>

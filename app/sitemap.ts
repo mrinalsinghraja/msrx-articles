@@ -14,5 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     { url: `${SITE_URL}/standards`, lastModified: "2026-09-28", changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE_URL}/author`, lastModified: "2026-09-28", changeFrequency: "monthly", priority: 0.4 },
   ];
 }

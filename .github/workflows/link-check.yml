@@ -1,0 +1,26 @@
+name: Monthly link check
+
+# Opens every source cited on the site and fails if any link is dead, so a
+# broken reference is caught within a month rather than by a reader. GitHub
+# emails the repository owner when a scheduled run fails. Bot-walled sites
+# (403/406/429) are listed in the run summary for a manual look but do not fail.
+
+on:
+  schedule:
+    - cron: "0 5 1 * *" # 05:00 UTC (10:30 IST) on the 1st of every month
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Check every cited link
+        run: node scripts/check-links.mjs lib/references.ts

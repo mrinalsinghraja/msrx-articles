@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { PromptBuilder } from "@/components/figures/PromptBuilder";
@@ -178,7 +178,7 @@ export default function ChatGpt101() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -225,10 +225,10 @@ export default function ChatGpt101() {
             {/* ── 1 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="what-is-chatgpt" level="Beginner" number={1}>What is ChatGPT?</SectionHeading>
             <p>
-              <strong>ChatGPT is an AI assistant you talk to in plain language.</strong> You type (or say) what you want; it replies in writing, and it can also read files and images, search the web, create pictures, run code and hold a spoken conversation. It is made by the company OpenAI.
+              <strong>ChatGPT is an AI assistant you talk to in plain language.</strong> You type (or say) what you want; it replies in writing, and it can also read files and images,<Cite slug={article.slug} src="2303.08774" /> search the web, create pictures, run code and hold a spoken conversation. It is made by the company OpenAI.<Cite slug={article.slug} src="introducing-openai" />
             </p>
             <p>
-              The name tells you what is inside. <strong>Chat</strong> is the conversation. <strong>GPT</strong> stands for <em>Generative Pre-trained Transformer</em>: <em>generative</em> because it creates new text, <em>pre-trained</em> because it first learned from an enormous amount of text before being tuned to be helpful, and <em>Transformer</em> because that is the type of neural network it runs on.
+              The name tells you what is inside. <strong>Chat</strong> is the conversation. <strong>GPT</strong> stands for <em>Generative Pre-trained Transformer</em>: <em>generative</em> because it creates new text, <em>pre-trained</em> because it first learned from an enormous amount of text before being tuned to be helpful, and <em>Transformer</em> because that is the type of neural network it runs on.<Cite slug={article.slug} src="1706.03762" />
             </p>
             <Callout kind="eli5">
               <p>Think of the world’s most well-read intern. Brilliant at drafting, explaining and brainstorming; happy to redo work instantly; occasionally makes things up with a straight face. You would never send their work out unchecked — but you would be foolish not to use them.</p>
@@ -240,19 +240,19 @@ export default function ChatGpt101() {
             {/* ── 2 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="history" level="Beginner" number={2}>Where it came from</SectionHeading>
             <p>
-              ChatGPT was not an overnight invention. It sits on top of years of work on ever-larger language models, and the big surprise of late 2022 was less a new model than a new <em>interface</em>: a simple chat box that anyone could use for free.
+              ChatGPT was not an overnight invention. It sits on top of years of work on ever-larger language models, and the big surprise of late 2022 was less a new model than a new <em>interface</em>: a simple chat box that anyone could use for free.<Cite slug={article.slug} src="index/chatgpt/" />
             </p>
             <Figure number={2} caption="The road to ChatGPT and what followed. Only milestones are shown; there were many more releases in between.">
               <ChatGptTimeline />
             </Figure>
             <p>
-              The key ingredient that turned a raw text-predictor into a helpful assistant was <strong>reinforcement learning from human feedback (RLHF)</strong>: people rated the model’s answers, and it was tuned towards the kind of replies they preferred. That is why ChatGPT follows instructions and stays on topic, where earlier models would simply ramble on.
+              The key ingredient that turned a raw text-predictor into a helpful assistant was <strong>reinforcement learning from human feedback (RLHF)</strong>:<Cite slug={article.slug} src="2203.02155" /> people rated the model’s answers, and it was tuned towards the kind of replies they preferred. That is why ChatGPT follows instructions and stays on topic, where earlier models would simply ramble on.
             </p>
 
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="how-it-works" level="Intermediate" number={3}>How it works, in five minutes</SectionHeading>
             <p>
-              At its heart, the model does one thing: given some text, it predicts a likely <strong>next word</strong> (strictly, the next <em>token</em> — a word or word-piece). It picks one, adds it to the text, and repeats, which is why answers appear word by word. Everything clever it does emerges from doing that one thing extraordinarily well.
+              At its heart, the model does one thing: given some text, it predicts a likely <strong>next word</strong><Cite slug={article.slug} src="2005.14165" /> (strictly, the next <em>token</em> — a word or word-piece). It picks one, adds it to the text, and repeats, which is why answers appear word by word. Everything clever it does emerges from doing that one thing extraordinarily well.
             </p>
             <p>
               The part most people miss is <strong>what the model reads each time</strong>. It does not “remember” your conversation the way a person does. On every turn, the app sends the model one long document containing everything it needs, and the model reads it all again from the top.
@@ -356,13 +356,13 @@ export default function ChatGpt101() {
               <strong>Web search.</strong> The model’s built-in knowledge stops at its training cut-off. With search on, it looks things up and gives you links. Always open the one or two sources that matter; a link is only reassuring if it says what the answer claims.
             </p>
             <p>
-              <strong>Voice.</strong> Tap the voice button and simply talk. It is surprisingly good for language practice, rehearsing a tough conversation, or thinking aloud on a walk.
+              <strong>Voice.</strong> Tap the voice button and simply talk.<Cite slug={article.slug} src="hello-gpt-4o" /> It is surprisingly good for language practice, rehearsing a tough conversation, or thinking aloud on a walk.
             </p>
 
             {/* ── 8 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="models" level="Intermediate" number={8}>Choosing a model and a plan</SectionHeading>
             <p>
-              ChatGPT offers a few models at once. Broadly there are two kinds: <strong>fast models</strong> that answer in seconds and handle most everyday tasks, and <strong>thinking (reasoning) models</strong> that work through a problem privately before answering — slower, but much stronger on maths, logic, code and planning. Often an “Auto” setting chooses for you.
+              ChatGPT offers a few models at once. Broadly there are two kinds: <strong>fast models</strong> that answer in seconds and handle most everyday tasks, and <strong>thinking (reasoning) models</strong><Cite slug={article.slug} src="learning-to-reason" /> that work through a problem privately before answering — slower, but much stronger on maths, logic, code and planning. Often an “Auto” setting chooses for you.
             </p>
             <Figure number={10} caption="A simple rule of thumb for choosing. When in doubt, start fast and switch up if the answer is shaky.">
               <ModelDecision />
@@ -444,7 +444,7 @@ export default function ChatGpt101() {
             </Figure>
             <h3>Your first API call</h3>
             <p>
-              Create an API key in the OpenAI developer platform, store it as an environment variable called <code>OPENAI_API_KEY</code>, install the SDK with <code>pip install openai</code>, and run:
+              Create an API key in the OpenAI developer platform, store it as an environment variable called <code>OPENAI_API_KEY</code>, install the SDK with <code>pip install openai</code>, and run:<Cite slug={article.slug} src="quickstart" />
             </p>
             <Figure number={16} caption="A first call using the Responses API in Python. The model name is the one OpenAI’s quickstart uses at the time of writing; check the docs for the current list.">
               <WindowFrame title="first_call.py — Python">
@@ -469,7 +469,7 @@ export default function ChatGpt101() {
               </WindowFrame>
             </Figure>
             <p>
-              From here the path leads to <strong>function calling</strong> (the model asks your code to run a function, exactly like the tool loop in Fig. 13), <strong>retrieval</strong> over your own documents, and <strong>agents</strong> that chain many calls together. Three rules keep you out of trouble:
+              From here the path leads to <strong>function calling</strong><Cite slug={article.slug} src="function-calling" /> (the model asks your code to run a function, exactly like the tool loop in Fig. 13), <strong>retrieval</strong> over your own documents, and <strong>agents</strong> that chain many calls together. Three rules keep you out of trouble:
             </p>
             <ul>
               <li><strong>Keep your API key secret.</strong> Only ever call the API from a server, never from code that runs in a visitor’s browser or a mobile app bundle.</li>

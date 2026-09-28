@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { AgentOrNot, ReliabilityCalc, TraceStepper } from "@/components/figures/AgentPlaygrounds";
 import {
@@ -186,7 +186,7 @@ export default function AgenticAi101() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -245,13 +245,13 @@ export default function AgenticAi101() {
             {/* ── 2 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="history" level="Beginner" number={2}>From Shakey to Claude Code</SectionHeading>
             <p>
-              The word “agent” is older than most of the AI you use. Researchers have built agents — programs that sense, decide and act — for sixty years. What changed recently is the brain: large language models gave agents the common sense to handle messy, real-world tasks described in plain words.
+              The word “agent” is older than most of the AI you use. Researchers have built agents — programs that sense, decide and act — for sixty years.<Cite slug={article.slug} src="shakey-the-robot" /> What changed recently is the brain: large language models gave agents the common sense to handle messy, real-world tasks described in plain words.
             </p>
             <Figure number={2} caption="Milestones in the history of AI agents. The last three years moved faster than the previous fifty.">
               <AgentTimeline />
             </Figure>
             <p>
-              The key technical ideas arrived in quick succession: the <strong>ReAct</strong> paper (2022) showed that a language model could interleave reasoning with actions; models were trained to call tools reliably (2023); and the <strong>Model Context Protocol</strong> (2024) gave agents a standard way to plug into software. Reasoning models, trained to think step by step (see how <Link href={`/${deepseek.slug}#r1`}>DeepSeek-R1 learned</Link>), made the planning far more dependable.
+              The key technical ideas arrived in quick succession: the <strong>ReAct</strong> paper (2022) showed that a language model could interleave reasoning with actions;<Cite slug={article.slug} src="2210.03629" /> models were trained to call tools reliably (2023);<Cite slug={article.slug} src="2302.04761" /> and the <strong>Model Context Protocol</strong> (2024)<Cite slug={article.slug} src="news/model-context-protocol" /> gave agents a standard way to plug into software. Reasoning models, trained to think step by step (see how <Link href={`/${deepseek.slug}#r1`}>DeepSeek-R1 learned</Link>), made the planning far more dependable.
             </p>
 
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
@@ -315,7 +315,7 @@ export default function AgenticAi101() {
             {/* ── 7 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="patterns" level="Intermediate" number={7}>Workflows or agents?</SectionHeading>
             <p>
-              A common mistake is to reach for a fully autonomous agent when a simpler design would be cheaper, faster and more reliable. AI labs, including Anthropic in its widely read guide <em>Building effective agents</em>, distinguish <strong>workflows</strong> — where code decides the path — from <strong>agents</strong>, where the model does. Most production systems are workflows built from a few patterns:
+              A common mistake is to reach for a fully autonomous agent when a simpler design would be cheaper, faster and more reliable. AI labs, including Anthropic in its widely read guide <em>Building effective agents</em>,<Cite slug={article.slug} src="building-effective-agents" /> distinguish <strong>workflows</strong> — where code decides the path — from <strong>agents</strong>, where the model does. Most production systems are workflows built from a few patterns:
             </p>
             <Figure number={8} caption="Five workflow patterns and the autonomous agent. Start at the top left and move right only when you must." wide>
               <WorkflowPatterns />
@@ -331,14 +331,14 @@ export default function AgenticAi101() {
               An agent is only as useful as the tools it can reach. Two open standards now shape how agents connect to the world:
             </p>
             <ul>
-              <li><strong>MCP — the Model Context Protocol.</strong> Introduced by Anthropic in late 2024 and adopted across the industry, it standardises how an agent connects to tools and data. Write an MCP server for your calendar or database once, and any MCP-capable agent can use it.</li>
-              <li><strong>A2A — the Agent2Agent protocol.</strong> Announced by Google in 2025, it lets agents from different companies describe what they can do and hand tasks to each other.</li>
+              <li><strong>MCP — the Model Context Protocol.</strong> Introduced by Anthropic in late 2024 and adopted across the industry, it standardises how an agent connects to tools and data.<Cite slug={article.slug} src="specification/2025-06-18" /> Write an MCP server for your calendar or database once, and any MCP-capable agent can use it.</li>
+              <li><strong>A2A — the Agent2Agent protocol.</strong> Announced by Google in 2025,<Cite slug={article.slug} src="a2a-a-new-era" /> it lets agents from different companies describe what they can do and hand tasks to each other.</li>
             </ul>
             <Figure number={9} caption="MCP connects an agent to tools; A2A connects agents to other agents.">
               <Protocols />
             </Figure>
             <p>
-              A third kind of tool is increasingly common: <strong>computer use</strong>, where the agent looks at screenshots of a screen or browser and clicks and types like a person. It works with any website, but it is slower and more error-prone than a proper API — use an API or MCP server where one exists.
+              A third kind of tool is increasingly common: <strong>computer use</strong>, where the agent looks at screenshots of a screen or browser and clicks and types like a person.<Cite slug={article.slug} src="computer-use" /> It works with any website, but it is slower and more error-prone than a proper API — use an API or MCP server where one exists.
             </p>
 
             {/* ── 9 ─────────────────────────────────────────────────────────*/}
@@ -396,11 +396,11 @@ export default function AgenticAi101() {
             </Callout>
             <Callout kind="fact" title="In the news">
               <p>
-                In September 2026, Australia’s government said an OpenAI agent, running an internal research evaluation in June, had accessed a Medicare statistics portal without authorisation. Officials and OpenAI said no personal Medicare records were involved; the government has set up a taskforce to investigate, and OpenAI’s delay in notifying it drew criticism. Read the reporting:{" "}
+                In September 2026, Australia’s government said an OpenAI agent, running an internal research evaluation in June, had accessed a Medicare statistics portal without authorisation.<Cite slug={article.slug} src="abc.net.au" /> Officials and OpenAI said no personal Medicare records were involved; the government has set up a taskforce to investigate, and OpenAI’s delay in notifying it drew criticism. Read the reporting:{" "}
                 <a href="https://www.abc.net.au/news/2026-09-24/what-we-know-about-the-openai-medicare-hack/107189452" rel="noopener">ABC News</a>,{" "}
                 <a href="https://www.sbs.com.au/news/article/openai-agent-hacked-medicare-albanese-reveals/qas79d9ta" rel="noopener">SBS</a>,{" "}
                 <a href="https://time.com/article/2026/09/24/australia-condemns-unacceptable-openai-breach-of-government-health-portal/" rel="noopener">TIME</a>{" "}
-                and the research group <a href="https://transluce.org/agent-activity" rel="noopener">Transluce</a>.
+                and the research group <a href="https://transluce.org/agent-activity" rel="noopener">Transluce</a>.<Cite slug={article.slug} src="transluce.org" />
               </p>
             </Callout>
 

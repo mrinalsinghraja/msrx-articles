@@ -8,9 +8,20 @@ export const SITE_URL = "https://articles.msrx.co.in";
 export const MAIN_SITE = "https://www.msrx.co.in";
 export const ORG_ID = `${MAIN_SITE}/#organization`;
 export const SITE_NAME = "MSRX Articles";
+/** Profiles that are the same person, for the author page and JSON-LD `sameAs`. */
+export const AUTHOR_PROFILES = [
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/mrinalsinghraja/" },
+  { label: "Personal site", url: "https://mrinalsinghraja.github.io/" },
+  { label: "GitHub", url: "https://github.com/mrinalsinghraja" },
+  { label: "MSRX", url: MAIN_SITE },
+] as const;
+
+// `url` is the author page on this site, the canonical place that says who the
+// author is; the external profiles travel as `sameAs`.
 export const AUTHOR = {
   name: "Mrinal Singh Raja",
-  url: "https://www.linkedin.com/in/mrinalsinghraja/",
+  url: `${SITE_URL}/author`,
+  sameAs: AUTHOR_PROFILES.map((p) => p.url),
 };
 
 /** Absolute URL for a site-relative path. Absolute URLs pass through unchanged. */

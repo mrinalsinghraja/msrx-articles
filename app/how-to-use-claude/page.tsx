@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { ClaudeChooser } from "@/components/figures/ClaudeChooser";
@@ -211,7 +211,7 @@ export default function HowToUseClaude() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -273,7 +273,7 @@ export default function HowToUseClaude() {
             {/* ── 2 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="history" level="Beginner" number={2}>Anthropic’s story</SectionHeading>
             <p>
-              Anthropic was founded in 2021 by a group of former OpenAI researchers who wanted to build frontier AI with safety research at the centre. Claude is its product and, in a sense, its argument: that an AI can be both very capable and trustworthy.
+              Anthropic was founded in 2021 by a group of former OpenAI researchers who wanted to build frontier AI with safety research at the centre.<Cite slug={article.slug} src="core-views" /> Claude is its product and, in a sense, its argument: that an AI can be both very capable and trustworthy.
             </p>
             <Figure number={2} caption="Milestones from Anthropic’s founding to today’s Claude 5 family. Only the major releases are shown.">
               <ClaudeTimeline />
@@ -282,7 +282,7 @@ export default function HowToUseClaude() {
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="constitution" level="Intermediate" number={3}>How Claude is shaped: Constitutional AI</SectionHeading>
             <p>
-              Most assistants are tuned with human feedback: people rate answers, and the model learns to give the kind they prefer. Anthropic added a twist it calls <strong>Constitutional AI</strong>. Claude is also guided by a written set of principles — a “constitution” — about being helpful, honest and avoiding harm. During training the model critiques and revises its own answers against those principles, and AI feedback based on them is used alongside human feedback.
+              Most assistants are tuned with human feedback: people rate answers, and the model learns to give the kind they prefer. Anthropic added a twist it calls <strong>Constitutional AI</strong>.<Cite slug={article.slug} src="2212.08073" /> Claude is also guided by a written set of principles — a “constitution” — about being helpful, honest and avoiding harm.<Cite slug={article.slug} src="claudes-constitution" /> During training the model critiques and revises its own answers against those principles, and AI feedback based on them is used alongside human feedback.
             </p>
             <Figure number={3} caption="The core loop of Constitutional AI, simplified. Anthropic publishes Claude’s constitution so anyone can read the principles.">
               <ConstitutionFlow />
@@ -294,7 +294,7 @@ export default function HowToUseClaude() {
             {/* ── 4 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="models" level="Intermediate" number={4}>The model family</SectionHeading>
             <p>
-              Claude comes in sizes. Anthropic’s long-standing naming runs from small to large, like poetry: <strong>Haiku</strong> (short and fast), <strong>Sonnet</strong> (balanced) and <strong>Opus</strong> (a major work). The Claude 5 family adds <strong>Fable</strong> for the most demanding work. In the apps you pick a model from a menu; in the API you name it in code.
+              Claude comes in sizes. Anthropic’s long-standing naming runs from small to large, like poetry: <strong>Haiku</strong> (short and fast), <strong>Sonnet</strong> (balanced) and <strong>Opus</strong> (a major work). The Claude 5 family adds <strong>Fable</strong> for the most demanding work. In the apps you pick a model from a menu; in the API you name it in code.<Cite slug={article.slug} src="models/overview" />
             </p>
             <Figure number={4} caption="The current lineup as listed in Anthropic’s models overview on 24 September 2026, with API prices per million tokens. In the apps, your plan decides which models you can use." wide>
               <ModelLineup />
@@ -404,10 +404,10 @@ export default function HowToUseClaude() {
             {/* ── 11 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="claude-code" level="Advanced" number={11}>Claude Code: Claude in your terminal</SectionHeading>
             <p>
-              <strong>Claude Code</strong> is Anthropic’s agentic coding tool. Instead of pasting code into a chat, you run Claude inside your project. It reads your files, searches the codebase, edits code, runs commands and tests, and works through multi-step tasks — asking your permission before anything risky. It runs in the terminal, in VS Code and JetBrains IDEs, in the desktop app and on the web.
+              <strong>Claude Code</strong> is Anthropic’s agentic coding tool. Instead of pasting code into a chat, you run Claude inside your project. It reads your files, searches the codebase, edits code, runs commands and tests, and works through multi-step tasks — asking your permission before anything risky. It runs in the terminal, in VS Code and JetBrains IDEs, in the desktop app and on the web.<Cite slug={article.slug} src="code.claude.com" />
             </p>
             <h3>Install and start</h3>
-            <p>Claude Code needs a Pro, Max, Team or Enterprise plan, or an API (Console) account. On macOS, Linux or WSL:</p>
+            <p>Claude Code needs a Pro, Max, Team or Enterprise plan, or an API (Console) account.<Cite slug={article.slug} src="claude.com/pricing" /> On macOS, Linux or WSL:</p>
             <Code title="Terminal — install Claude Code" code={`curl -fsSL https://claude.ai/install.sh | bash
 
 # or with Homebrew
@@ -456,7 +456,7 @@ claude          # first run opens your browser to log in`} />
             {/* ── 12 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="mcp" level="Advanced" number={12}>MCP and connectors</SectionHeading>
             <p>
-              Claude becomes far more useful when it can reach your tools and data. The <strong>Model Context Protocol (MCP)</strong>, an open standard Anthropic introduced in November 2024 and now supported widely across the industry, is a common plug for exactly that. Someone writes an MCP <em>server</em> for a tool once — GitHub, Google Drive, a database, Slack — and any MCP-capable app can use it.
+              Claude becomes far more useful when it can reach your tools and data. The <strong>Model Context Protocol (MCP)</strong>, an open standard Anthropic introduced in November 2024<Cite slug={article.slug} src="news/model-context-protocol" /> and now supported widely across the industry, is a common plug for exactly that.<Cite slug={article.slug} src="specification/2025-06-18" /> Someone writes an MCP <em>server</em> for a tool once — GitHub, Google Drive, a database, Slack — and any MCP-capable app can use it.
             </p>
             <Figure number={16} caption="MCP in one picture: one protocol between Claude and many tools.">
               <McpDiagram />
@@ -468,7 +468,7 @@ claude          # first run opens your browser to log in`} />
             {/* ── 13 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="api" level="Advanced" number={13}>The Claude API</SectionHeading>
             <p>
-              To build Claude into your own product, use the <strong>Claude API</strong>. Everything goes through one endpoint, <code>POST /v1/messages</code>: you send a list of messages and optional system instructions, and get Claude’s reply. Create an API key at <code>platform.claude.com</code>, set it as <code>ANTHROPIC_API_KEY</code>, and install the SDK with <code>pip install anthropic</code> (official SDKs also exist for TypeScript, Java, Go, Ruby, C# and PHP).
+              To build Claude into your own product, use the <strong>Claude API</strong>. Everything goes through one endpoint, <code>POST /v1/messages</code>:<Cite slug={article.slug} src="api/messages" /> you send a list of messages and optional system instructions, and get Claude’s reply. Create an API key at <code>platform.claude.com</code>, set it as <code>ANTHROPIC_API_KEY</code>, and install the SDK with <code>pip install anthropic</code> (official SDKs also exist for TypeScript, Java, Go, Ruby, C# and PHP).
             </p>
             <Figure number={17} caption="A first call with the official Python SDK. Current models may return a thinking block before the text, so the loop prints only text blocks.">
               <Code title="first_call.py — Python" code={PY_BASIC} />

@@ -954,3 +954,13 @@ html[data-theme="dark"] {
 .article-prose .fig li + li { margin-top: 0; }
 /* Code blocks: the inline-code chip must not apply line by line inside <pre>. */
 .article-prose pre code { background: none; padding: 0; border-radius: 0; font-size: inherit; color: inherit; }
+
+/* Inline citation markers: small, never shift the line height, and big enough
+   to tap (the anchor's padding widens the hit area without moving the text). */
+.cite { font-size: 0.68em; line-height: 0; vertical-align: super; margin-left: 1px; white-space: nowrap; }
+.cite a { font-family: var(--font-mono); text-decoration: none !important; padding: 2px 1px; border-radius: 3px; }
+.cite a:hover { text-decoration: underline !important; }
+.cite a:focus-visible { outline: 2px solid var(--violet-deep); outline-offset: 1px; }
+/* Land a followed marker below the sticky header, and flash the entry it names. */
+[id^="ref-"] { scroll-margin-top: 96px; }
+[id^="ref-"]:target { background: var(--fig-violet-soft); border-radius: 8px; box-shadow: 0 0 0 6px var(--fig-violet-soft); }

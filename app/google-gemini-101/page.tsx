@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { ContextCalculator } from "@/components/figures/ContextCalculator";
@@ -182,7 +182,7 @@ export default function GoogleGemini101() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -244,7 +244,7 @@ export default function GoogleGemini101() {
             {/* ── 2 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="history" level="Beginner" number={2}>Google’s AI story</SectionHeading>
             <p>
-              Google has a special place in this history: the <strong>Transformer</strong>, the design at the heart of ChatGPT, Claude and Gemini alike, was invented by Google researchers in 2017. Yet it was OpenAI that put a chatbot in front of the public first. Gemini is the result of Google’s push to catch up — and, in areas like multimodality and long context, to lead.
+              Google has a special place in this history: the <strong>Transformer</strong>, the design at the heart of ChatGPT, Claude and Gemini alike, was invented by Google researchers in 2017.<Cite slug={article.slug} src="1706.03762" /> Yet it was OpenAI that put a chatbot in front of the public first. Gemini is the result of Google’s push to catch up<Cite slug={article.slug} src="google-gemini-ai" /> — and, in areas like multimodality and long context, to lead.
             </p>
             <Figure number={2} caption="From the Transformer to today’s Gemini 3.x models. Only the major milestones are shown.">
               <GeminiTimeline />
@@ -257,14 +257,14 @@ export default function GoogleGemini101() {
             </p>
             <h3>1. Natively multimodal</h3>
             <p>
-              Early AI assistants handled pictures and sound by bolting on extra systems: one converts speech to text, another writes a caption for an image, and only then does the language model see anything. Gemini was trained from the beginning on text, images, audio and video <em>together</em>, so all of them become tokens in the same stream. That is why it can notice the tone of a voice, read a chart inside a photo, or follow what happens across a video.
+              Early AI assistants handled pictures and sound by bolting on extra systems: one converts speech to text, another writes a caption for an image, and only then does the language model see anything. Gemini was trained from the beginning on text, images, audio and video <em>together</em>,<Cite slug={article.slug} src="2312.11805" /> so all of them become tokens in the same stream. That is why it can notice the tone of a voice, read a chart inside a photo, or follow what happens across a video.
             </p>
             <Figure number={3} caption="Two ways to handle pictures and sound. Gemini takes the approach on the right.">
               <MultimodalCompare />
             </Figure>
             <h3>2. Mixture of experts</h3>
             <p>
-              Google’s technical reports describe Gemini models using a <strong>mixture-of-experts (MoE)</strong> design. Instead of one giant block of neurons that all fire for every word, the model contains many smaller “expert” networks and a <em>router</em> that sends each token to just a few of them. The model can be enormous in total while each step stays fast and affordable.
+              Google’s technical reports describe Gemini models using a <strong>mixture-of-experts (MoE)</strong> design.<Cite slug={article.slug} src="2403.05530" /> Instead of one giant block of neurons that all fire for every word, the model contains many smaller “expert” networks and a <em>router</em> that sends each token to just a few of them. The model can be enormous in total while each step stays fast and affordable.
             </p>
             <Figure number={4} caption="A mixture-of-experts layer, simplified. Real experts don’t have tidy labels like “maths” — they learn their own specialities during training.">
               <MixtureOfExperts />
@@ -276,7 +276,7 @@ export default function GoogleGemini101() {
             {/* ── 4 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="models" level="Intermediate" number={4}>The model family</SectionHeading>
             <p>
-              Gemini comes in tiers. <strong>Flash-Lite</strong> is the cheapest and quickest; <strong>Flash</strong> balances speed and intelligence and is Google’s recommended starting point; <strong>Pro</strong> reasons the most deeply. Around them sit specialists for live voice, speech, images (the famous “Nano Banana”), video, music and embeddings.
+              Gemini comes in tiers. <strong>Flash-Lite</strong> is the cheapest and quickest; <strong>Flash</strong> balances speed and intelligence and is Google’s recommended starting point; <strong>Pro</strong> reasons the most deeply. Around them sit specialists for live voice, speech, images (the famous “Nano Banana”), video, music and embeddings.<Cite slug={article.slug} src="docs/models" />
             </p>
             <Figure number={5} caption="The Gemini API lineup, from Google’s models page on 24 September 2026. In the Gemini app you choose between fast and thinking modes rather than model IDs." wide>
               <GeminiModels />
@@ -299,7 +299,7 @@ export default function GoogleGemini101() {
               />
             </Figure>
             <ol>
-              <li><strong>Open Gemini.</strong> Go to <code>gemini.google.com</code> on a computer, or install the Gemini app on iPhone. On most recent Android phones, Gemini is already built in.</li>
+              <li><strong>Open Gemini.</strong> Go to <code>gemini.google.com</code> on a computer, or install the Gemini app on iPhone. On most recent Android phones, Gemini is already built in.<Cite slug={article.slug} src="bard-gemini-advanced-app" /></li>
               <li><strong>Sign in with your Google account.</strong> The same account that runs your Gmail. Work and school accounts may need an administrator to switch Gemini on.</li>
               <li><strong>Learn the screen.</strong> It has only a few parts:</li>
             </ol>
@@ -373,7 +373,7 @@ export default function GoogleGemini101() {
             {/* ── 10 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="plans" level="Beginner" number={10}>Plans and privacy</SectionHeading>
             <p>
-              The Gemini app is free with a Google account, and the free tier is generous: Deep Research, Canvas, Gems, Live and image creation are all included. Paid Google AI plans raise the limits, unlock more of the top models and video tools, add Gemini inside Gmail and Docs, and bundle extra Google storage.
+              The Gemini app is free with a Google account, and the free tier is generous: Deep Research, Canvas, Gems, Live and image creation are all included. Paid Google AI plans raise the limits, unlock more of the top models and video tools, add Gemini inside Gmail and Docs, and bundle extra Google storage.<Cite slug={article.slug} src="subscriptions" />
             </p>
             <Figure number={12} caption="The consumer plans at the time of writing, from Google’s subscriptions page. Prices vary by country and change often, so they are not listed here." wide>
               <PlanLadder />
@@ -392,7 +392,7 @@ export default function GoogleGemini101() {
             {/* ── 11 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="long-context" level="Advanced" number={11}>Long context and grounding</SectionHeading>
             <p>
-              Gemini made <strong>long context</strong> famous: Gemini 1.5 Pro was one of the first models to read about <strong>a million tokens</strong> in one go, and large context windows remain a Gemini strength. That changes what is possible — you can hand over a whole book, an hour-long lecture video or a sizeable codebase and ask questions across all of it.
+              Gemini made <strong>long context</strong> famous: Gemini 1.5 Pro was one of the first models to read about <strong>a million tokens</strong> in one go,<Cite slug={article.slug} src="2403.05530" /> and large context windows remain a Gemini strength. That changes what is possible — you can hand over a whole book, an hour-long lecture video or a sizeable codebase and ask questions across all of it.
             </p>
             <Figure number={13} caption="Rough sizes of a million tokens, based on Google’s published guidance.">
               <MillionTokens />
@@ -405,7 +405,7 @@ export default function GoogleGemini101() {
             </p>
             <h3>Grounding with Google Search</h3>
             <p>
-              A model’s built-in knowledge stops at its training date. <strong>Grounding</strong> connects Gemini to Google Search so it can look things up while answering and cite what it found. In the API it is a built-in tool you switch on; Gemini decides when a question actually needs a search.
+              A model’s built-in knowledge stops at its training date. <strong>Grounding</strong> connects Gemini to Google Search so it can look things up while answering and cite what it found.<Cite slug={article.slug} src="google-search" /> In the API it is a built-in tool you switch on; Gemini decides when a question actually needs a search.
             </p>
             <Figure number={14} caption="Grounding with Google Search. The citations are the point: they let you check the answer.">
               <GroundingFlow />
@@ -460,7 +460,7 @@ export default function GoogleGemini101() {
             {/* ── 14 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="cli" level="Advanced" number={14}>Gemini CLI: an agent in your terminal</SectionHeading>
             <p>
-              <strong>Gemini CLI</strong> is Google’s open-source AI agent for the command line. It reads and edits files, runs shell commands with your permission, searches the web with Google Search, and connects to other tools through the <strong>Model Context Protocol (MCP)</strong>. Signing in with a personal Google account includes a free allowance — at the time of writing, 60 requests a minute and 1,000 a day.
+              <strong>Gemini CLI</strong> is Google’s open-source AI agent for the command line. It reads and edits files, runs shell commands with your permission, searches the web with Google Search, and connects to other tools through the <strong>Model Context Protocol (MCP)</strong>. Signing in with a personal Google account includes a free allowance — at the time of writing, 60 requests a minute and 1,000 a day.<Cite slug={article.slug} src="gemini-cli" />
             </p>
             <Code title="Terminal — install Gemini CLI" code={`# run without installing
 npx @google/gemini-cli

@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { NeuronPlayground, TemperatureDemo } from "@/components/articles/AiPlaygrounds";
 import {
@@ -168,7 +168,7 @@ export default function WelcomeToAi() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>Mrinal Singh Raja</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>Mrinal Singh Raja</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -244,7 +244,7 @@ export default function WelcomeToAi() {
             <ul>
               <li><strong>Artificial Intelligence</strong> is the whole field — including old-school programs built from hand-written rules, like early chess engines and “expert systems”.</li>
               <li><strong>Machine Learning (ML)</strong> is the part of AI that learns from data rather than following rules someone typed in.</li>
-              <li><strong>Deep Learning</strong> is the part of ML that uses <em>neural networks</em> with many layers. It took over around 2012, and it is what made speech recognition, face ID and modern translation work well.</li>
+              <li><strong>Deep Learning</strong> is the part of ML that uses <em>neural networks</em> with many layers. It took over around 2012,<Cite slug={article.slug} src="c399862d" /> and it is what made speech recognition, face ID and modern translation work well.</li>
               <li><strong>Generative AI</strong> is deep learning that <em>creates</em> new content — text, images, music, code, video — instead of only labelling things. Large language models (LLMs) such as ChatGPT, Claude and Gemini live here.</li>
             </ul>
 
@@ -255,7 +255,7 @@ export default function WelcomeToAi() {
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="history" level="Beginner" number={3}>A 75-year story in two minutes</SectionHeading>
             <p>
-              AI feels brand new, but the dream is older than the personal computer. The history is a rollercoaster of big promises, crushing disappointments (the “AI winters”) and, recently, breakthroughs that arrived faster than even researchers expected.
+              AI feels brand new, but the dream is older than the personal computer.<Cite slug={article.slug} src="LIX.236" /> The history is a rollercoaster of big promises, crushing disappointments (the “AI winters”) and, recently, breakthroughs that arrived faster than even researchers expected.
             </p>
 
             <Figure number={4} caption="Key moments in AI. Hollow markers show the two “AI winters”, when funding and interest collapsed.">
@@ -348,7 +348,7 @@ export default function WelcomeToAi() {
             <ol>
               <li><strong>Forward pass.</strong> Feed in an example and get a prediction.</li>
               <li><strong>Measure the loss.</strong> A <em>loss function</em> turns “how wrong was that?” into one number. For classification the usual choice is cross-entropy: <span className="math">L = −log p(correct class)</span>. Confidently wrong answers are punished hard.</li>
-              <li><strong>Backward pass (backpropagation).</strong> Using the chain rule from calculus, work out for <em>every single weight</em> how much the loss would change if that weight were nudged. That list of sensitivities is the <strong>gradient</strong>.</li>
+              <li><strong>Backward pass (backpropagation).</strong><Cite slug={article.slug} src="323533a0" /> Using the chain rule from calculus, work out for <em>every single weight</em> how much the loss would change if that weight were nudged. That list of sensitivities is the <strong>gradient</strong>.</li>
               <li><strong>Update.</strong> Move every weight a tiny step in the direction that reduces the loss.</li>
             </ol>
             <MathBlock reading="new weights = old weights − learning rate × gradient of the loss">
@@ -410,13 +410,13 @@ for epoch in range(5):
               <Architectures />
             </Figure>
             <p>
-              <strong>Convolutional networks</strong> assume that a pattern is the same wherever it appears in an image, so they reuse one small filter everywhere. <strong>Recurrent networks</strong> assume data arrives in order, reading it one step at a time — which makes them slow and forgetful over long passages. The <strong>Transformer</strong>, introduced in 2017, dropped recurrence altogether: it looks at a whole sequence at once and lets every element decide which others to pay attention to. Because that work runs in parallel on GPUs, Transformers could be scaled to sizes nobody had tried, and they now dominate language, and increasingly vision, audio and biology.
+              <strong>Convolutional networks</strong> assume that a pattern is the same wherever it appears in an image, so they reuse one small filter everywhere. <strong>Recurrent networks</strong> assume data arrives in order, reading it one step at a time — which makes them slow and forgetful over long passages. The <strong>Transformer</strong>, introduced in 2017,<Cite slug={article.slug} src="1706.03762" /> dropped recurrence altogether: it looks at a whole sequence at once and lets every element decide which others to pay attention to. Because that work runs in parallel on GPUs, Transformers could be scaled to sizes nobody had tried, and they now dominate language, and increasingly vision, audio and biology.
             </p>
 
             {/* ── 9 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="llms" level="Advanced" number={9}>Inside a large language model</SectionHeading>
             <p>
-              Here is the most surprising fact in modern AI: a chatbot like ChatGPT or Claude is, at its core, <strong>a machine that predicts the next word</strong>. Just that. It reads your text and outputs a probability for every possible next token. One is chosen, stuck on the end, and the whole thing repeats. The fluency, the reasoning, the code — all of it emerges from getting extraordinarily good at that one game.
+              Here is the most surprising fact in modern AI: a chatbot like ChatGPT or Claude is, at its core, <strong>a machine that predicts the next word</strong>.<Cite slug={article.slug} src="2005.14165" /> Just that. It reads your text and outputs a probability for every possible next token. One is chosen, stuck on the end, and the whole thing repeats. The fluency, the reasoning, the code — all of it emerges from getting extraordinarily good at that one game.
             </p>
             <Figure number={14} caption="The journey of a prompt. The model produces one token at a time; the loop is why replies stream in word by word.">
               <LlmPipeline />
@@ -502,7 +502,7 @@ for epoch in range(5):
               <TrainingStages />
             </Figure>
             <p>
-              <strong>Reinforcement learning from human feedback (RLHF)</strong> deserves a closer look. People compare pairs of model answers and pick the better one. Those preferences train a separate <em>reward model</em> that predicts which answer a person would prefer. The chat model is then optimised to score highly with that reward model, with a penalty for drifting too far from its earlier self so it does not learn to game the scorer. Variants such as DPO skip the separate reward model and learn from the preference pairs directly, and some labs add AI-generated feedback guided by a written set of principles.
+              <strong>Reinforcement learning from human feedback (RLHF)</strong><Cite slug={article.slug} src="2203.02155" /> deserves a closer look. People compare pairs of model answers and pick the better one. Those preferences train a separate <em>reward model</em> that predicts which answer a person would prefer. The chat model is then optimised to score highly with that reward model, with a penalty for drifting too far from its earlier self so it does not learn to game the scorer. Variants such as DPO skip the separate reward model and learn from the preference pairs directly, and some labs add AI-generated feedback guided by a written set of principles.
             </p>
             <p>
               The newest step is <strong>reinforcement learning on verifiable tasks</strong>. Give the model maths problems and coding challenges whose answers can be checked automatically, and reward it only for getting them right. Models trained this way learn to write out a long chain of intermediate thinking before the final answer — trying approaches, catching their own mistakes, backtracking. That is what the “thinking” you see in reasoning models is.
@@ -534,7 +534,7 @@ for epoch in range(5):
             {/* ── 12 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="generative" level="Intermediate" number={12}>Beyond text: images, voice and video</SectionHeading>
             <p>
-              Most image and video generators use a different trick called <strong>diffusion</strong>. During training, you take real pictures and add a little random noise, then more, then more, until only static is left. The network’s job is to learn to reverse a single step: given a noisy image (and a caption), predict the noise that was added. Once it has learned that, you can start from pure static and denoise step by step, with your text prompt steering each step — and a brand new image appears.
+              Most image and video generators use a different trick called <strong>diffusion</strong>.<Cite slug={article.slug} src="2006.11239" /> During training, you take real pictures and add a little random noise, then more, then more, until only static is left. The network’s job is to learn to reverse a single step: given a noisy image (and a caption), predict the noise that was added. Once it has learned that, you can start from pure static and denoise step by step, with your text prompt steering each step — and a brand new image appears.
             </p>
             <Figure number={21} caption="A toy illustration of diffusion on a 12×12 image. Real models work on millions of pixels (or a compressed “latent” version of them).">
               <DiffusionSteps />
@@ -543,7 +543,7 @@ for epoch in range(5):
               The frontier is increasingly <strong>multimodal</strong>: single models that take in text, images, audio and video, and respond in several of them. The same core recipe applies — turn everything into tokens or embeddings, then learn the patterns — which is why progress in one area now spreads quickly to the others.
             </p>
             <Callout kind="fact">
-              <p>AI is also transforming science. DeepMind’s AlphaFold predicts the 3-D shape of proteins from their amino-acid sequences, a 50-year-old challenge in biology. Its creators Demis Hassabis and John Jumper shared the 2024 Nobel Prize in Chemistry with protein designer David Baker — the same year Geoffrey Hinton and John Hopfield won the Physics prize for foundational work on neural networks.</p>
+              <p>AI is also transforming science. DeepMind’s AlphaFold predicts the 3-D shape of proteins from their amino-acid sequences, a 50-year-old challenge in biology. Its creators Demis Hassabis and John Jumper shared the 2024 Nobel Prize in Chemistry with protein designer David Baker<Cite slug={article.slug} src="chemistry/2024" /> — the same year Geoffrey Hinton and John Hopfield won the Physics prize for foundational work on neural networks.<Cite slug={article.slug} src="physics/2024" /></p>
             </Callout>
 
             {/* ── 13 ────────────────────────────────────────────────────────*/}
@@ -565,7 +565,7 @@ for epoch in range(5):
 
             <h3>RAG: giving the model your documents</h3>
             <p>
-              A model does not know your company handbook, yesterday’s news or your private notes. <strong>Retrieval-augmented generation</strong> fixes that without retraining: split your documents into chunks, store their embeddings in a vector database, and at question time fetch the chunks closest in meaning to the question and paste them into the prompt.
+              A model does not know your company handbook, yesterday’s news or your private notes. <strong>Retrieval-augmented generation</strong><Cite slug={article.slug} src="2005.11401" /> fixes that without retraining: split your documents into chunks, store their embeddings in a vector database, and at question time fetch the chunks closest in meaning to the question and paste them into the prompt.
             </p>
             <Figure number={22} caption="Retrieval-augmented generation. The model answers from your documents, and can cite them.">
               <RagFlow />

@@ -6,7 +6,7 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
-import { References } from "@/components/articles/References";
+import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { GrpoSimulator } from "@/components/figures/GrpoSimulator";
@@ -160,7 +160,7 @@ export default function DeepSeek101() {
             {article.subtitle}.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]" style={{ color: "var(--stage-text-secondary)" }}>
-            <span>By <strong style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</strong></span>
+            <span>By <Link href="/author" rel="author" className="font-bold underline-offset-4 hover:underline" style={{ color: "var(--stage-text-primary)" }}>{AUTHOR.name}</Link></span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
@@ -228,7 +228,7 @@ export default function DeepSeek101() {
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="moment" level="Beginner" number={3}>The January 2025 shock</SectionHeading>
             <p>
-              Why did one model move markets? Until then, the assumption was that frontier AI required tens of billions of dollars and the most advanced chips — a game only a few American giants could play. DeepSeek, working under export restrictions that limited it to less powerful Nvidia chips, reported that the final training run of V3 used about 2.8 million GPU-hours, roughly $5.6 million at rental prices, and then released R1, which matched OpenAI’s o1 on many maths and coding tests.
+              Why did one model move markets? Until then, the assumption was that frontier AI required tens of billions of dollars and the most advanced chips — a game only a few American giants could play. DeepSeek, working under export restrictions that limited it to less powerful Nvidia chips, reported that the final training run of V3 used about 2.8 million GPU-hours, roughly $5.6 million at rental prices,<Cite slug={article.slug} src="2412.19437" /> and then released R1, which matched OpenAI’s o1 on many maths and coding tests.<Cite slug={article.slug} src="2501.12948" />
             </p>
             <Figure number={2} caption="The DeepSeek moment in numbers. The $5.6 million covers GPU time for the final V3 run only — not the research, experiments, staff or hardware before it.">
               <DeepSeekMoment />
@@ -294,14 +294,14 @@ export default function DeepSeek101() {
             </p>
             <h3>1. DeepSeekMoE: many small experts</h3>
             <p>
-              In a <strong>mixture-of-experts</strong> model, each layer holds many expert sub-networks and a router picks a few for each token, so most of the model sits idle on any given step. DeepSeek’s version splits experts into many small, <em>fine-grained</em> ones for sharper specialisation, and adds <em>shared</em> experts that every token uses, so common knowledge isn’t duplicated across experts.
+              In a <strong>mixture-of-experts</strong> model, each layer holds many expert sub-networks and a router picks a few for each token, so most of the model sits idle on any given step. DeepSeek’s version splits experts into many small, <em>fine-grained</em> ones for sharper specialisation, and adds <em>shared</em> experts that every token uses, so common knowledge isn’t duplicated across experts.<Cite slug={article.slug} src="2401.06066" />
             </p>
             <Figure number={6} caption="DeepSeekMoE, simplified: a shared expert every token uses, plus a few of many small routed experts.">
               <DeepSeekMoE />
             </Figure>
             <h3>2. Multi-head latent attention (MLA)</h3>
             <p>
-              As a model reads a long conversation, it keeps a memory of every earlier token — the <strong>KV cache</strong> — and on long contexts that cache, not the model, fills up GPU memory. MLA squeezes each token’s keys and values into one small compressed vector and expands them only when needed.
+              As a model reads a long conversation, it keeps a memory of every earlier token — the <strong>KV cache</strong> — and on long contexts that cache, not the model, fills up GPU memory. MLA squeezes each token’s keys and values into one small compressed vector and expands them only when needed.<Cite slug={article.slug} src="2405.04434" />
             </p>
             <Figure number={7} caption="Why MLA matters: a far smaller KV cache means longer contexts and more users per GPU. Bar lengths are illustrative.">
               <MlaCache />
@@ -313,7 +313,7 @@ export default function DeepSeek101() {
             {/* ── 8 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="r1" level="Advanced" number={8}>How R1 learned to reason</SectionHeading>
             <p>
-              R1’s most influential idea was an experiment. DeepSeek took its base model and trained it with <strong>reinforcement learning only</strong>: no human-written examples of good reasoning at all. The model answered maths and coding problems and was rewarded simply when the final answer was correct and in the right format. The result, <strong>R1-Zero</strong>, taught itself to reason at length — spending more tokens on harder problems, checking its work, even pausing to say, in effect, “wait, let me re-examine that”, which the paper called an “aha moment”.
+              R1’s most influential idea was an experiment. DeepSeek took its base model and trained it with <strong>reinforcement learning only</strong>: no human-written examples of good reasoning at all. The model answered maths and coding problems and was rewarded simply when the final answer was correct and in the right format. The result, <strong>R1-Zero</strong>, taught itself to reason at length — spending more tokens on harder problems, checking its work, even pausing to say, in effect, “wait, let me re-examine that”, which the paper called an “aha moment”.<Cite slug={article.slug} src="s41586-025-09422-z" />
             </p>
             <p>
               R1-Zero’s reasoning was powerful but messy: it mixed languages and was hard to read. The released R1 used a four-stage recipe to keep the reasoning and fix the readability:
@@ -328,7 +328,7 @@ export default function DeepSeek101() {
             {/* ── 9 ─────────────────────────────────────────────────────────*/}
             <SectionHeading id="grpo" level="Advanced" number={9}>GRPO, the maths</SectionHeading>
             <p>
-              The reinforcement-learning algorithm behind R1 is <strong>GRPO — Group Relative Policy Optimization</strong>, introduced in DeepSeek’s earlier DeepSeekMath paper. Classic methods such as PPO train a second “critic” network, as big as the model itself, to estimate how good each answer is. GRPO drops the critic. For each question it samples a <em>group</em> of answers, scores them all, and judges each answer against the group:
+              The reinforcement-learning algorithm behind R1 is <strong>GRPO — Group Relative Policy Optimization</strong>, introduced in DeepSeek’s earlier DeepSeekMath paper.<Cite slug={article.slug} src="2402.03300" /> Classic methods such as PPO train a second “critic” network, as big as the model itself, to estimate how good each answer is. GRPO drops the critic. For each question it samples a <em>group</em> of answers, scores them all, and judges each answer against the group:
             </p>
             <MathBlock reading="each answer’s advantage = how much better than the group average, in units of the group’s spread">
               Aᵢ = ( rᵢ − mean(r₁…r<sub>G</sub>) ) / std(r₁…r<sub>G</sub>)
@@ -358,7 +358,7 @@ export default function DeepSeek101() {
             {/* ── 11 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="local" level="Advanced" number={11}>Run it on your own computer</SectionHeading>
             <p>
-              The easiest way to run DeepSeek locally is <strong>Ollama</strong>, a free app for Mac, Windows and Linux. Install it from <code>ollama.com</code>, open a terminal and run one command. The first run downloads the model; after that, it works <strong>completely offline</strong>.
+              The easiest way to run DeepSeek locally is <strong>Ollama</strong>, a free app for Mac, Windows and Linux. Install it from <code>ollama.com</code>, open a terminal and run one command.<Cite slug={article.slug} src="ollama.com/library" /> The first run downloads the model; after that, it works <strong>completely offline</strong>.
             </p>
             <Code title="Terminal" code={`ollama run deepseek-r1          # the default size
 ollama run deepseek-r1:8b       # pick a size: 1.5b, 7b, 8b, 14b, 32b, 70b…`} />
@@ -376,7 +376,7 @@ ollama run deepseek-r1:8b       # pick a size: 1.5b, 7b, 8b, 14b, 32b, 70b…`} 
             {/* ── 12 ────────────────────────────────────────────────────────*/}
             <SectionHeading id="api" level="Advanced" number={12}>The DeepSeek API</SectionHeading>
             <p>
-              DeepSeek’s API uses the same request format as OpenAI’s (and it also accepts Anthropic’s format), so existing code and tools work by changing two settings. Create an account at <code>platform.deepseek.com</code>, add a small balance, create a key and set it as <code>DEEPSEEK_API_KEY</code>. The current models are <code>deepseek-flash</code> (DeepSeek-V4.1-Flash, recommended, and it understands images) and <code>deepseek-v4-pro</code>, both with a <strong>1-million-token</strong> context window.
+              DeepSeek’s API uses the same request format as OpenAI’s (and it also accepts Anthropic’s format), so existing code and tools work by changing two settings.<Cite slug={article.slug} src="https://api-docs.deepseek.com/" /> Create an account at <code>platform.deepseek.com</code>, add a small balance, create a key and set it as <code>DEEPSEEK_API_KEY</code>. The current models are <code>deepseek-flash</code> (DeepSeek-V4.1-Flash, recommended, and it understands images) and <code>deepseek-v4-pro</code>, both with a <strong>1-million-token</strong> context window.<Cite slug={article.slug} src="deepseek.com/updates" />
             </p>
             <Figure number={12} caption="A first call with thinking on, following DeepSeek’s documentation. The reasoning comes back in its own field, separate from the answer.">
               <Code title="first_call.py — Python" code={PY_API} />
