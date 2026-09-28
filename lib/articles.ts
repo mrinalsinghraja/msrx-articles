@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "typesafe-jev-with-claude",
+    title: "How to use TypeSafe Jev with Claude: a step-by-step guide",
+    subtitle: "Five ways to make a fast judgment model and a thinking model work as one team — the Claude Code skill, an MCP tool, hooks that guard what runs, a router in front of Claude and a verifier behind it — with real runs, real code and the thresholds that hold it together",
+    description:
+      "A hands-on, beginner-to-advanced guide to using TypeSafe’s Jev with Anthropic’s Claude: what each model is for, setting up a key safely, the TypeSafe skill in Claude Code, a zero-dependency MCP server, a PreToolUse hook that asks before destructive commands, a Jev router in front of the Claude API, verifying Claude’s drafts, cascades, and a production checklist — built on real runs.",
+    published: "2026-09-28",
+    updated: "2026-09-28",
+    readingMinutes: 20,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["TypeSafe", "Jev", "Claude", "Claude Code", "MCP", "Claude Code hooks", "Claude API", "AI engineering"],
+    accent: "#0E7490",
+  },
+  {
     slug: "agentic-ai-101",
     title: "Agentic AI 101: from AI that answers to AI that acts",
     subtitle: "What agents are, where they came from, how the think–act–observe loop works, what they change at home and at work, how to keep them safe, and how to start your own agentic journey",
