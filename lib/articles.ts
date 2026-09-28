@@ -60,7 +60,7 @@ export const articles: Article[] = [
     description:
       "A beginner-to-advanced guide to agentic AI: from Shakey the robot to today’s coding and browser agents, levels of autonomy, the anatomy and ReAct loop of an agent, examples from daily life and every office team, workflow patterns, MCP and A2A, memory, reliability, guardrails, a first agent in code, and a five-step journey to get started.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 18,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -74,7 +74,7 @@ export const articles: Article[] = [
     description:
       "A beginner-to-advanced guide to TypeSafe’s Jev: from prompt-and-parse to typed judgments, Kahneman’s System 1, the three question types, calibration and RLCD, building a support-ticket sorter step by step, batching and cost, the layered blueprint, patterns, limits and the Claude Code skill.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 19,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -88,7 +88,7 @@ export const articles: Article[] = [
     description:
       "A beginner-to-advanced guide to DeepSeek: its story from a Hangzhou hedge fund to the V4 models, the January 2025 shock, how R1 learned to reason with GRPO, DeepSeekMoE and multi-head latent attention, the app, the API, running open weights locally with Ollama, and privacy trade-offs.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 18,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -102,7 +102,7 @@ export const articles: Article[] = [
     description:
       "A beginner-to-advanced guide to Microsoft Copilot: its history from Cortana and the OpenAI partnership, the consumer app on Windows, Edge and phones, Copilot in Word, Excel, PowerPoint, Outlook and Teams, how Microsoft 365 Copilot grounds answers in your permissions, GitHub Copilot, agents in Copilot Studio, and Microsoft Foundry.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 18,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -116,7 +116,7 @@ export const articles: Article[] = [
     description:
       "A beginner-to-advanced guide to Google Gemini: its history from the Transformer to Gemini 3, native multimodality and mixture-of-experts, the app on web, Android and iPhone, Gems, Deep Research, Live, Gmail and Docs, grounding, AI Studio, the Gemini API and the Gemini CLI.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 19,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -130,7 +130,7 @@ export const articles: Article[] = [
     description:
       "A beginner-to-advanced guide to Anthropic’s Claude: its history and Constitutional AI, choosing a model, using Claude in the browser, desktop, phone and Chrome, Projects and Artifacts, Claude Code in the terminal, MCP, and building with the Claude API.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 20,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -144,7 +144,7 @@ export const articles: Article[] = [
     description:
       "A complete beginner-to-advanced guide to ChatGPT: where it came from, what happens when you press Enter, setting it up, the six ingredients of a great prompt, features from files to agents, staying safe, context windows, tool calls and your first API call.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 22,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
@@ -158,7 +158,7 @@ export const articles: Article[] = [
     description:
       "A guided tour of artificial intelligence that starts with everyday examples and ends inside a transformer. Machine learning, neural networks, how ChatGPT-style models are built, diffusion, RAG, agents, risks and a learning roadmap, with diagrams throughout.",
     published: "2026-09-24",
-    updated: "2026-09-24",
+    updated: "2026-09-28",
     readingMinutes: 22,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",

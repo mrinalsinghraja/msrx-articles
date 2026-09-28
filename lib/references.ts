@@ -1,0 +1,174 @@
+// ── References ────────────────────────────────────────────────────────────────
+// The sources behind each article, shown as a numbered list at the end of the
+// article and published as schema.org `citation` in its JSON-LD.
+//
+// Every entry was opened and checked on the date in REFERENCES_CHECKED: the URL
+// resolves, the title matches the work, and authors and dates come from the
+// source's own metadata (arXiv, Crossref, or the page's published date). Pages
+// that are living documentation have no fixed date, so they are cited as
+// accessed on that day.
+//
+// Adding one: cite the primary source (the paper, the announcement, the docs
+// page) rather than coverage of it; say in `note` what it supports; keep five to
+// ten per article.
+
+import { articles } from "@/lib/articles";
+
+export const REFERENCES_CHECKED = "2026-09-28";
+
+export type ReferenceKind = "Paper" | "Announcement" | "Documentation" | "Reporting" | "Guide";
+
+export interface Reference {
+  /** "Surname, A." style for people; an organisation name otherwise. */
+  authors: string;
+  /** Year, or a full date for announcements. Omitted for living documentation. */
+  date?: string;
+  title: string;
+  /** Journal, conference, site or publisher. */
+  container: string;
+  url: string;
+  kind: ReferenceKind;
+  /** What in the article this source supports. */
+  note: string;
+}
+
+const ARXIV = "arXiv";
+
+const references: Record<string, Reference[]> = {
+  "welcome-to-the-world-of-ai": [
+    { authors: "Turing, A. M.", date: "1950", title: "Computing Machinery and Intelligence", container: "Mind, 59(236), 433–460", url: "https://doi.org/10.1093/mind/LIX.236.433", kind: "Paper", note: "The imitation game and the question “Can machines think?”" },
+    { authors: "Rumelhart, D. E., Hinton, G. E., & Williams, R. J.", date: "1986", title: "Learning representations by back-propagating errors", container: "Nature, 323, 533–536", url: "https://www.nature.com/articles/323533a0", kind: "Paper", note: "Backpropagation, how neural networks learn from their mistakes" },
+    { authors: "Krizhevsky, A., Sutskever, I., & Hinton, G. E.", date: "2012", title: "ImageNet Classification with Deep Convolutional Neural Networks", container: "Advances in Neural Information Processing Systems 25", url: "https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html", kind: "Paper", note: "AlexNet and the 2012 ImageNet moment that started the deep-learning boom" },
+    { authors: "Vaswani, A., et al.", date: "2017", title: "Attention Is All You Need", container: ARXIV + ":1706.03762", url: "https://arxiv.org/abs/1706.03762", kind: "Paper", note: "The Transformer and self-attention" },
+    { authors: "Brown, T. B., et al.", date: "2020", title: "Language Models are Few-Shot Learners", container: ARXIV + ":2005.14165", url: "https://arxiv.org/abs/2005.14165", kind: "Paper", note: "GPT-3 and its 175 billion parameters" },
+    { authors: "Ho, J., Jain, A., & Abbeel, P.", date: "2020", title: "Denoising Diffusion Probabilistic Models", container: ARXIV + ":2006.11239", url: "https://arxiv.org/abs/2006.11239", kind: "Paper", note: "How diffusion models make images by removing noise" },
+    { authors: "Lewis, P., et al.", date: "2020", title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks", container: ARXIV + ":2005.11401", url: "https://arxiv.org/abs/2005.11401", kind: "Paper", note: "Retrieval-augmented generation (RAG)" },
+    { authors: "Ouyang, L., et al.", date: "2022", title: "Training language models to follow instructions with human feedback", container: ARXIV + ":2203.02155", url: "https://arxiv.org/abs/2203.02155", kind: "Paper", note: "Instruction tuning and RLHF, how a base model becomes a chatbot" },
+    { authors: "The Nobel Foundation", date: "2024", title: "The Nobel Prize in Physics 2024", container: "NobelPrize.org", url: "https://www.nobelprize.org/prizes/physics/2024/summary/", kind: "Announcement", note: "John Hopfield and Geoffrey Hinton" },
+    { authors: "The Nobel Foundation", date: "2024", title: "The Nobel Prize in Chemistry 2024", container: "NobelPrize.org", url: "https://www.nobelprize.org/prizes/chemistry/2024/summary/", kind: "Announcement", note: "David Baker, Demis Hassabis and John Jumper (AlphaFold)" },
+  ],
+
+  "chatgpt-101": [
+    { authors: "OpenAI", date: "11 December 2015", title: "Introducing OpenAI", container: "OpenAI", url: "https://openai.com/index/introducing-openai/", kind: "Announcement", note: "OpenAI’s founding" },
+    { authors: "Vaswani, A., et al.", date: "2017", title: "Attention Is All You Need", container: ARXIV + ":1706.03762", url: "https://arxiv.org/abs/1706.03762", kind: "Paper", note: "The Transformer that the GPT models are built on" },
+    { authors: "Brown, T. B., et al.", date: "2020", title: "Language Models are Few-Shot Learners", container: ARXIV + ":2005.14165", url: "https://arxiv.org/abs/2005.14165", kind: "Paper", note: "GPT-3" },
+    { authors: "Ouyang, L., et al.", date: "2022", title: "Training language models to follow instructions with human feedback", container: ARXIV + ":2203.02155", url: "https://arxiv.org/abs/2203.02155", kind: "Paper", note: "RLHF, the training step behind ChatGPT’s helpfulness" },
+    { authors: "OpenAI", date: "30 November 2022", title: "Introducing ChatGPT", container: "OpenAI", url: "https://openai.com/index/chatgpt/", kind: "Announcement", note: "ChatGPT’s launch" },
+    { authors: "OpenAI", date: "2023", title: "GPT-4 Technical Report", container: ARXIV + ":2303.08774", url: "https://arxiv.org/abs/2303.08774", kind: "Paper", note: "GPT-4" },
+    { authors: "OpenAI", date: "13 May 2024", title: "Hello GPT-4o", container: "OpenAI", url: "https://openai.com/index/hello-gpt-4o/", kind: "Announcement", note: "GPT-4o and native voice and vision" },
+    { authors: "OpenAI", date: "12 September 2024", title: "Learning to reason with LLMs", container: "OpenAI", url: "https://openai.com/index/learning-to-reason-with-llms/", kind: "Announcement", note: "Reasoning models (o1)" },
+    { authors: "OpenAI", title: "Developer quickstart", container: "OpenAI API documentation", url: "https://platform.openai.com/docs/quickstart", kind: "Documentation", note: "Your first API call" },
+    { authors: "OpenAI", title: "Function calling", container: "OpenAI API documentation", url: "https://platform.openai.com/docs/guides/function-calling", kind: "Documentation", note: "Tool calls" },
+  ],
+
+  "how-to-use-claude": [
+    { authors: "Anthropic", date: "8 March 2023", title: "Core views on AI safety", container: "Anthropic", url: "https://www.anthropic.com/news/core-views-on-ai-safety", kind: "Announcement", note: "Why Anthropic puts safety research at the centre" },
+    { authors: "Bai, Y., et al.", date: "2022", title: "Constitutional AI: Harmlessness from AI Feedback", container: ARXIV + ":2212.08073", url: "https://arxiv.org/abs/2212.08073", kind: "Paper", note: "Constitutional AI" },
+    { authors: "Anthropic", date: "9 May 2023", title: "Claude’s constitution", container: "Anthropic", url: "https://www.anthropic.com/news/claudes-constitution", kind: "Announcement", note: "The principles Claude is trained on" },
+    { authors: "Anthropic", title: "Models overview", container: "Claude Platform documentation", url: "https://docs.claude.com/en/docs/about-claude/models/overview", kind: "Documentation", note: "Model names, IDs and API prices" },
+    { authors: "Anthropic", title: "Overview", container: "Claude Code documentation", url: "https://code.claude.com/docs/en/overview", kind: "Documentation", note: "Installing and using Claude Code" },
+    { authors: "Anthropic", date: "25 November 2024", title: "Introducing the Model Context Protocol", container: "Anthropic", url: "https://www.anthropic.com/news/model-context-protocol", kind: "Announcement", note: "MCP’s introduction in November 2024" },
+    { authors: "Model Context Protocol", date: "2025", title: "Specification (version 2025-06-18)", container: "modelcontextprotocol.io", url: "https://modelcontextprotocol.io/specification/2025-06-18", kind: "Documentation", note: "How MCP connects Claude to tools and data" },
+    { authors: "Anthropic", title: "Messages", container: "Claude API reference", url: "https://docs.claude.com/en/api/messages", kind: "Documentation", note: "Building with the Claude API" },
+    { authors: "Anthropic", title: "Plans & Pricing", container: "claude.com", url: "https://claude.com/pricing", kind: "Documentation", note: "Free, Pro and Max plans" },
+  ],
+
+  "google-gemini-101": [
+    { authors: "Vaswani, A., et al.", date: "2017", title: "Attention Is All You Need", container: ARXIV + ":1706.03762", url: "https://arxiv.org/abs/1706.03762", kind: "Paper", note: "The Transformer, invented at Google" },
+    { authors: "Google", date: "6 December 2023", title: "Introducing Gemini: Google’s most capable AI model yet", container: "The Keyword (Google blog)", url: "https://blog.google/technology/ai/google-gemini-ai/", kind: "Announcement", note: "Gemini 1.0’s launch" },
+    { authors: "Gemini Team, Google", date: "2023", title: "Gemini: A Family of Highly Capable Multimodal Models", container: ARXIV + ":2312.11805", url: "https://arxiv.org/abs/2312.11805", kind: "Paper", note: "Native multimodality" },
+    { authors: "Gemini Team, Google", date: "2024", title: "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context", container: ARXIV + ":2403.05530", url: "https://arxiv.org/abs/2403.05530", kind: "Paper", note: "Mixture-of-experts and long context" },
+    { authors: "Google", date: "8 February 2024", title: "Google Bard is now Gemini: How to try Ultra 1.0 and new mobile app", container: "The Keyword (Google blog)", url: "https://blog.google/products/gemini/bard-gemini-advanced-app/", kind: "Announcement", note: "Bard’s rename and the Gemini app" },
+    { authors: "Google", title: "Models", container: "Gemini API documentation", url: "https://ai.google.dev/gemini-api/docs/models", kind: "Documentation", note: "Model IDs used in the API examples" },
+    { authors: "Google", title: "Grounding with Google Search", container: "Gemini API documentation", url: "https://ai.google.dev/gemini-api/docs/google-search", kind: "Documentation", note: "Grounding answers in search results" },
+    { authors: "Google", title: "gemini-cli", container: "GitHub", url: "https://github.com/google-gemini/gemini-cli", kind: "Documentation", note: "The Gemini CLI" },
+    { authors: "Google", title: "Google AI plans", container: "gemini.google", url: "https://gemini.google/subscriptions/", kind: "Documentation", note: "Plan features" },
+  ],
+
+  "microsoft-copilot-101": [
+    { authors: "Microsoft", date: "22 July 2019", title: "OpenAI forms exclusive computing partnership with Microsoft to build new Azure AI supercomputing technologies", container: "Microsoft News", url: "https://news.microsoft.com/2019/07/22/openai-forms-exclusive-computing-partnership-with-microsoft-to-build-new-azure-ai-supercomputing-technologies/", kind: "Announcement", note: "Microsoft’s 2019 investment in OpenAI" },
+    { authors: "GitHub", date: "21 June 2022", title: "GitHub Copilot is generally available to all developers", container: "The GitHub Blog", url: "https://github.blog/news-insights/product-news/github-copilot-is-generally-available-to-all-developers/", kind: "Announcement", note: "GitHub Copilot’s general availability" },
+    { authors: "Microsoft", date: "23 January 2023", title: "Microsoft and OpenAI extend partnership", container: "The Official Microsoft Blog", url: "https://blogs.microsoft.com/blog/2023/01/23/microsoftandopenaiextendpartnership/", kind: "Announcement", note: "The extended OpenAI partnership" },
+    { authors: "Microsoft", date: "7 February 2023", title: "Reinventing search with a new AI-powered Microsoft Bing and Edge, your copilot for the web", container: "The Official Microsoft Blog", url: "https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/", kind: "Announcement", note: "The new Bing" },
+    { authors: "Microsoft", date: "16 March 2023", title: "Introducing Microsoft 365 Copilot – your copilot for work", container: "The Official Microsoft Blog", url: "https://blogs.microsoft.com/blog/2023/03/16/introducing-microsoft-365-copilot-your-copilot-for-work/", kind: "Announcement", note: "Microsoft 365 Copilot’s announcement" },
+    { authors: "Microsoft", title: "What is Microsoft Copilot?", container: "Microsoft Learn", url: "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-overview", kind: "Documentation", note: "Licence tiers and how Copilot works in Microsoft 365" },
+    { authors: "Microsoft", title: "Data, Privacy, and Security for Microsoft Copilot", container: "Microsoft Learn", url: "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy", kind: "Documentation", note: "Grounding in your permissions" },
+    { authors: "Microsoft", title: "Overview — Microsoft Copilot Studio", container: "Microsoft Learn", url: "https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio", kind: "Documentation", note: "Building agents in Copilot Studio" },
+    { authors: "GitHub", title: "Plans for GitHub Copilot", container: "GitHub Docs", url: "https://docs.github.com/en/copilot/get-started/plans", kind: "Documentation", note: "GitHub Copilot plans" },
+  ],
+
+  "deepseek-101": [
+    { authors: "Dai, D., et al.", date: "2024", title: "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models", container: ARXIV + ":2401.06066", url: "https://arxiv.org/abs/2401.06066", kind: "Paper", note: "DeepSeekMoE" },
+    { authors: "Shao, Z., et al.", date: "2024", title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models", container: ARXIV + ":2402.03300", url: "https://arxiv.org/abs/2402.03300", kind: "Paper", note: "Group Relative Policy Optimization (GRPO)" },
+    { authors: "DeepSeek-AI", date: "2024", title: "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model", container: ARXIV + ":2405.04434", url: "https://arxiv.org/abs/2405.04434", kind: "Paper", note: "Multi-head latent attention" },
+    { authors: "DeepSeek-AI", date: "2024", title: "DeepSeek-V3 Technical Report", container: ARXIV + ":2412.19437", url: "https://arxiv.org/abs/2412.19437", kind: "Paper", note: "DeepSeek-V3" },
+    { authors: "DeepSeek-AI", date: "2025", title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning", container: ARXIV + ":2501.12948", url: "https://arxiv.org/abs/2501.12948", kind: "Paper", note: "How R1 learned to reason" },
+    { authors: "Guo, D., et al.", date: "2025", title: "DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning", container: "Nature, 645, 633–638", url: "https://www.nature.com/articles/s41586-025-09422-z", kind: "Paper", note: "The peer-reviewed version of the R1 paper" },
+    { authors: "DeepSeek", title: "Your First API Call", container: "DeepSeek API documentation", url: "https://api-docs.deepseek.com/", kind: "Documentation", note: "The API example" },
+    { authors: "DeepSeek", title: "Change Log", container: "DeepSeek API documentation", url: "https://api-docs.deepseek.com/updates", kind: "Documentation", note: "Model release dates" },
+    { authors: "Ollama", title: "deepseek-r1", container: "Ollama library", url: "https://ollama.com/library/deepseek-r1", kind: "Documentation", note: "Running open weights locally, and model sizes" },
+  ],
+
+  "typesafe-jev-101": [
+    { authors: "TypeSafe AI", title: "Introduction", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/introduction", kind: "Documentation", note: "What Jev is" },
+    { authors: "TypeSafe AI", title: "Primitives (Questions)", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/primitives", kind: "Documentation", note: "Choice, Noul and Score" },
+    { authors: "TypeSafe AI", title: "Confidence", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/confidence", kind: "Documentation", note: "The confidence formula" },
+    { authors: "TypeSafe AI", title: "AI primer", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/introduction/machine-learning-primer", kind: "Documentation", note: "RLCD and mode dropping" },
+    { authors: "TypeSafe AI", title: "Models", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/models", kind: "Documentation", note: "Price, limits and model versions" },
+    { authors: "TypeSafe AI", title: "Parallel questions", container: "TypeSafe cookbooks", url: "https://docs.typesafe.ai/cookbooks/parallel_questions", kind: "Documentation", note: "The 12.2× cheaper, 10× faster batching benchmark" },
+    { authors: "TypeSafe AI", title: "Jev 1.13 jaggedness", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/model-jaggedness/jev-1.13", kind: "Documentation", note: "Known weak spots" },
+    { authors: "Singh Raja, M.", title: "TypeSafe Easy Guide", container: "Unofficial community guide", url: "https://mrinalsinghraja.github.io/typesafe-easy-guide/", kind: "Guide", note: "The teaching structure this article follows" },
+    { authors: "Guo, C., Pleiss, G., Sun, Y., & Weinberger, K. Q.", date: "2017", title: "On Calibration of Modern Neural Networks", container: ARXIV + ":1706.04599", url: "https://arxiv.org/abs/1706.04599", kind: "Paper", note: "Calibration and reliability diagrams" },
+    { authors: "Christiano, P., et al.", date: "2017", title: "Deep reinforcement learning from human preferences", container: ARXIV + ":1706.03741", url: "https://arxiv.org/abs/1706.03741", kind: "Paper", note: "RLHF, the method RLCD is contrasted with" },
+  ],
+
+  "agentic-ai-101": [
+    { authors: "SRI International", title: "Shakey the Robot", container: "SRI history", url: "https://www.sri.com/hoi/shakey-the-robot/", kind: "Documentation", note: "Shakey, 1966–1972" },
+    { authors: "Yao, S., et al.", date: "2022", title: "ReAct: Synergizing Reasoning and Acting in Language Models", container: ARXIV + ":2210.03629", url: "https://arxiv.org/abs/2210.03629", kind: "Paper", note: "The think–act–observe loop" },
+    { authors: "Schick, T., et al.", date: "2023", title: "Toolformer: Language Models Can Teach Themselves to Use Tools", container: ARXIV + ":2302.04761", url: "https://arxiv.org/abs/2302.04761", kind: "Paper", note: "Language models learning to use tools" },
+    { authors: "Anthropic", date: "22 October 2024", title: "Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku", container: "Anthropic", url: "https://www.anthropic.com/news/3-5-models-and-computer-use", kind: "Announcement", note: "Computer-use agents in 2024" },
+    { authors: "Anthropic", date: "25 November 2024", title: "Introducing the Model Context Protocol", container: "Anthropic", url: "https://www.anthropic.com/news/model-context-protocol", kind: "Announcement", note: "MCP" },
+    { authors: "Anthropic", date: "19 December 2024", title: "Building effective agents", container: "Anthropic Engineering", url: "https://www.anthropic.com/engineering/building-effective-agents", kind: "Guide", note: "Workflow patterns and when to use an agent" },
+    { authors: "Google", date: "9 April 2025", title: "Announcing the Agent2Agent Protocol (A2A)", container: "Google Developers Blog", url: "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/", kind: "Announcement", note: "A2A" },
+    { authors: "Model Context Protocol", date: "2025", title: "Specification (version 2025-06-18)", container: "modelcontextprotocol.io", url: "https://modelcontextprotocol.io/specification/2025-06-18", kind: "Documentation", note: "How tools plug into agents" },
+    { authors: "Transluce", date: "2026", title: "Early rogue AI agent activity and attempts to hack found on urlquery.net", container: "Transluce", url: "https://transluce.org/agent-activity", kind: "Reporting", note: "The “In the news” note" },
+    { authors: "ABC News", date: "24 September 2026", title: "What we know about the data accessed in the OpenAI Medicare hack", container: "ABC News (Australia)", url: "https://www.abc.net.au/news/2026-09-24/what-we-know-about-the-openai-medicare-hack/107189452", kind: "Reporting", note: "The “In the news” note" },
+  ],
+
+  "typesafe-jev-with-claude": [
+    { authors: "TypeSafe AI", title: "Jev with coding agents", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/introduction/coding-agents", kind: "Documentation", note: "Why Jev is not a model for Claude Code itself" },
+    { authors: "TypeSafe AI", title: "Agent skill", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/agent-skill", kind: "Documentation", note: "Way 1: installing and using the skill" },
+    { authors: "TypeSafe AI", title: "API reference", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/api", kind: "Documentation", note: "Request and response shapes, error codes" },
+    { authors: "TypeSafe AI", title: "Models", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/models", kind: "Documentation", note: "Price, limits, aliases and pinning" },
+    { authors: "TypeSafe AI", title: "JavaScript SDK", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/sdk/javascript", kind: "Documentation", note: "The router code" },
+    { authors: "TypeSafe AI", title: "Guardrails for LLMs", container: "TypeSafe cookbooks", url: "https://docs.typesafe.ai/cookbooks/llm_guardrails", kind: "Documentation", note: "Way 5: checking inputs and outputs" },
+    { authors: "TypeSafe AI", title: "SDE cascade", container: "TypeSafe cookbooks", url: "https://docs.typesafe.ai/cookbooks/sde_cascade", kind: "Documentation", note: "The cascade pattern" },
+    { authors: "Anthropic", title: "Hooks reference", container: "Claude Code documentation", url: "https://code.claude.com/docs/en/hooks", kind: "Documentation", note: "Way 3: PreToolUse input and permission decisions" },
+    { authors: "Model Context Protocol", date: "2025", title: "Specification (version 2025-06-18)", container: "modelcontextprotocol.io", url: "https://modelcontextprotocol.io/specification/2025-06-18", kind: "Documentation", note: "Way 2: the MCP server" },
+    { authors: "Anthropic", title: "Tool use with Claude", container: "Claude Platform documentation", url: "https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview", kind: "Documentation", note: "The Jev tool inside your own agent" },
+  ],
+};
+
+export function getReferences(slug: string): Reference[] {
+  return references[slug] ?? [];
+}
+
+/** schema.org `citation` entries for an article's JSON-LD. */
+export function citationJsonLd(slug: string) {
+  return getReferences(slug).map((r) => ({
+    "@type": r.kind === "Paper" ? "ScholarlyArticle" : "CreativeWork",
+    name: r.title,
+    url: r.url,
+    author: r.authors,
+    ...(r.date ? { datePublished: r.date } : {}),
+    publisher: r.container,
+  }));
+}
+
+// Build-time guard, like the registry's: every article must carry 5–10 sources.
+for (const a of articles) {
+  const n = getReferences(a.slug).length;
+  if (n < 5 || n > 10) {
+    throw new Error(`references.ts: "${a.slug}" has ${n} references; the house rule is 5 to 10`);
+  }
+}

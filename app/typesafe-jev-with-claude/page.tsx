@@ -6,6 +6,8 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
+import { References } from "@/components/articles/References";
+import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import {
   Bars,
@@ -86,6 +88,7 @@ const TOC = [
   { id: "production", label: "The production checklist" },
   { id: "troubleshooting", label: "When something goes wrong" },
   { id: "first-week", label: "Your first week" },
+  { id: "references", label: "References" },
 ];
 
 function Code({ title, code }: { title: string; code: string }) {
@@ -134,6 +137,7 @@ export default function TypesafeJevWithClaude() {
           isPartOf: { "@type": "CreativeWorkSeries", name: article.series, url: abs("/") },
           author: { "@type": "Person", ...AUTHOR },
           publisher: { "@id": ORG_ID },
+          citation: citationJsonLd(article.slug),
         }}
       />
 
@@ -156,6 +160,11 @@ export default function TypesafeJevWithClaude() {
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
             </span>
+            {article.updated !== article.published && (
+              <span>
+                Updated <time dateTime={article.updated}>{formatArticleDate(article.updated)}</time>
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <Clock size={14} aria-hidden="true" />
               {article.readingMinutes} min read
@@ -527,6 +536,8 @@ export default function TypesafeJevWithClaude() {
             <p>
               New to Claude itself? Start with our <Link href={`/${claude.slug}`}>guide to using Claude</Link>. New to Jev? Read <Link href={`/${basics.slug}`}>TypeSafe and Jev</Link> first — this article builds on it.
             </p>
+
+            <References slug={article.slug} />
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">

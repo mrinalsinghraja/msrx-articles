@@ -6,6 +6,8 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
+import { References } from "@/components/articles/References";
+import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { ContextCalculator } from "@/components/figures/ContextCalculator";
 import {
@@ -76,6 +78,7 @@ const TOC = [
   { id: "api", label: "The Gemini API" },
   { id: "cli", label: "Gemini CLI" },
   { id: "plan", label: "Your 30-day path" },
+  { id: "references", label: "References" },
 ];
 
 const PY_BASIC = `from google import genai
@@ -161,6 +164,7 @@ export default function GoogleGemini101() {
           isPartOf: { "@type": "CreativeWorkSeries", name: article.series, url: abs("/") },
           author: { "@type": "Person", ...AUTHOR },
           publisher: { "@id": ORG_ID },
+          citation: citationJsonLd(article.slug),
         }}
       />
 
@@ -183,6 +187,11 @@ export default function GoogleGemini101() {
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
             </span>
+            {article.updated !== article.published && (
+              <span>
+                Updated <time dateTime={article.updated}>{formatArticleDate(article.updated)}</time>
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <Clock size={14} aria-hidden="true" />
               {article.readingMinutes} min read
@@ -498,6 +507,8 @@ gemini                          # start, then sign in with Google`} />
             <p className="!mt-10">
               That is Gemini, from holding the power button to your first line of code. Start with the door closest to you — probably the phone in your pocket — and build from there. ✦
             </p>
+
+            <References slug={article.slug} />
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">

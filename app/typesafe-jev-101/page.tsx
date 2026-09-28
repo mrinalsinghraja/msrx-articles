@@ -6,6 +6,8 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
+import { References } from "@/components/articles/References";
+import { citationJsonLd } from "@/lib/references";
 import { FlowSteps } from "@/components/articles/AiFigures";
 import { BatchCalculator, ThresholdTuner } from "@/components/figures/TypesafePlaygrounds";
 import {
@@ -75,6 +77,7 @@ const TOC = [
   { id: "skill", label: "The Claude Code skill" },
   { id: "limits", label: "Limits and mistakes" },
   { id: "plan", label: "Your 30-day path" },
+  { id: "references", label: "References" },
 ];
 
 const CURL = `curl https://api.typesafe.ai/v1/systemone \\
@@ -167,6 +170,7 @@ export default function TypesafeJev101() {
           isPartOf: { "@type": "CreativeWorkSeries", name: article.series, url: abs("/") },
           author: { "@type": "Person", ...AUTHOR },
           publisher: { "@id": ORG_ID },
+          citation: citationJsonLd(article.slug),
         }}
       />
 
@@ -189,6 +193,11 @@ export default function TypesafeJev101() {
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
             </span>
+            {article.updated !== article.published && (
+              <span>
+                Updated <time dateTime={article.updated}>{formatArticleDate(article.updated)}</time>
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <Clock size={14} aria-hidden="true" />
               {article.readingMinutes} min read
@@ -503,6 +512,8 @@ npx skills add typesafe-ai/skills --skill typesafe-ai`} />
             <p className="!mt-10">
               Chatbots taught the world to talk to AI. Typed judgments teach software to <em>use</em> it — quickly, cheaply and with its uncertainty out in the open. Let code do the steps, let Jev make the calls, and save the big models for the work that truly needs them. ⚡
             </p>
+
+            <References slug={article.slug} />
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">

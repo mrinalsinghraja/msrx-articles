@@ -120,6 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
             <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
               <Link href="/" className="hover:text-[var(--text-primary)]">All articles</Link>
+              <Link href="/standards" className="hover:text-[var(--text-primary)]">Standards</Link>
               <a href="/feed.xml" className="hover:text-[var(--text-primary)]">RSS</a>
               <a href={`${MAIN_SITE}/privacy`} className="hover:text-[var(--text-primary)]">Privacy</a>
               <a href={`${MAIN_SITE}/contact`} className="hover:text-[var(--text-primary)]">Contact</a>

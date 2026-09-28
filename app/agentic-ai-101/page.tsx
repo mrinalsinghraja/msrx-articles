@@ -6,6 +6,8 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
+import { References } from "@/components/articles/References";
+import { citationJsonLd } from "@/lib/references";
 import { AgentOrNot, ReliabilityCalc, TraceStepper } from "@/components/figures/AgentPlaygrounds";
 import {
   AgentAnatomy,
@@ -74,6 +76,7 @@ const TOC = [
   { id: "build", label: "Build your first agent" },
   { id: "journey", label: "Start your journey" },
   { id: "future", label: "What changes next" },
+  { id: "references", label: "References" },
 ];
 
 const PY_LOOP = `import anthropic
@@ -165,6 +168,7 @@ export default function AgenticAi101() {
           isPartOf: { "@type": "CreativeWorkSeries", name: article.series, url: abs("/") },
           author: { "@type": "Person", ...AUTHOR },
           publisher: { "@id": ORG_ID },
+          citation: citationJsonLd(article.slug),
         }}
       />
 
@@ -187,6 +191,11 @@ export default function AgenticAi101() {
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
             </span>
+            {article.updated !== article.published && (
+              <span>
+                Updated <time dateTime={article.updated}>{formatArticleDate(article.updated)}</time>
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <Clock size={14} aria-hidden="true" />
               {article.readingMinutes} min read
@@ -461,6 +470,8 @@ export default function AgenticAi101() {
             <p className="!mt-10">
               AI that acts is here. Start small, keep a hand on the wheel for anything that matters, and let the agents take the tedious work. The goal isn’t to hand over your life — it’s to get your time back for the parts only you can do. 🤖
             </p>
+
+            <References slug={article.slug} />
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">

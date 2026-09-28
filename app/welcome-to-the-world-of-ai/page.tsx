@@ -6,6 +6,8 @@ import { abs, AUTHOR, breadcrumbJsonLd, JsonLd, MAIN_SITE, metaDescription, ORG_
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Callout, Figure, LevelTag, MathBlock, SectionHeading, WindowFrame } from "@/components/articles/ArticleParts";
 import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
+import { References } from "@/components/articles/References";
+import { citationJsonLd } from "@/lib/references";
 import { NeuronPlayground, TemperatureDemo } from "@/components/articles/AiPlaygrounds";
 import {
   AgentLoop,
@@ -83,6 +85,7 @@ const TOC = [
   { id: "limits", label: "Limits and risks" },
   { id: "glossary", label: "Glossary" },
   { id: "next-steps", label: "Where to go next" },
+  { id: "references", label: "References" },
 ];
 
 const GLOSSARY: [string, string][] = [
@@ -147,6 +150,7 @@ export default function WelcomeToAi() {
           isPartOf: { "@type": "CreativeWorkSeries", name: article.series, url: abs("/") },
           author: { "@type": "Person", ...AUTHOR },
           publisher: { "@id": ORG_ID },
+          citation: citationJsonLd(article.slug),
         }}
       />
 
@@ -169,6 +173,11 @@ export default function WelcomeToAi() {
               <CalendarDays size={14} aria-hidden="true" />
               <time dateTime={article.published}>{formatArticleDate(article.published)}</time>
             </span>
+            {article.updated !== article.published && (
+              <span>
+                Updated <time dateTime={article.updated}>{formatArticleDate(article.updated)}</time>
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <Clock size={14} aria-hidden="true" />
               {article.readingMinutes} min read
@@ -647,6 +656,8 @@ for epoch in range(5):
             <p>
               Welcome aboard. It is an awesome world — and we have only just opened the door. 🚀
             </p>
+
+            <References slug={article.slug} />
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">

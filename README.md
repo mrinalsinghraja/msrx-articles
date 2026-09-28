@@ -43,10 +43,16 @@ npm run build
    `components/figures/<slug>.tsx`.
 4. **Write text JSX-safe.** Use typographic quotes (’ “ ”) in body text: a straight `'` or `"`
    in JSX text fails lint.
-5. **Check before publishing.**
+5. **Add 5–10 references.** Add the article's sources to `lib/references.ts`: the primary
+   source (paper, official announcement, docs page), with authors and dates taken from the
+   source's own metadata (arXiv, Crossref, the page's published date). Open every link before
+   adding it. The build fails outside 5–10, and each page lists them at the end and publishes
+   them as JSON-LD `citation`. [Editorial standards](https://articles.msrx.co.in/standards)
+   describe these rules to readers.
+6. **Check before publishing.**
    - Check each date, name, number and prize against its primary source.
    - Label anything illustrative (made-up probabilities, sample output) as illustrative.
    - Set `readingMinutes` to the word count ÷ 230.
    - Run `npm run lint && npm run build`, then read the page in light and dark mode, on a phone and on a desktop.
-6. **Publish.** Commit and push to `main`. Vercel builds and deploys the site. The sitemap,
+7. **Publish.** Commit and push to `main`. Vercel builds and deploys the site. The sitemap,
    RSS feed and `llms.txt` update automatically.
