@@ -98,6 +98,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <div className="flex items-center gap-1 sm:gap-2">
               <a
+                href="https://news.msrx.co.in"
+                className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--paper-tint)] transition-colors"
+              >
+                News
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+              <a
                 href={MAIN_SITE}
                 className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--paper-tint)] transition-colors"
               >
@@ -120,6 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
             <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
               <Link href="/" className="hover:text-[var(--text-primary)]">All articles</Link>
+              <a href="https://news.msrx.co.in" className="hover:text-[var(--text-primary)]">News</a>
               <Link href="/standards" className="hover:text-[var(--text-primary)]">Standards</Link>
               <a href="/feed.xml" className="hover:text-[var(--text-primary)]">RSS</a>
               <a href={`${MAIN_SITE}/privacy`} className="hover:text-[var(--text-primary)]">Privacy</a>
