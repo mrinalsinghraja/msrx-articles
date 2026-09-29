@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "ai-governance-risk-management",
+    title: "AI governance and risk management: a practical guide",
+    subtitle: "What governance and risk management mean, how the EU AI Act, NIST’s framework, ISO/IEC 42001, the OECD principles and India’s guidelines fit together, and how to build a working programme with tiers, owners, a risk register and a 90-day plan",
+    description:
+      "A beginner-to-advanced guide to AI governance and risk management: why AI needs its own treatment, NIST’s twelve generative-AI risks and seven trust characteristics, the EU AI Act’s risk levels and current dates, NIST’s govern–map–measure–manage core, ISO/IEC 42001, the OECD principles and India’s seven sutras, then a step-by-step programme, a real incident analysed layer by layer, and a 90-day plan.",
+    published: "2026-09-29",
+    updated: "2026-09-29",
+    readingMinutes: 16,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["AI governance", "AI risk management", "EU AI Act", "NIST AI RMF", "ISO/IEC 42001", "OECD AI Principles", "India AI guidelines", "AI safety"],
+    accent: "#B45309",
+  },
+  {
     slug: "meta-muse-everyday-automation",
     title: "Democratizing automation: bringing Meta’s Muse into everyday life",
     subtitle: "What Meta’s personal AI agent is, how to hand it real errands step by step, how much access to give it, how it pays, and how its secure computer, Sentinel and surrogate passwords try to keep an agent for everyone safe",

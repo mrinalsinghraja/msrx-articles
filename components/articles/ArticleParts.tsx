@@ -66,7 +66,7 @@ export function Figure({
   wide?: boolean;
 }) {
   return (
-    <figure className={`fig !my-10 ${wide ? "lg:-mx-16" : ""}`}>
+    <figure className={`fig !my-10 ${wide ? "xl:-mx-16" : ""}`}>
       <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--fig-sunk)] p-4 sm:p-6 overflow-hidden">
         {children}
       </div>

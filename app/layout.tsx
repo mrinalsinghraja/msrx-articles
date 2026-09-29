@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </a>
               <a
                 href={MAIN_SITE}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--paper-tint)] transition-colors"
+                className="inline-flex whitespace-nowrap items-center gap-1 px-3 py-1.5 rounded-lg text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--paper-tint)] transition-colors"
               >
                 MSRX apps
                 <ArrowUpRight size={14} aria-hidden="true" />

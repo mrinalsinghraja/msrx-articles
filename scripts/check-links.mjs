@@ -6,7 +6,7 @@
 // Reads the URLs straight from the data file, so new articles are covered with
 // no extra step. A link is:
 //   ok       — 2xx/3xx
-//   blocked  — 401/403/406/429/999: bot walls on sites such as openai.com and
+//   blocked  — 400/401/403/406/429/999: bot walls on sites such as openai.com and
 //              TIME. Almost always fine in a real browser, so they are listed
 //              for a manual look but do not fail the run.
 //   broken   — 404/410, other 4xx, 5xx, or no response. These fail the run, and
@@ -23,7 +23,9 @@ if (!file) {
 
 const urls = [...new Set([...readFileSync(file, "utf8").matchAll(/url: "(https?:\/\/[^"]+)"/g)].map((m) => m[1]))];
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140 Safari/537.36";
-const BLOCKED = new Set([401, 403, 406, 429, 999]);
+// 400 is here because meta.com answers browser-like requests with 400 (a bot wall) while the page loads fine in a
+// real browser. A page that is truly gone returns 404 or 410, which is still reported as broken.
+const BLOCKED = new Set([400, 401, 403, 406, 429, 999]);
 
 async function check(url) {
   for (let attempt = 1; attempt <= 2; attempt++) {
