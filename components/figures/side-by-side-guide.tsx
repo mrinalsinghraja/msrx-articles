@@ -806,6 +806,8 @@ const INDIA_RECIPES: { t: string; ask: string; keep: string; tone: Tone }[] = [
   { t: "Learn in your language", ask: "Explain how photosynthesis works in Tamil, then quiz me in Tamil, one question at a time.", keep: "You do the learning; check facts in the textbook.", tone: "v" },
   { t: "Shop-counter reconciliation", ask: "Match the UPI credits in this statement against today’s sales list, and show me the entries that do not match.", keep: "You investigate the differences.", tone: "r" },
   { t: "WhatsApp replies", ask: "Draft replies in Hindi and English to these five customer messages about delivery times. Do not send anything.", keep: "You read each one and press send.", tone: "g" },
+  { t: "Help a parent order by voice", ask: "Set up a simple way for my mother to order the weekly groceries by speaking in Marathi, and show me the order before it is placed.", keep: "You (or she) confirm and pay.", tone: "c" },
+  { t: "Price watch", ask: "Tell me when this phone drops below the price I noted, and list the three best offers that day. Do not buy anything.", keep: "You decide whether to buy.", tone: "a" },
 ];
 
 export function IndiaRecipes() {
@@ -846,6 +848,210 @@ export function UpiFence() {
         ))}
       </ol>
       <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Drawn from the 2025 pilot described by TechCrunch and the September 2026 report by AI in Asia. The limits were reported as under review, and the liability rules and regulator approval were not yet published, so this is a sketch of the design, not a description of a live service.</p>
+    </div>
+  );
+}
+
+// ── 28. India by the numbers ─────────────────────────────────────────────────
+
+export function IndiaByNumbers() {
+  const cards: { n: string; l: string; who: string; tone: Tone }[] = [
+    { n: "100 million+", l: "weekly active ChatGPT users in India, second only to the US", who: "Sam Altman, Feb 2026, via TechCrunch", tone: "v" },
+    { n: "24.51 billion", l: "UPI transactions in August 2026, worth ₹29.82 trillion", who: "AI in Asia, Sep 2026", tone: "g" },
+    { n: "22+", l: "Bhartiya languages covered by Bhashini’s website-translation plugin", who: "Bhashini (Government of India)", tone: "c" },
+    { n: "10 lakh+", l: "users of the FarmerChat assistant since October 2024", who: "Digital Green India, via Rural Voice", tone: "a" },
+    { n: "11", l: "Indian languages in Sarvam’s voice models, used by Swiggy for ordering", who: "Indian Retailer, Mar 2026", tone: "r" },
+    { n: "50,000+", l: "Copilot licences each at Cognizant, Infosys, TCS and Wipro (200,000+ together)", who: "Microsoft, Dec 2025", tone: "c" },
+    { n: "20 million+", l: "monthly active users of Flipkart’s Super.money, which is rolling out shopping agents", who: "StartupTalky, Sep 2026", tone: "a" },
+    { n: "350M+", l: "conversations that Sarvam says its voice agents have handled", who: "Sarvam’s own page", tone: "v" },
+  ];
+  return (
+    <div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+        {cards.map((c) => (
+          <div key={c.n} className="rounded-[var(--radius)] border-2 p-3.5" style={{ borderColor: T[c.tone].fg, background: T[c.tone].soft }}>
+            <p className="text-[clamp(18px,3.4vw,26px)] font-bold leading-tight" style={{ color: T[c.tone].fg }}>{c.n}</p>
+            <p className="mt-1.5 text-[12px] leading-snug text-[var(--text-primary)]">{c.l}</p>
+            <p className="mt-2 mono text-[10px] uppercase tracking-[0.06em] text-[var(--text-tertiary)]">{c.who}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Each figure is as stated by the source under it, on the date shown, and several are the organisation’s own claims. They measure very different things and should not be added together.</p>
+    </div>
+  );
+}
+
+// ── 29. The many scripts of the agent era ────────────────────────────────────
+
+export function IndiaLanguages() {
+  const langs: { s: string; n: string; named: boolean }[] = [
+    { s: "हिन्दी", n: "Hindi", named: true },
+    { s: "বাংলা", n: "Bengali", named: true },
+    { s: "தமிழ்", n: "Tamil", named: true },
+    { s: "తెలుగు", n: "Telugu", named: true },
+    { s: "मराठी", n: "Marathi", named: true },
+    { s: "ಕನ್ನಡ", n: "Kannada", named: true },
+    { s: "മലയാളം", n: "Malayalam", named: false },
+    { s: "ગુજરાતી", n: "Gujarati", named: false },
+    { s: "ਪੰਜਾਬੀ", n: "Punjabi", named: false },
+    { s: "ଓଡ଼ିଆ", n: "Odia", named: false },
+  ];
+  const tones: Tone[] = ["g", "c", "a", "v", "r"];
+  return (
+    <div>
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+        {langs.map((l, i) => (
+          <div key={l.n} className="rounded-[var(--radius)] border-2 p-3 text-center" style={{ borderColor: T[tones[i % 5]].fg, background: T[tones[i % 5]].soft }}>
+            <p className="text-[22px] font-semibold leading-tight text-[var(--text-primary)]" lang={l.n === "Hindi" || l.n === "Marathi" ? "hi" : undefined}>{l.s}</p>
+            <p className="mt-1 text-[12px] font-semibold" style={{ color: T[tones[i % 5]].fg }}>{l.n}{l.named ? " ●" : ""}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">A sample of ten of India’s languages, in their own scripts. ● marks the six named in the report on Swiggy and Sarvam’s voice ordering; it is not a list of what any product supports. Jugalbandi covered 10 of India’s 22 official languages in 2023, and Bhashini says its plugin covers 22+.</p>
+    </div>
+  );
+}
+
+// ── 30. How Jugalbandi answers a village question ────────────────────────────
+
+export function JugalbandiFlow() {
+  const steps: { t: string; b: string; tone: Tone }[] = [
+    { t: "A voice note", b: "A villager asks a question on WhatsApp, in their own language.", tone: "g" },
+    { t: "Speech to text", b: "AI4Bharat’s speech recognition writes down what was said.", tone: "c" },
+    { t: "Translate", b: "A Bhashini model turns it into English.", tone: "a" },
+    { t: "Find the scheme", b: "A GPT model, through Azure OpenAI Service, finds the relevant government programme.", tone: "v" },
+    { t: "Translate back", b: "The answer returns in the villager’s language.", tone: "a" },
+    { t: "Speak the answer", b: "AI4Bharat’s text-to-speech sends a voice reply on WhatsApp.", tone: "g" },
+  ];
+  return (
+    <div>
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+        {steps.map((s, i) => (
+          <li key={s.t} className="rounded-[var(--radius)] border-2 p-3.5" style={{ borderColor: T[s.tone].fg, background: T[s.tone].soft }}>
+            <p className="mono text-[11px] font-semibold" style={{ color: T[s.tone].fg }}>STEP {i + 1}</p>
+            <p className="mt-0.5 text-[14px] font-bold text-[var(--text-primary)]">{s.t}</p>
+            <p className="mt-1 text-[12.5px] leading-snug text-[var(--text-secondary)]">{s.b}</p>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-2.5 rounded-[var(--radius)] border-2 p-3 text-[12.5px] leading-snug text-[var(--text-primary)]" style={{ borderColor: T.r.fg, background: T.r.soft }}>
+        <strong>The safety net:</strong> its builders say the models “do make errors” and that people must “flag” them. A human loop is part of the design.
+      </div>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">The pipeline as described in Microsoft’s May 2023 report; the drawing is ours.</p>
+    </div>
+  );
+}
+
+// ── 31. FarmerChat in numbers ────────────────────────────────────────────────
+
+export function FarmerChatNumbers() {
+  const stats: { n: string; l: string; tone: Tone }[] = [
+    { n: "10 lakh+", l: "users since October 2024", tone: "a" },
+    { n: "30 lakh+", l: "queries answered in India", tone: "c" },
+    { n: "≈45%", l: "of users are women", tone: "r" },
+    { n: "≈60%", l: "of active users act on the advice (60 Decibels)", tone: "g" },
+    { n: "91%", l: "report more confidence in farming decisions (60 Decibels)", tone: "v" },
+  ];
+  return (
+    <div>
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+        {stats.map((s) => (
+          <div key={s.n} className="rounded-[var(--radius)] border-2 p-3" style={{ borderColor: T[s.tone].fg, background: T[s.tone].soft }}>
+            <p className="text-[clamp(17px,3vw,24px)] font-bold leading-tight" style={{ color: T[s.tone].fg }}>{s.n}</p>
+            <p className="mt-1 text-[11.5px] leading-snug text-[var(--text-primary)]">{s.l}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4">
+        <p className="text-[12.5px] font-bold text-[var(--text-primary)] mb-2">What one farmer’s advice costs per year</p>
+        {[{ l: "In-person advisory", v: "₹3,300", w: 100, c: T.r.fg }, { l: "FarmerChat", v: "₹33", w: 1.2, c: T.g.fg }].map((b) => (
+          <div key={b.l} className="flex items-center gap-2 mb-1.5">
+            <span className="w-32 text-[12px] text-[var(--text-primary)]">{b.l}</span>
+            <div className="flex-1 h-4 rounded-full bg-[var(--fig-card)] border border-[var(--border)] overflow-hidden">
+              <div className="h-full rounded-full" style={{ width: `${b.w}%`, background: b.c, minWidth: 6 }} />
+            </div>
+            <span className="mono text-[12px] font-bold w-14 text-right" style={{ color: b.c }}>{b.v}</span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">As reported by Rural Voice from Digital Green India, with the outcome figures attributed there to a third-party evaluation by 60 Decibels. Bar lengths are drawn to scale.</p>
+    </div>
+  );
+}
+
+// ── 32. What Bhashini offers ─────────────────────────────────────────────────
+
+export function BhashiniMap() {
+  const sectors = ["E-governance", "Health", "Agriculture", "Citizen services", "Development sector", "Justice system", "Outreach", "Fin-tech", "Education"];
+  const services = ["Speech recognition", "Text to speech", "Translation", "Transliteration", "Voice cloning", "Keyword spotting", "Speaker diarization", "Lip sync"];
+  return (
+    <div className="grid md:grid-cols-2 gap-3">
+      <div>
+        <p className="text-[12.5px] font-bold text-[var(--text-primary)] mb-2">Services it lists</p>
+        <div className="flex flex-wrap gap-1.5">
+          {services.map((s, i) => (
+            <span key={s} className="rounded-full border-2 px-3 py-1 text-[12px] font-semibold text-[var(--text-primary)]" style={{ borderColor: T[(["c", "g", "a", "v"] as Tone[])[i % 4]].fg, background: T[(["c", "g", "a", "v"] as Tone[])[i % 4]].soft }}>{s}</span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p className="text-[12.5px] font-bold text-[var(--text-primary)] mb-2">Sectors where it says it is at work</p>
+        <div className="flex flex-wrap gap-1.5">
+          {sectors.map((s, i) => (
+            <span key={s} className="rounded-full border-2 px-3 py-1 text-[12px] font-semibold text-[var(--text-primary)]" style={{ borderColor: T[(["r", "a", "g", "c", "v"] as Tone[])[i % 5]].fg, background: T[(["r", "a", "g", "c", "v"] as Tone[])[i % 5]].soft }}>{s}</span>
+          ))}
+        </div>
+      </div>
+      <p className="md:col-span-2 text-[11.5px] text-[var(--text-tertiary)]">From Bhashini’s own home page, read on 30 September 2026 (its list of AI services and the sectors under “How we’re making an impact”). Bhashini is a language layer that other tools, agents included, can build on.</p>
+    </div>
+  );
+}
+
+// ── 33. Four IT firms ────────────────────────────────────────────────────────
+
+export function IndianITBars() {
+  const firms = ["Cognizant", "Infosys", "TCS", "Wipro"];
+  return (
+    <div>
+      <ul className="space-y-2">
+        {firms.map((f, i) => (
+          <li key={f} className="flex items-center gap-2">
+            <span className="w-24 text-[12.5px] font-semibold text-[var(--text-primary)]">{f}</span>
+            <div className="flex-1 h-5 rounded-full bg-[var(--fig-card)] border border-[var(--border)] overflow-hidden">
+              <div className="h-full rounded-full" style={{ width: "25%", background: T[(["c", "v", "a", "g"] as Tone[])[i]].fg }} />
+            </div>
+            <span className="mono text-[12px] font-bold w-20 text-right text-[var(--text-primary)]">50,000+</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-[13px] font-bold text-[var(--text-primary)]">Together: over 200,000 Copilot licences</p>
+      <p className="mt-2 text-[11.5px] text-[var(--text-tertiary)]">Microsoft’s announcement of 11 December 2025 says each company will deploy “over 50,000” licences; it does not give exact counts, so the bars show the stated minimum. A licence is a seat, not proof of daily use.</p>
+    </div>
+  );
+}
+
+// ── 34. An imagined day in an Indian home ────────────────────────────────────
+
+export function ImaginedIndiaDay() {
+  const beats: { t: string; b: string; tone: Tone }[] = [
+    { t: "6:30 am · Amma’s groceries", b: "She speaks the week’s list to the phone in Marathi. The agent shows the order and the total, and waits for her to say yes.", tone: "g" },
+    { t: "9:00 am · Board-exam revision", b: "A student asks for a chapter explained in Hindi, then a ten-question quiz. The agent keeps a list of what she gets wrong.", tone: "c" },
+    { t: "11:30 am · The kirana counter", b: "Ravi’s agent matches yesterday’s UPI credits with the sales list and shows him the three that do not match.", tone: "a" },
+    { t: "3:00 pm · The field", b: "A cousin photographs a spotted leaf. An advisory assistant answers in Kannada, and a local expert has checked what it says.", tone: "r" },
+    { t: "6:00 pm · Price watch", b: "Dad’s agent has found the phone at the price he set. It asks: “Buy?” He says not until Friday.", tone: "v" },
+    { t: "9:00 pm · Diwali trip", b: "The family agent lists three train options and a backup if the ticket is waitlisted. Nobody has booked anything yet.", tone: "g" },
+  ];
+  return (
+    <div>
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+        {beats.map((b) => (
+          <li key={b.t} className="rounded-[var(--radius)] border-2 p-3.5" style={{ borderColor: T[b.tone].fg, background: T[b.tone].soft }}>
+            <p className="text-[13.5px] font-bold text-[var(--text-primary)]">{b.t}</p>
+            <p className="mt-1 text-[12.5px] leading-snug text-[var(--text-secondary)]">{b.b}</p>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Imagined: a made-up family in a made-up town, built from the examples in this section. In every scene a person says yes before anything is spent, sent or signed.</p>
     </div>
   );
 }

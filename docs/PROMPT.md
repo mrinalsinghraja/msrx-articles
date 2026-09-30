@@ -48,7 +48,7 @@ recent article in app/ first, and match the house style exactly.
   code constants from the tested files; never hand-copy them.
 
 4. REFERENCES AND CITATIONS (non-negotiable)
-- 5–10 references in lib/references.ts (up to 35 only for a long feature flagged `longFeature`). Open every URL and match its title
+- 5–10 references in lib/references.ts (up to 45 only for a long feature flagged `longFeature`). Open every URL and match its title
   to the work. Take authors and dates from the source's own metadata (arXiv,
   Crossref, the page's publish date). Pages behind bot walls must be
   confirmed in a real browser. Give each one a "note" saying what it
