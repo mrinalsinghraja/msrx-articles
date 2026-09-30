@@ -4,7 +4,7 @@ Writing or publishing an article? Follow `docs/PROMPT.md` step by step. It is th
 standard brief for every article, and `README.md` has the layout and the checks.
 
 Non-negotiables, enforced by the build or the monthly link check:
-- 5–10 references per article in `lib/references.ts`, each opened and verified;
+- 5–10 references per article in `lib/references.ts` (up to 20 for a flagged `longFeature`), each opened and verified;
   a `<Cite>` marker after every claim a reference supports.
 - Facts come from primary sources, never memory; quotes word for word.
 - Illustrations, mock-ups and made-up numbers are labelled; "real run" and

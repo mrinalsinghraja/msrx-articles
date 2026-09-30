@@ -37,7 +37,7 @@ export default function Standards() {
             Every dated fact, name, number and prize in an article is checked against its primary source before publishing: the original paper, the official announcement, or the product’s own documentation, rather than coverage of it.
           </p>
           <p>
-            Each article ends with a numbered list of <strong>five to ten references</strong>. For each one we give the authors, the date, where it was published, and what in the article it supports, and a numbered marker such as [3] next to the claim links straight to it. Every link is opened and checked before it is listed. Documentation changes over time, so undated documentation is cited as it read on the day it was checked.
+            Each article ends with a numbered list of <strong>five to ten references</strong> (a long feature that covers many products may list up to twenty). For each one we give the authors, the date, where it was published, and what in the article it supports, and a numbered marker such as [3] next to the claim links straight to it. Every link is opened and checked before it is listed. Documentation changes over time, so undated documentation is cited as it read on the day it was checked.
           </p>
 
           <h2 id="illustrations">Illustrations and examples</h2>

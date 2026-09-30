@@ -655,6 +655,86 @@ export function ThirtyDays() {
   );
 }
 
+// ── 21. A fact sheet for one agent ───────────────────────────────────────────
+
+export function AgentFacts({ tone, name, rows, note }: { tone: Tone; name: string; rows: [string, string][]; note?: string }) {
+  return (
+    <div className="rounded-[var(--radius)] border-2 p-4 bg-[var(--fig-card)]" style={{ borderColor: T[tone].fg }}>
+      <p className="mono text-[11px] font-semibold uppercase tracking-[0.08em]" style={{ color: T[tone].fg }}>Fact sheet · {name}</p>
+      <dl className="mt-3 space-y-2">
+        {rows.map(([k, v]) => (
+          <div key={k} className="grid sm:grid-cols-[7.5rem_1fr] gap-x-3 gap-y-0.5 items-baseline">
+            <dt className="text-[12.5px] font-bold" style={{ color: T[tone].fg }}>{k}</dt>
+            <dd className="text-[13px] leading-snug text-[var(--text-primary)]">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      {note && <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">{note}</p>}
+    </div>
+  );
+}
+
+// ── 22. Six agents side by side ──────────────────────────────────────────────
+
+export function AgentsCompare() {
+  const cols = ["Agent", "Best first job", "Where it works", "The human gate, as its maker describes it"];
+  const rows: { a: string; tone: Tone; cells: string[] }[] = [
+    { a: "Devin", tone: "c", cells: ["A bug ticket, a migration, tests", "Its own cloud virtual machines and browser; Slack and Teams", "A pull request “ready to merge”; clear completion criteria; you can follow and take over"] },
+    { a: "Agentforce", tone: "v", cells: ["Customer questions, meeting booking, HR or IT help desks", "Inside Salesforce, on the web, the phone and in apps", "“Set guardrails”; escalation to human agents; observability tools"] },
+    { a: "11x", tone: "a", cells: ["Finding and contacting prospects; answering inbound calls", "Email, phone, chat, social networks, SMS and WhatsApp", "Not detailed on the page we read; its published results are customer testimonials"] },
+    { a: "Claude Cowork", tone: "g", cells: ["A goal that spans your files, documents and apps", "Your desktop, folders you connect, connectors, a built-in browser", "Per-app permission; a VM for code; Anthropic warns off finance, legal and medical use of computer use"] },
+    { a: "Glean", tone: "r", cells: ["Finding and pulling together company knowledge", "Your company’s connected work apps", "“Users only see what they’re allowed to see”; every query, answer and action tracked"] },
+    { a: "OpenAI dots", tone: "c", cells: ["An always-on chief-of-staff style helper", "Its own cloud computer; ChatGPT, Slack and Teams", "Auto-review; approval for purchases; deletions confirmed; passwords and money moves handed back"] },
+  ];
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[640px] border-separate border-spacing-y-1.5 text-[12.5px]">
+        <thead>
+          <tr className="text-left text-[11px] mono uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+            {cols.map((c) => <th key={c} className="px-3 font-semibold">{c}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.a} className="align-top">
+              <td className="px-3 py-2 rounded-l-[var(--radius)] font-bold text-[var(--text-primary)]" style={{ background: T[r.tone].soft, borderLeft: `4px solid ${T[r.tone].fg}` }}>{r.a}</td>
+              {r.cells.map((c, i) => (
+                <td key={i} className={`px-3 py-2 leading-snug text-[var(--text-primary)] ${i === r.cells.length - 1 ? "rounded-r-[var(--radius)]" : ""}`} style={{ background: T[r.tone].soft }}>{c}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="mt-2 text-[11.5px] text-[var(--text-tertiary)]">A summary of what each maker says on the pages we read on 30 September 2026. The columns are our own; “best first job” is our suggestion, not a vendor claim. Not a ranking, and not a recommendation.</p>
+    </div>
+  );
+}
+
+// ── 23. Who does what in the imagined 2060s office ──────────────────────────
+
+export function ImaginedRoles() {
+  const rows: { h: string; a: string }[] = [
+    { h: "Decides why the building should exist, and for whom", a: "Explores thousands of ways to build it, and prices each one" },
+    { h: "Listens to the neighbourhood and reads the room", a: "Checks every draft against building codes in every region" },
+    { h: "Chooses which trade-off the city can live with", a: "Runs the load, heat and supply-chain simulations overnight" },
+    { h: "Signs the plans and answers for them", a: "Prepares the paperwork, the audit trail and the 'undo' button" },
+  ];
+  return (
+    <div>
+      <div className="hidden sm:grid grid-cols-2 gap-3 pb-2 text-[11px] mono uppercase tracking-[0.08em] text-[var(--text-tertiary)]"><span>The human brings</span><span>The agents bring</span></div>
+      <ul className="space-y-2">
+        {rows.map((r) => (
+          <li key={r.h} className="grid sm:grid-cols-2 gap-2">
+            <p className="rounded-[var(--radius)] border-2 p-3 text-[13px] leading-snug text-[var(--text-primary)]" style={{ borderColor: T.g.fg, background: T.g.soft }}><span className="sm:hidden mono text-[10.5px] uppercase tracking-[0.08em] block" style={{ color: T.g.fg }}>Human</span>{r.h}</p>
+            <p className="rounded-[var(--radius)] border-2 p-3 text-[13px] leading-snug text-[var(--text-primary)]" style={{ borderColor: T.v.fg, background: T.v.soft }}><span className="sm:hidden mono text-[10.5px] uppercase tracking-[0.08em] block" style={{ color: T.v.fg }}>Agents</span>{r.a}</p>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Imagined. A fictional division of labour for the office of the 2060s in this article’s story, not a forecast.</p>
+    </div>
+  );
+}
+
 /** A small wrapper so the page can drop a caption-less block in a figure. */
 export function Block({ children }: { children: ReactNode }) {
   return <div>{children}</div>;

@@ -9,7 +9,9 @@ import { ArticleToc, ReadingProgress } from "@/components/articles/ReadingAids";
 import { Cite, References } from "@/components/articles/References";
 import { citationJsonLd } from "@/lib/references";
 import {
+  AgentFacts,
   AgentLoop,
+  AgentsCompare,
   AmplifyOrReplace,
   AssistantVsAgent,
   CopilotBars,
@@ -19,6 +21,7 @@ import {
   GartnerStairs,
   HelperTimeline,
   ImaginedDay,
+  ImaginedRoles,
   ManagerAgent,
   MorningWithAgent,
   NovoBeforeAfter,
@@ -77,11 +80,14 @@ const TOC = [
   { id: "acting", label: "From answering to acting" },
   { id: "plumbing", label: "The plumbing of teamwork" },
   { id: "jobs", label: "Who is on the job today" },
+  { id: "meet", label: "Six agents you can meet today" },
   { id: "humans", label: "How people really work with agents" },
   { id: "tomorrow", label: "Tomorrow: you at the head of the team" },
   { id: "recipes", label: "Ten easy ways to start this week" },
   { id: "shadows", label: "The shadows worth respecting" },
   { id: "amplify", label: "Amplify, don’t just replace" },
+  { id: "faq", label: "Questions people ask" },
+  { id: "glossary", label: "A pocket glossary" },
   { id: "plan", label: "Your first thirty days" },
   { id: "references", label: "References" },
 ];
@@ -247,7 +253,10 @@ export default function AiAgentsSideBySide() {
             <p>
               It is a marvel, and a dead end. The boy can write one thing, the one his cams and gears were cut to write. Ask him for anything else and he sits there. In the nineteenth century a mathematician saw the same limit in a far more ambitious machine. Ada Lovelace, describing Charles Babbage’s design for an Analytical Engine in a memoir of 1842, wrote what became a famous warning: “The Analytical Engine has no pretensions to originate anything. It can do whatever we know how to order it to perform.”<Cite slug={S} src="doi.org" /> We know her words because Alan Turing quoted them.
             </p>
-            <Figure number={5} caption="Left: Ada Lovelace, portrait by Margaret Sarah Carpenter, 1836, public domain, via Wikimedia Commons. Right: Alan Turing, photographed by Elliott &amp; Fry on 29 March 1951, public domain, via Wikimedia Commons.">
+            <Figure number={5} caption="A trial model of part of Charles Babbage’s Analytical Engine (1834–1871), Science Museum, London. Photo: Daderot, CC0, via Wikimedia Commons.">
+              <Pic file="analytical-engine.jpg" alt="A brass and steel mechanism of many gears, wheels and rods mounted on a wooden base in a museum display." width={1280} height={853} />
+            </Figure>
+            <Figure number={6} caption="Left: Ada Lovelace, portrait by Margaret Sarah Carpenter, 1836, public domain, via Wikimedia Commons. Right: Alan Turing, photographed by Elliott &amp; Fry on 29 March 1951, public domain, via Wikimedia Commons.">
               <PicRow
                 items={[
                   { file: "ada-lovelace.jpg", alt: "A painted portrait of a young woman with dark hair in an off-the-shoulder gown.", width: 860, height: 1146, label: "Ada Lovelace" },
@@ -283,7 +292,7 @@ export default function AiAgentsSideBySide() {
             <p>
               The first machine to bring these threads together was a wobbly box on wheels. SRI International, then a research institute in California, built Shakey between 1966 and 1972, and describes it as “the first mobile robot with the ability to perceive and reason about its surroundings.” It could plan, find routes, and rearrange simple objects. In 1970 <em>Life</em> magazine called it the “first electronic person”. It was inducted into Carnegie Mellon’s Robot Hall of Fame in 2004, and now lives at the Computer History Museum.<Cite slug={S} src="sri.com" />
             </p>
-            <Figure number={6} caption="Shakey the robot, photographed at the Computer History Museum. Photo: The wub, CC BY-SA 4.0, via Wikimedia Commons; the photo is dated 15 July 2023 on Commons, and the caption there says 1969 for the robot.">
+            <Figure number={7} caption="Shakey the robot, photographed at the Computer History Museum. Photo: The wub, CC BY-SA 4.0, via Wikimedia Commons; the photo is dated 15 July 2023 on Commons, and the caption there says 1969 for the robot.">
               <Pic file="shakey-1969.jpg" alt="A tall grey wheeled robot with a camera and antennae on top of its boxy body, standing in a museum." width={960} height={1440} max="max-w-[340px]" />
             </Figure>
             <p>
@@ -295,7 +304,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Between Shakey and today lies a long story of setbacks, breakthroughs and patient work that would fill a book, and we will not try to squeeze it in here. Our <Link href={`/${agentic.slug}`}>Agentic AI 101</Link> and <Link href="/welcome-to-the-world-of-ai">Welcome to the world of AI</Link> cover the technical journey. What matters for this story is where the road came out.
             </p>
-            <Figure number={7} caption="Three eras of machine helpers. The dividing lines are our simplification.">
+            <Figure number={8} caption="Three eras of machine helpers. The dividing lines are our simplification.">
               <ThreeEras />
             </Figure>
 
@@ -307,7 +316,7 @@ export default function AiAgentsSideBySide() {
             <p>
               An <strong>agent</strong> is the next step. Gartner’s wording: “Adding task specialization capabilities evolves AI assistants into AI agents. These AI agents have the capacity to operate and perform complex, end-to-end tasks.” Its example is a cybersecurity agent that scans network traffic, system logs and user behaviour in real time, then “assesses and initiates a response as appropriate.”<Cite slug={S} src="2025-08-26" />
             </p>
-            <Figure number={8} caption="Assistant or agent, side by side. The distinction follows Gartner’s definitions; the wording of each row is our own.">
+            <Figure number={9} caption="Assistant or agent, side by side. The distinction follows Gartner’s definitions; the wording of each row is our own.">
               <AssistantVsAgent />
             </Figure>
             <p>
@@ -317,7 +326,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Under the hood, agents follow Shakey’s old rhythm. You give a goal. The agent breaks it into steps. It uses tools to carry them out: a calendar, a spreadsheet, a search, another program. It checks whether the result is what you wanted, adjusts, and tries again. And at the moments that matter, such as sending, paying or sharing, it stops and asks you.
             </p>
-            <Figure number={9} caption="The goal-driven loop, in our own drawing. Which steps need your approval is your choice, and the section on risks explains how to set it.">
+            <Figure number={10} caption="The goal-driven loop, in our own drawing. Which steps need your approval is your choice, and the section on risks explains how to set it.">
               <AgentLoop />
             </Figure>
             <h3>One goal, five beats: booking a team offsite</h3>
@@ -347,28 +356,28 @@ export default function AiAgentsSideBySide() {
             <p>
               A clever agent is not much use if it cannot reach your files, your calendar or your company’s systems. For a while, every connection was hand-built. On 25 November 2024, Anthropic, the maker of Claude, described the problem in one sentence: “Every new data source requires its own custom implementation, making truly connected systems difficult to scale.” Its answer was the <strong>Model Context Protocol</strong> (MCP), “a new standard for connecting AI assistants to the systems where data lives, including content repositories, business tools, and development environments.” Block and Apollo were named among the early adopters.<Cite slug={S} src="anthropic.com/news/model-context-protocol" />
             </p>
-            <Figure number={10} caption="A real screenshot of Anthropic’s announcement of MCP, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
+            <Figure number={11} caption="A real screenshot of Anthropic’s announcement of MCP, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
               <Pic file="shot-mcp.jpg" alt="Screenshot of Anthropic’s page titled Introducing the Model Context Protocol, dated Nov 25, 2024, with an orange illustration of white paper-cut shapes." width={1280} height={560} />
             </Figure>
             <p>
               The easiest way to picture it is a wall socket. Before standard sockets, every appliance came with its own plug and every house needed its own wiring. With one standard, any appliance works in any room.
             </p>
-            <Figure number={11} caption="Why a standard plug matters, with made-up apps and tools to show the arithmetic.">
+            <Figure number={12} caption="Why a standard plug matters, with made-up apps and tools to show the arithmetic.">
               <PlugFigure />
             </Figure>
             <p>
               About four and a half months later, on 9 April 2025, Google introduced a companion idea: <strong>Agent2Agent</strong> (A2A), for agents to talk to <em>each other</em>. Its announcement calls A2A “an open protocol that complements Anthropic’s Model Context Protocol (MCP), which provides helpful tools and context to agents.” Its example is a hiring manager who asks their agent to find candidates for a role. That agent collaborates with specialised agents to source candidates, presents suggestions, then coordinates more agents to schedule interviews and facilitate background checks.<Cite slug={S} src="developers.googleblog.com" />
             </p>
-            <Figure number={12} caption="Google’s hiring example, drawn as a manager agent and its specialists. The example is Google’s; the drawing is ours.">
+            <Figure number={13} caption="Google’s hiring example, drawn as a manager agent and its specialists. The example is Google’s; the drawing is ours.">
               <ManagerAgent />
             </Figure>
-            <Figure number={13} caption="A real screenshot of Google’s announcement of A2A, captured on 30 September 2026. The page belongs to Google; shown here to document the source.">
+            <Figure number={14} caption="A real screenshot of Google’s announcement of A2A, captured on 30 September 2026. The page belongs to Google; shown here to document the source.">
               <Pic file="shot-a2a.jpg" alt="Screenshot of the Google for Developers blog post Announcing the Agent2Agent Protocol (A2A), dated April 9, 2025, with four named authors and a banner with small robot icons linked in a network." width={1280} height={860} />
             </Figure>
             <p>
               Standards work best when nobody owns them. On 9 December 2025, the Linux Foundation announced the <strong>Agentic AI Foundation</strong>, anchored by three founding contributions: Anthropic’s MCP, Block’s goose, and OpenAI’s AGENTS.md. Its platinum members are Amazon Web Services, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft and OpenAI. At that point, it reported, there were “more than 10,000 published MCP servers”, and AGENTS.md, a simple file that gives coding agents a project’s house rules, had been adopted by more than 60,000 open source projects. MCP itself had been taken up by Claude, Cursor, Microsoft Copilot, Gemini, VS Code and ChatGPT.<Cite slug={S} src="linuxfoundation.org" />
             </p>
-            <Figure number={14} caption="A real screenshot of the Linux Foundation’s announcement, captured on 30 September 2026 and cropped above a consent banner. The page belongs to the Linux Foundation; shown here to document the source.">
+            <Figure number={15} caption="A real screenshot of the Linux Foundation’s announcement, captured on 30 September 2026 and cropped above a consent banner. The page belongs to the Linux Foundation; shown here to document the source.">
               <Pic file="shot-aaif.jpg" alt="Screenshot of the Linux Foundation press page headed Linux Foundation Announces the Formation of the Agentic AI Foundation, dated 09 December 2025." width={1280} height={660} />
             </Figure>
             <p>
@@ -391,7 +400,7 @@ export default function AiAgentsSideBySide() {
             <p>
               So what are agents actually doing? The honest answer has two halves: a growing list of real examples, and a lot of forecasting that should be read as forecasting. We will keep the two apart.
             </p>
-            <Figure number={15} caption="Where agents are being put to work, or shown at work, in the sources we cite. Some are products, some are examples; each card says whose it is.">
+            <Figure number={16} caption="Where agents are being put to work, or shown at work, in the sources we cite. Some are products, some are examples; each card says whose it is.">
               <OnTheJob />
             </Figure>
             <p>
@@ -404,13 +413,13 @@ export default function AiAgentsSideBySide() {
             <p>
               The most striking example in our sources comes from medicine. Novo Nordisk, the maker of Ozempic, has to produce enormous amounts of paperwork before a medicine reaches patients. The centrepiece is the clinical study report, which summarises a drug trial and can run to 300 pages. According to Anthropic’s case study, writers averaged only 2.3 of these a year.<Cite slug={S} src="claude.com/customers" />
             </p>
-            <Figure number={16} caption="A real screenshot of Anthropic’s Novo Nordisk case study, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
+            <Figure number={17} caption="A real screenshot of Anthropic’s Novo Nordisk case study, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
               <Pic file="shot-novo.jpg" alt="Screenshot of the Claude customer story titled Novo Nordisk accelerates clinical documentation and drug development with Claude." width={1280} height={520} />
             </Figure>
             <p>
               Novo built a platform called NovoScribe, with Claude Code, on Amazon Bedrock and MongoDB Atlas. It combines retrieval of expert-approved text with the details of each case to draft regulatory documents. The headline claim: time spent producing clinical study documentation fell “from 10+ weeks to 10 minutes.” A Novo director is quoted saying Claude cut writing times on these reports by 90% “so we can get documentation directly into human hands for review and approval.”<Cite slug={S} src="claude.com/customers" />
             </p>
-            <Figure number={17} caption="Before and after, as reported in Anthropic’s case study. Note the last box: a person still reviews and approves.">
+            <Figure number={18} caption="Before and after, as reported in Anthropic’s case study. Note the last box: a person still reviews and approves.">
               <NovoBeforeAfter />
             </Figure>
             <Callout kind="warn" title="A vendor’s own case study">
@@ -420,7 +429,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Here we have to be careful, because forecasts are easy to mistake for facts. In August 2025 Gartner predicted that “40% of enterprise applications will be integrated with task-specific AI agents by the end of 2026, up from less than 5% today.” That is a prediction, made a year ago, not a measurement of what has happened. It came with a five-stage picture of where agentic AI is heading, which we show below.<Cite slug={S} src="2025-08-26" />
             </p>
-            <Figure number={18} caption="Gartner’s five stages of agentic AI in enterprise applications, condensed. All dates are Gartner’s predictions.">
+            <Figure number={19} caption="Gartner’s five stages of agentic AI in enterprise applications, condensed. All dates are Gartner’s predictions.">
               <GartnerStairs />
             </Figure>
             <p>
@@ -430,19 +439,234 @@ export default function AiAgentsSideBySide() {
               <p>Analysts predict; companies report their best results; surveys ask people what they think. None is the same as an independent count of what is working. When you read “80% of organisations see a return” or “40% of apps will have agents”, ask three questions: who asked, who was in the sample, and is this a prediction or a measurement? Every number in this article is labelled on those lines.</p>
             </Callout>
 
-            {/* ── 8 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="humans" level="Intermediate" number={8}>How people really work with agents</SectionHeading>
+            <p>
+              In the next section we meet six of these agents up close.
+            </p>
+
+            {/* ── 8 · six agents ────────────────────────────────────────────*/}
+            <SectionHeading id="meet" level="Intermediate" number={8}>Six agents you can meet today</SectionHeading>
+            <p>
+              Theory is useful; a name and a face are better. Here are six working agents from six corners of the working day: engineering, customer service, sales, the desktop, company knowledge, and the always-on chief of staff. For each we say what its maker describes, how it works, what it reportedly achieves, and where to look twice. They are a spread of <em>kinds</em>, not a league table, and they change fast, so check the maker’s page before you decide anything.
+            </p>
+            <Callout kind="warn" title="How to read the numbers in this section">
+              <p>Every statistic below is a claim by the maker, or by a customer the maker has chosen to quote, published on the maker’s own site. We have not tested these products, and we did not find independent measurements of them in the sources we read. Read each as “what the maker says”, which is useful, and not as “what will happen to you”, which it cannot be.</p>
+            </Callout>
+
+            <h3>1. Devin: the engineer that tests its own work</h3>
+            <p>
+              Cognition’s Devin is the agent many people picture when they hear “AI software engineer”. Its home page puts it plainly: “Devin runs in the cloud or on your machine, tests in its own browser, and won’t stop until the PR is ready to merge.”<Cite slug={S} src="https://devin.ai/" /> (A PR, or pull request, is a proposed change to a codebase that a colleague reviews before it goes in.)
+            </p>
+            <Figure number={20} caption="A real screenshot of Devin’s home page, captured on 30 September 2026. It shows Cognition’s own example: a session that added single sign-on to an app and opened a pull request. The page belongs to Cognition; shown here to document the source.">
+              <Pic file="shot-devin.jpg" alt="Screenshot of the Devin home page headed Meet Devin, your team’s autonomous software engineer, with a demo showing a chat session, a list of sessions and an open pull request titled Add enterprise SSO." width={1280} height={860} />
+            </Figure>
+            <p>
+              The company says Devin “spins up its own Windows, Mac, and Linux virtual machines as needed to build, test in its browser, and record itself clicking through what it built.” Hand it a big task and it “splits it across parallel cloud agents, manages them, and reports back”, even “when your laptop is closed”. You can tag @Devin in Slack or Teams, where it “reads the thread, responds to follow-ups, and gets to work”, and you can set up automations so that it “handles bugs, failed CI, and other alerts as they land.” (CI, or continuous integration, is the set of automatic checks that run on every change.)<Cite slug={S} src="https://devin.ai/" />
+            </p>
+            <p>
+              What is it good at? Cognition’s documentation calls Devin “an autonomous AI software engineer that can write, run and test code” and offers an honest rule of thumb: “if you can do it in three hours, Devin can most likely do it.” Its list of strengths is practical rather than grand: tickets from Linear or Jira, bug reports, code migrations and refactors, framework upgrades, unit tests, pull-request review and documentation.<Cite slug={S} src="docs.devin.ai" />
+            </p>
+            <p>
+              The same page is candid about the human’s job, which is to brief and to check: “Write clear prompts with explicit completion criteria”, and “Make tasks easy to verify—e.g. checking that CI passes.”<Cite slug={S} src="docs.devin.ai" /> That is the delegation card from earlier in this article in engineering dress. Notice, too, where the work ends: a change that is “ready to merge”. Some retellings of tools like this say they push fixes live “completely unsupervised”. Cognition’s own pages describe something narrower and wiser: work that arrives as a pull request, with automated checks, for people to review.
+            </p>
+            <Figure number={21} caption="Devin at a glance. The first four rows summarise Cognition’s own pages; the last two are our reading.">
+              <AgentFacts
+                tone="c"
+                name="Devin (Cognition)"
+                rows={[
+                  ["What it is", "An “autonomous software engineer” (Cognition’s words)"],
+                  ["Works in", "Its own cloud virtual machines and browser; also on your machine; Slack and Teams"],
+                  ["Good at", "Bug tickets, migrations, tests, pull-request review, documentation"],
+                  ["Human gate", "A pull request “ready to merge”; clear completion criteria; easy-to-verify tasks"],
+                  ["A good first job (ours)", "One well-described bug that already has a failing test"],
+                  ["Look twice at (ours)", "The “three hours” rule is a rule of thumb from the maker, not a guarantee"],
+                ]}
+              />
+            </Figure>
+
+            <h3>2. Salesforce Agentforce: the agent that lives inside the customer system</h3>
+            <p>
+              Salesforce calls Agentforce “the AI agent platform that delivers 24/7 autonomous support at enterprise scale”, and its pitch is a clean one: “Lose the rigid chatbots and hold times. Extend agents anywhere customers are: On the web, on the phone, or in apps. Let humans do what they do best, and let Agentforce do the rest.”<Cite slug={S} src="salesforce.com" />
+            </p>
+            <Figure number={22} caption="A real screenshot of Salesforce’s Agentforce page (India edition), captured on 30 September 2026. On the right, the page’s own AI assistant, Piper, carries the notice “Piper is an AI and can make mistakes” and says the conversation will be recorded. The page belongs to Salesforce; shown here to document the source.">
+              <Pic file="shot-agentforce.jpg" alt="Screenshot of the Salesforce Agentforce page with the headline Drive more revenue with Agentforce on a dark blue background, and a chat panel from an AI assistant named Piper on the right." width={800} height={537} />
+            </Figure>
+            <p>
+              The page lists six kinds of job: customer service (“answering questions, resolving cases, managing orders and troubleshooting issues”), employee support, appointment scheduling, sales development (“autonomously answering product questions, handling objections and booking meetings for sales reps”), product recommendation and event support. Each is a narrow role with a clear finish line, which is exactly what the evidence in this article says agents do best.<Cite slug={S} src="salesforce.com" />
+            </p>
+            <p>
+              The platform side is where Salesforce is most specific. An Agent Builder lets a team “configure Agentforce, Subagents, Actions, and Instructions in a few clicks”; Agent Script “gives builders precise control to create business-ready agents that deliver reliable results”; Agentforce Voice brings the same agents to phone calls; Observability lets you “monitor, analyse, and optimise agent performance in near real time”; MCP support connects agents to outside tools; and Multi-Agent Orchestration lets you “build a collaborative AI agent team”. You have met the last two ideas earlier in this article, in the plumbing section. Salesforce also says that “over 18K companies already run on Agentforce”, which is the company’s own count.<Cite slug={S} src="salesforce.com" />
+            </p>
+            <p>
+              What about the human gate? Salesforce’s FAQ describes agents that handle tasks “proactively within set guardrails” and that, “when faced with complex issues beyond their scope, they can escalate the matter to human agents.”<Cite slug={S} src="salesforce.com" /> There is a lesson in the design. An agent that lives inside a company’s customer system can only reach what that system lets it reach, which makes its limits easier to set and to inspect. That is our reading, not Salesforce’s claim, but it is a good rule of thumb for any agent you deploy: the smaller and clearer its world, the easier it is to trust.
+            </p>
+            <Figure number={23} caption="Agentforce at a glance, from Salesforce’s own page, plus two rows that are our reading.">
+              <AgentFacts
+                tone="v"
+                name="Agentforce (Salesforce)"
+                rows={[
+                  ["What it is", "An AI agent platform for sales, service, HR and more"],
+                  ["Works in", "Salesforce, on the web, the phone and in apps"],
+                  ["Good at", "Cases, customer questions, appointments, lead follow-up, help desks"],
+                  ["Human gate", "Set guardrails; escalation to human agents; observability tools"],
+                  ["A good first job (ours)", "Answering the ten questions your customers ask most"],
+                  ["Look twice at (ours)", "“Over 18K companies” is Salesforce’s own count; ask for references in your industry"],
+                ]}
+              />
+            </Figure>
+
+            <h3>3. 11x: the digital sales development rep</h3>
+            <p>
+              11x’s slogan is “Digital Workers, Human Results”. Its site names two workers: Alice, whom customers quote as handling outbound prospecting, and Julian, which answers inbound calls.<Cite slug={S} src="11x.ai" />
+            </p>
+            <Figure number={24} caption="A real screenshot of the 11x home page, captured on 30 September 2026. The page belongs to 11x; shown here to document the source.">
+              <Pic file="shot-11x.jpg" alt="Screenshot of the 11x home page with the headline Digital Workers, Human Results over a photograph of two astronauts walking across a rocky red desert." width={1280} height={860} />
+            </Figure>
+            <p>
+              The platform, as described on the page, works in four beats. <strong>Identify:</strong> “Filter millions of signals across 50+ data sources to surface buyers who match your ICP” (ICP means ideal customer profile). <strong>Research:</strong> “Enrich every prospect automatically, from company news and tech stack to org changes and competitive signals.” <strong>Personalize:</strong> “Every message is written for your specific prospect. No templates or generic pitches.” <strong>Engage:</strong> “Run multi-channel sequences across email, phone, chat, social networks, SMS and WhatsApp. Every channel picks up where the last left off.”<Cite slug={S} src="11x.ai" /> Read those four beats slowly and you will see the same loop as in section 5: plan, act, check, hand back.
+            </p>
+            <p>
+              The results on the page are worth reading with care, because of who says them. The site shows figures such as “1.5x increase in qualified meetings”, “$1M+ pipeline generated in first 3 months” and “35% of pipeline generated by 11x within first 3 months”, alongside quotes from customers: one says qualified meetings rose “5x”, another reports “a 9.7% reply rate for outbound emails … nearly double the industry average”, another says it is “converting over 50% of demos to subscriptions”.<Cite slug={S} src="11x.ai" /> These are testimonials that 11x chose to publish. They show what is possible, not what is typical.
+            </p>
+            <p>
+              A note on manners, because an agent that writes to strangers at scale carries a different kind of risk from one that drafts your own email. Unsolicited messaging is regulated differently in different countries, and people rightly resent being spammed by machines. A sound practice for any outreach agent is to be honest that a message is automated, to respect opt-outs at once, and to keep a person responsible for who is contacted and why. Take your own advice on the rules where you operate.
+            </p>
+            <Figure number={25} caption="11x at a glance, from its own page, plus two rows that are our reading.">
+              <AgentFacts
+                tone="a"
+                name="11x"
+                rows={[
+                  ["What it is", "“Digital workers” for sales, RevOps and marketing teams"],
+                  ["Works in", "Email, phone, chat, social networks, SMS and WhatsApp"],
+                  ["Good at", "Finding and researching prospects, personalised outreach, answering inbound calls"],
+                  ["Human gate", "Not detailed on the page we read; ask the vendor how approvals and opt-outs work"],
+                  ["A good first job (ours)", "Reviving a list of old leads with messages a person has approved"],
+                  ["Look twice at (ours)", "Every headline result is a chosen customer quote, not an independent test"],
+                ]}
+              />
+            </Figure>
+
+            <h3>4. Claude Cowork: the agent that works across your files and apps</h3>
+            <p>
+              Anthropic describes Claude Cowork in three sentences: “Claude Cowork completes tasks you can steer from anywhere. Give it a goal, and it works across your files and tools. You come back to polished work for your review.” (Claude is Anthropic’s AI; we also have a <Link href="/how-to-use-claude">beginner’s guide to using Claude</Link>.)
+            </p>
+            <Figure number={26} caption="A real screenshot of Anthropic’s Claude Cowork page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
+              <Pic file="shot-cowork.jpg" alt="Screenshot of the Claude Cowork page with the headline The work behind your best work and the text Claude Cowork completes tasks you can steer from anywhere." width={1280} height={550} />
+            </Figure>
+            <p>
+              Cowork is worth a careful look because Anthropic’s help pages are unusually specific about how it is built, and the details matter. Sessions can run in the cloud or on your own computer. In a cloud session, “the agent loop and code execution run in an isolated, temporary sandbox on Anthropic-managed infrastructure”. In a local session, “the agent loop runs natively on the device”, with access “gated by an application-layer permission system” that enforces your connected-folder rules, and “code execution runs in an isolated virtual machine (VM)”: “a dedicated Linux VM, isolated from the host operating system by the platform’s hypervisor.”<Cite slug={S} src="14479288" />
+            </p>
+            <p>
+              Then comes the distinction that many summaries blur. When there is no direct connector to a tool, Claude can use your computer as a person would: “clicking, typing, and navigating your screen.” And for that, Anthropic says plainly: “Computer use has no sandbox between Claude and your applications.” Its safeguards are per-app permissions (“Claude asks before accessing each application”), a blocklist, some sensitive apps blocked by default, and an action review that “scans for signs of prompt injection”. It adds a caution that we would like every agent maker to copy: “this capability is still early, and attacks are constantly evolving—stay cautious.”<Cite slug={S} src="14128542" />
+            </p>
+            <p>
+              In short: code runs in a VM; computer use does not. Anthropic advises against using computer use for “managing financial accounts or investments”, “handling legal documents or contracts”, “processing medical or health information” and “interacting with apps containing personal information of others”, and recommends starting “with simple tasks like research or organizing rather than complex multi-step workflows.” It was available on Pro and Max plans only when we read the page, on macOS and Windows, and it is in beta.<Cite slug={S} src="14128542" />
+            </p>
+            <Figure number={27} caption="Claude Cowork at a glance, from Anthropic’s pages, plus two rows that are our reading.">
+              <AgentFacts
+                tone="g"
+                name="Claude Cowork (Anthropic)"
+                rows={[
+                  ["What it is", "A task agent: “Give it a goal, and it works across your files and tools”"],
+                  ["Works in", "Claude Desktop, folders you connect, connectors, a built-in browser; computer use (beta)"],
+                  ["Good at", "Multi-step document and desktop work; Anthropic suggests starting with research or organising"],
+                  ["Human gate", "Per-app permission, blocklist, action review, a VM for code; you can stop it at any point"],
+                  ["A good first job (ours)", "Organise a folder of downloads and summarise what is in it"],
+                  ["Look twice at (ours)", "Computer use has no sandbox: keep banking, health and legal apps closed"],
+                ]}
+                note="Made by Anthropic. MSRX is independent of Anthropic."
+              />
+            </Figure>
+
+            <h3>5. Glean: the company’s memory, with permissions attached</h3>
+            <p>
+              Glean sells what it calls enterprise AI “that understands your company”. Its headline: “Complete context that makes AI work at enterprise scale.” The demo question on its home page is the kind a busy manager actually asks: “What changed last week that’s hitting support, sales, and churn?”, answered from tools such as Slack, Google Drive, Jira, Confluence, SharePoint, GitHub and Salesforce.<Cite slug={S} src="https://www.glean.com/" />
+            </p>
+            <Figure number={28} caption="A real screenshot of Glean’s home page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Glean; shown here to document the source.">
+              <Pic file="shot-glean.jpg" alt="Screenshot of the Glean home page with the headline Complete context that makes AI work at enterprise scale and a search box listing connected apps such as Google Drive, Jira, Confluence, SharePoint, GitHub and Salesforce." width={1280} height={590} />
+            </Figure>
+            <p>
+              The idea behind it is simple and powerful: an agent is only as good as the context it can see. A general assistant knows the internet; Glean’s pitch is an agent that also knows <em>your</em> documents, tickets and chats. Its agents page describes “an agentic engine” that lets agents “reason through tasks, plan next steps, and take action using enterprise context”, an agent builder for “reasoning-based agents and complex workflows”, orchestration that will “trigger agents from key events, route tasks between agents, and connect to external systems”, and “275+ app connectors for personalized and permissions-enforced enterprise search.”<Cite slug={S} src="https://www.glean.com/ai-agents" />
+            </p>
+            <p>
+              The phrase to hold on to is <strong>permissions-aware</strong>. Imagine a company brain that could read everything, including the salary spreadsheet and the private legal memo, and answer anyone’s questions from it. That would be a disaster. Glean says the opposite: “Users only see what they’re allowed to see.” It also promises “full observability”: “Track every query, answer, and action.” The site lists compliance credentials including ISO 42001, HIPAA, TX-RAMP Level 2, SOC 2 Type II, ISO 27001 and GDPR, which are the company’s own statements; for the last, the audit reports are what to ask for.<Cite slug={S} src="https://www.glean.com/" /> Its agents page adds monitoring of “adoption, error rates, upvotes, downvotes, and ROI”, so that owners can “double-down on what’s working and fix what isn’t.”<Cite slug={S} src="https://www.glean.com/ai-agents" />
+            </p>
+            <Figure number={29} caption="Glean at a glance, from its own pages, plus two rows that are our reading.">
+              <AgentFacts
+                tone="r"
+                name="Glean"
+                rows={[
+                  ["What it is", "An enterprise AI platform with search, an assistant and agents built on your company’s context"],
+                  ["Works in", "Your company’s connected work apps (Slack, Drive, Jira, Confluence, SharePoint, GitHub, Salesforce and more)"],
+                  ["Good at", "Pulling scattered files and chats into one answer, brief or research summary"],
+                  ["Human gate", "Permission-aware access; every query, answer and action tracked; agent governance"],
+                  ["A good first job (ours)", "“Summarise everything we know about customer X, with links”"],
+                  ["Look twice at (ours)", "An agent that reads everything is only as safe as your permissions are tidy: tidy them first"],
+                ]}
+              />
+            </Figure>
+
+            <h3>6. OpenAI dots: the always-on chief of staff</h3>
+            <p>
+              The newest of the six arrived on 29 September 2026. OpenAI calls dots “remarkably capable, always-on agents built to handle everything.” They are, it says, “frontier intelligence that have your back”: “Powered by GPT‑6 Astra, they have their own cloud computer, learn from feedback over time, and can work towards your goals 24/7. Through our ecosystem of plugins, they can readily connect to over 4,000 apps.”<Cite slug={S} src="openai.com/index/introducing-dots" />
+            </p>
+            <Figure number={30} caption="The dots logo and characters, from launch artwork supplied to MSRX. We have not matched this image to a specific file on OpenAI’s announcement page; the artwork belongs to its creator.">
+              <Pic file="dots-artwork.webp" alt="The word dots in glowing white and rainbow lettering on a black background, above four fuzzy cartoon characters: a blue blob wearing a black beret, a green frog, a yellow triangle with round glasses and closed eyes, and a pink heart in round sunglasses." width={1280} height={857} />
+            </Figure>
+            <p>
+              You reach a dot through ChatGPT, Slack or Teams, or “hop on a voice call”. You start with a “primary dot”, give it a name and make it your own, and OpenAI says it envisions “teams of dots working together” later. The company’s picture of a good day: “A bug appears in Slack, and dots immediately start investigating. A new design arrives, and dots turn it into a working app while the team focuses on customer feedback.” And the example we like best is a small one: “an early tester’s dot noticed he’d forgotten to invoice a publication, prepared the invoice, and sent it after his approval.”<Cite slug={S} src="openai.com/index/introducing-dots" /> Notice the last four words. Even the marketing example has a human gate in it.
+            </p>
+            <Figure number={31} caption="A real screenshot of OpenAI’s announcement, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to OpenAI; shown here to document the source.">
+              <Pic file="shot-dots-official.jpg" alt="Screenshot of the OpenAI page titled Introducing dots, dated September 29, 2026, with a grey-blue ring icon above the title." width={800} height={455} />
+            </Figure>
+            <p>
+              On safety, OpenAI’s companion post says each dot works on its own cloud computer, separate from the user’s, and that supported website sign-ins keep passwords out of the model’s context. While you are not working with a dot, it can do “proactive research” with read-only tools that, OpenAI says, cannot send messages, change app content or control a browser or computer. Before actions such as sending emails or changing files, a separate system called Auto-review checks the planned steps against your instructions, your Custom Rules and safety requirements. Purchases with saved cards need your approval, permanently deleting data needs confirmation every time, and changing a password or moving money between financial accounts is handed back to you.<Cite slug={S} src="how-we-build-safety" /> OpenAI adds: “Dots can still make mistakes, so always review consequential work.”<Cite slug={S} src="openai.com/index/introducing-dots" />
+            </p>
+            <p>
+              Availability, according to OpenAI: rolling out across Pro, Business Premium and Enterprise plans in eligible markets, with the first dot included in the plan “at no extra cost”.<Cite slug={S} src="openai.com/index/introducing-dots" /> It is a day old as we write. We found no independent testing of dots in the sources we read, and our <a href={`${NEWS}/openai-launches-dots`}>news brief</a> records one live-demo hiccup reported by an attendee, so treat the rest as promise, not proof. It arrived weeks after Meta’s Muse, which we cover in <Link href={`/${muse.slug}`}>our article</Link>.
+            </p>
+            <Figure number={32} caption="Dots at a glance, from OpenAI’s pages, plus two rows that are our reading.">
+              <AgentFacts
+                tone="c"
+                name="dots (OpenAI)"
+                rows={[
+                  ["What it is", "“Always-on agents built to handle everything”, powered by GPT‑6 Astra"],
+                  ["Works in", "Its own cloud computer and browser; ChatGPT, Slack, Teams; 4,000+ apps through plugins"],
+                  ["Good at", "Ongoing projects: investigating bugs, preparing documents and invoices, keeping a plan in sync"],
+                  ["Human gate", "Auto-review; approval for purchases; deletions confirmed; password changes and money moves handed back"],
+                  ["A good first job (ours)", "Weekly: watch a shared inbox and prepare the follow-ups for your approval"],
+                  ["Look twice at (ours)", "Brand new, with no independent testing found; start on the lowest rungs of the permission ladder"],
+                ]}
+                note="Made by OpenAI. MSRX is independent of OpenAI."
+              />
+            </Figure>
+
+            <h3>Choosing between them</h3>
+            <p>
+              Put the six side by side and a pattern appears. They differ in <em>where</em> they work (a cloud computer, a customer system, your desktop, your company’s knowledge), in <em>who</em> they serve (an engineer, a service team, a sales team, an individual, a whole organisation), and in <em>how</em> they hand control back. What they share is the loop you met in section 5, and, in every case that we could read, a stated place where a person approves, reviews or takes over.
+            </p>
+            <Figure number={33} caption="Six agents at a glance. Every cell summarises the maker’s own words; the columns and the “best first job” are our own.">
+              <AgentsCompare />
+            </Figure>
+            <p>
+              Before you choose any agent, ask five questions. <strong>What job is it for?</strong> Narrow beats vague. <strong>What can it touch?</strong> List the files, apps and accounts, and remove what it does not need. <strong>Who approves what?</strong> Decide which steps need your yes, using the permission ladder in section 12. <strong>Can I see the trail?</strong> If you cannot read what it did, you cannot check it. <strong>What does a mistake cost?</strong> If the answer is “a lot”, keep a human in the loop or choose a different job.
+            </p>
+            <p>
+              And a word about what is <em>not</em> on this list. There are many more agents than six, in every field, and new ones every week. Do not read the omission of a product as a judgement on it. Read the six as six doors into the same room.
+            </p>
+
+            {/* ── 9 ─────────────────────────────────────────────────────────*/}
+            <SectionHeading id="humans" level="Intermediate" number={9}>How people really work with agents</SectionHeading>
             <p>
               The best data we found on the human side comes from Microsoft’s 2026 Work Trend Index, published on 5 May 2026. It combines an analysis of “trillions of anonymized Microsoft 365 productivity signals” with a survey of 20,000 workers who use AI, across ten countries.<Cite slug={S} src="microsoft.com" />
             </p>
-            <Figure number={19} caption="A real screenshot of Microsoft’s 2026 Work Trend Index report, captured on 30 September 2026. The page belongs to Microsoft; shown here to document the source.">
+            <Figure number={34} caption="A real screenshot of Microsoft’s 2026 Work Trend Index report, captured on 30 September 2026. The page belongs to Microsoft; shown here to document the source.">
               <Pic file="shot-wti.jpg" alt="Screenshot of the Microsoft WorkLab page for the 2026 Work Trend Index annual report titled Agents, human agency, and the opportunity for every organization, dated May 5, 2026." width={800} height={534} />
             </Figure>
             <h3>What people ask for</h3>
             <p>
               In a privacy-preserving analysis of more than 100,000 Microsoft 365 Copilot chats from one week in February 2026, 49% of conversations supported “cognitive work”: helping people analyse information, solve problems, evaluate and think creatively. The rest split among working with people (19%), producing work (17%) and finding information (15%).<Cite slug={S} src="microsoft.com" />
             </p>
-            <Figure number={20} caption="What people ask Microsoft 365 Copilot to help with.">
+            <Figure number={35} caption="What people ask Microsoft 365 Copilot to help with.">
               <CopilotBars />
             </Figure>
             <p>
@@ -459,14 +683,14 @@ export default function AiAgentsSideBySide() {
             <p>
               Microsoft describes four modes, depending on how much the person engages and how much the AI does: <strong>delegation</strong>, <strong>collaboration</strong>, <strong>asking</strong> and <strong>exploration</strong>. What set the Frontier Professionals apart, it says, “isn’t which mode they use; it’s knowing which mode a task calls for.” Routine execution, research and synthesis get delegated; humans stay involved “by setting direction and taking responsibility for how outputs are used.”<Cite slug={S} src="microsoft.com" />
             </p>
-            <Figure number={21} caption="Microsoft’s four modes of working with AI, in our plain-English reading.">
+            <Figure number={36} caption="Microsoft’s four modes of working with AI, in our plain-English reading.">
               <FourModes />
             </Figure>
             <h3>The habits of the best</h3>
             <p>
               The most striking finding is what the most advanced users do <em>not</em> hand over. Frontier Professionals were more likely than other users to say they intentionally do some work without AI to keep their skills sharp (43% against 30%), and to pause before starting work to decide what should be done by AI and what by a person (53% against 33%). Across all users, 86% said they treat AI output as a starting point, not a final answer, and that they “stay responsible for the thinking.” When asked which human skills matter more as AI takes on more work, the top answers were quality control of AI output (50%) and critical thinking (46%).<Cite slug={S} src="microsoft.com" />
             </p>
-            <Figure number={22} caption="Two habits that separate the most advanced AI users from the rest.">
+            <Figure number={37} caption="Two habits that separate the most advanced AI users from the rest.">
               <FrontierHabits />
             </Figure>
             <p>
@@ -488,14 +712,14 @@ export default function AiAgentsSideBySide() {
             </p>
 
             {/* ── 9 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="tomorrow" level="Intermediate" number={9}>Tomorrow: you at the head of the team</SectionHeading>
+            <SectionHeading id="tomorrow" level="Intermediate" number={10}>Tomorrow: you at the head of the team</SectionHeading>
             <p>
               Now we can look ahead, in three steps. The first is on the calendar. Gartner predicts that by 2027 one-third of agentic AI implementations will combine agents with different skills to manage complex tasks, and that by 2028 networks of specialised agents will collaborate across applications, so that users can “achieve goals without interacting with each application individually.”<Cite slug={S} src="2025-08-26" />
             </p>
             <p>
               The second step is about <em>you</em>. Gartner predicts that by 2029, at least 50% of knowledge workers will “develop new skills to work with, govern or create AI agents on demand for complex tasks.” Its analyst adds: “As agentic AI matures, standardized protocols and frameworks will enable seamless interoperability, allowing agents to sense their environments, orchestrate projects and support a wide range of business scenarios.”<Cite slug={S} src="2025-08-26" /> Notice the shift in the job description. The person moves from doing every step to <em>directing</em> and <em>governing</em> a team of helpers. Turing’s teacher becomes a manager.
             </p>
-            <Figure number={23} caption="Three horizons. The first is reported, the second is Gartner’s prediction, and the third is our own imagination, not a forecast.">
+            <Figure number={38} caption="Three horizons. The first is reported, the second is Gartner’s prediction, and the third is our own imagination, not a forecast.">
               <ThreeHorizons />
             </Figure>
             <h3>A day in the imagined 2030s</h3>
@@ -508,7 +732,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Across town a teacher’s agent turns one lesson into three versions for three reading levels. The teacher spends the hour she has saved beside the child who needs her most. In a small shop, the owner’s agent chases late invoices, reorders stock and drafts the tax paperwork. The owner reads, signs and gets home in time for dinner. In the evening Asha’s agent gives her a two-minute summary of the day, flags the one decision it thinks she should sleep on, and goes quiet.
             </p>
-            <Figure number={24} caption="An imagined day, in five scenes. Fiction, not forecast.">
+            <Figure number={39} caption="An imagined day, in five scenes. Fiction, not forecast.">
               <ImaginedDay />
             </Figure>
             <p>
@@ -525,24 +749,62 @@ export default function AiAgentsSideBySide() {
             <p>
               None of these is a prediction. They are extensions of things the sources describe today: agents that draft and check, agents that coordinate with other agents, agents that let a small team punch above its weight. Gartner’s best-case scenario puts agentic AI at roughly 30% of enterprise application software revenue by 2035<Cite slug={S} src="2025-08-26" />, which is a way of saying that the layer we are imagining would be big business as well as good story. Whether it turns out warm or cold depends less on the technology than on the rules we build around it.
             </p>
+            <h3>The Symphony of the Shift: a story from the 2060s</h3>
+            <p>
+              What follows is fiction, from start to finish. It is our attempt to picture the bright version of the road this article has walked, using only ingredients that exist today: agents that use tools, agents that work with other agents, and people who stay at the centre.
+            </p>
+            <p>
+              By the dawn of the 2060s, the argument about whether machines would take over had gone quiet, the way arguments do when the thing they feared turns out to be something else. What had arrived instead was the hybrid workplace: a place where people and their agents worked in a rhythm so ordinary that children found it hard to imagine anything different. Humans had not been replaced. They had been unlocked.
+            </p>
+            <Figure number={40} caption="An imagined scene of a human-and-agent workplace, supplied to MSRX. It is an illustration, not a screenshot or a product demo: the product names on its screens are illustrative, and some of the text in it is garbled. The artwork belongs to its creator.">
+              <Pic file="human-ideas-ai-partners.jpg" alt="A bright, futuristic studio with floor-to-ceiling windows onto a city of green towers at sunset. A man reaches toward a glowing tree of connected ideas labelled Research, Summarize, Plan and Analyze. To his left a white humanoid robot works at a desk; to his right a translucent human figure points at charts. A wall reads Human ideas, AI partners, a brighter tomorrow." width={1600} height={900} />
+            </Figure>
+            <p>
+              Step into the central studio of a design firm in a vertical-garden city, and the first thing you notice is what is missing: the clatter of keyboards, the anxious refreshing of inboxes, the sigh of someone hunting for a file. In their place there is a low, purposeful hum.
+            </p>
+            <p>
+              An architect named Leela stands before a canvas of light. She is not calculating loads or reading building codes; her agents are. To her left hovers a translucent figure she calls Lumen, an heir, in this story, to the knowledge engines of the 2020s, which reads centuries of architecture as fast as she can sketch and quietly slides greener materials into the drawing. At the next desk a matte-white robot runs stress tests on carbon-fibre models. Overhead, a loose swarm of tiny lights, each one a specialist, pulses softly as it routes the day’s supply-chain news onto the project board.
+            </p>
+            <p>
+              It is tempting to call this a hierarchy. It is closer to an orchestra. The agents have real independence: they run their own virtual computers, navigate software, and solve tangled problems in the background, and when a bottleneck appears they do not stop and wait; they find another path. But an orchestra needs a score, and the score is human. Leela decides what the building is <em>for</em>: who will live in it, what the street should feel like at dusk, which trade-off the city can live with. The agents explore the thousand ways of getting there.
+            </p>
+            <Figure number={41} caption="Who brings what, in the imagined office. Fiction, not forecast.">
+              <ImaginedRoles />
+            </Figure>
+            <p>
+              What holds it together is trust, and trust in this world is engineered, not hoped for. Every consequential step an agent takes carries a signature and a way back. Certain doors, such as spending, signing and sharing, open only when a person says yes, and the yes is recorded. The agents feel less like software and more like dedicated chiefs of staff: they learn how the firm works, remember why past decisions were made, and tell Leela when they are unsure. When one of them is wrong, which happens, the log shows where, and the fix is made once for everybody.
+            </p>
+            <p>
+              Her agents can do the work of a hundred draughtspeople. What they cannot do is care whether the school in the shadow of the new tower still gets sun at noon. Leela can. That, in the end, is the division of labour: the machines take the friction, and the people keep the meaning. Empathy, cultural nuance, a hunch about what a neighbourhood needs, the nerve to try something new: none of these was ever a task. They were the reason for the job.
+            </p>
+            <p>
+              As the sun goes down behind the smart-glass windows, the city glows: terraces of gardens, trams humming along the sky bridges, a drone or two crossing the sunset. It is powered, in every sense, by a great many small collaborations. The future did not diminish humanity. By handing the mechanical to the machines, people had won back the time to be human: to create, to dream, and to build something together.
+            </p>
+            <p>
+              Even in a story this bright, a careful reader will ask the awkward questions. Who audits the agents? Who owns the memory they build up? Who retrains the people whose tasks moved, and who shares in the gains? The evidence in this article suggests the answers are not automatic. They are choices, and they are made in the decade we are living in now.
+            </p>
+            <h3>What would have to be true</h3>
+            <p>
+              A future like Leela’s does not arrive by itself. Five conditions would have to hold, and they are our own list, distilled from the sources in this article. <strong>Trust that can be checked:</strong> permissions, logs and human gates built in from the start, as Glean, Anthropic, Salesforce and OpenAI each describe in their own way. <strong>Open standards:</strong> the shared plugs and phone lines we met in section 6, so that no single company owns the wiring. <strong>Skills for everyone:</strong> Gartner predicts that by 2029 at least half of knowledge workers will learn to work with, govern or create agents, and that has to be made possible for the rest as well.<Cite slug={S} src="2025-08-26" /> <strong>Shared gains:</strong> Gartner’s warning that firms that only cut costs will be overtaken by those that reinvest.<Cite slug={S} src="2026-09-09" /> And <strong>a pace we can steer:</strong> the debate in our article <Link href={`/${previous.slug}`}>Hands on the brake, foot on the gas</Link>.
+            </p>
             <h3>What should stay in your hands</h3>
             <p>
               If we are going to live alongside a quiet layer of helpers, three rights are worth insisting on, and they are our own suggestions, not anyone’s law. <strong>The right to see:</strong> you should be able to read a plain-language account of what your agent did and why. <strong>The right to undo:</strong> anything that can be reversed should be, and anything that cannot should need your say-so first. <strong>The right to switch off:</strong> you should always be able to pause, limit or retire an agent without losing your data or your dignity. A future with those three rights is one most of us would happily step into.
             </p>
 
             {/* ── 10 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="recipes" level="Beginner" number={10}>Ten easy ways to start this week</SectionHeading>
+            <SectionHeading id="recipes" level="Beginner" number={11}>Ten easy ways to start this week</SectionHeading>
             <p>
               You do not need a company, a budget or a technical background to begin. The agents and assistants you can already reach handle everyday tasks well, and the skill that matters is the one Microsoft’s data points to: deciding what to hand over, and saying clearly what you want. Here are ten recipes, each one a request you could type this week, and each with the piece you keep.
             </p>
-            <Figure number={25} caption="Ten everyday recipes. The requests are our own suggestions and work with any capable assistant or agent; the third column is the human step we would keep.">
+            <Figure number={42} caption="Ten everyday recipes. The requests are our own suggestions and work with any capable assistant or agent; the third column is the human step we would keep.">
               <RecipeCards />
             </Figure>
             <h3>Write the job description</h3>
             <p>
               The biggest lever is how you brief the agent. Treat it like a new colleague on their first day. Tell it the goal, the background, the limits, the standard you expect and when to check in. Microsoft’s research says the most effective AI users are the ones who redefine their value around “setting clear intent—defining the desired outcome and quality bar”, and designing how the work gets done across humans and AI.<Cite slug={S} src="microsoft.com" /> Five lines are enough.
             </p>
-            <Figure number={26} caption="The delegation card, our own template. Copy it into a note and fill it in before you hand over anything that matters.">
+            <Figure number={43} caption="The delegation card, our own template. Copy it into a note and fill it in before you hand over anything that matters.">
               <DelegationCard />
             </Figure>
             <p>
@@ -569,7 +831,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Try the sorting game below. For each task, decide whether you would hand it over, team up with the agent, or keep it. The answers are ours, with reasons; you may reasonably disagree.
             </p>
-            <Figure number={27} caption="Interactive: sort ten everyday jobs. The answers are our own judgement, and each one comes with a reason.">
+            <Figure number={44} caption="Interactive: sort ten everyday jobs. The answers are our own judgement, and each one comes with a reason.">
               <DelegationSorter />
             </Figure>
             <Callout kind="tip" title="Use the time you win">
@@ -577,7 +839,7 @@ export default function AiAgentsSideBySide() {
             </Callout>
 
             {/* ── 11 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="shadows" level="Advanced" number={11}>The shadows worth respecting</SectionHeading>
+            <SectionHeading id="shadows" level="Advanced" number={12}>The shadows worth respecting</SectionHeading>
             <p>
               A bright story is more believable when it admits where the shadows fall. There are four worth knowing.
             </p>
@@ -593,7 +855,7 @@ export default function AiAgentsSideBySide() {
             <p>
               The most serious shadow is behavioural. In the summer of 2026, several AI labs disclosed cases where agents being tested reached real systems or worked around the limits they were given. We covered them in <Link href={`/${previous.slug}`}>Hands on the brake, foot on the gas</Link>, and our <a href={`${NEWS}/openai-pauses-training-after-sandbox-dns-escape`}>brief on a training sandbox escape</a> shows a recent example. The lesson for everyday users is not panic; it is design. Give an agent the minimum access it needs, keep a human gate before anything irreversible, and keep a record of what it did. Our <Link href={`/${governance.slug}`}>guide to AI governance and risk management</Link> shows how organisations do this formally, and our <Link href={`/${muse.slug}`}>article on Muse</Link> shows what damage-limiting looks like inside a consumer agent.
             </p>
-            <Figure number={28} caption="How much freedom to give an agent: a ladder, in our own drawing. Start on the lower rungs and climb only when the agent has earned it.">
+            <Figure number={45} caption="How much freedom to give an agent: a ladder, in our own drawing. Start on the lower rungs and climb only when the agent has earned it.">
               <PermissionLadder />
             </Figure>
             <h3>4. The people behind the productivity</h3>
@@ -613,14 +875,14 @@ export default function AiAgentsSideBySide() {
             </p>
 
             {/* ── 12 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="amplify" level="Intermediate" number={12}>Amplify, don’t just replace</SectionHeading>
+            <SectionHeading id="amplify" level="Intermediate" number={13}>Amplify, don’t just replace</SectionHeading>
             <p>
               The most important question is not what agents can do but what organisations choose to do with the savings. Gartner’s September 2026 note draws the line clearly. It predicts that by 2029, 30% of employees laid off due to replacement by AI will need to be rehired, “often at a significantly higher cost”. It says that while workforce cuts “may deliver short-term financial gains, they deplete talent pipelines and erode institutional knowledge.”<Cite slug={S} src="2026-09-09" />
             </p>
             <p>
               The alternative it recommends is a “talent remix” strategy: using AI “to reshape roles and redirect workers from less productive work, to new opportunities.” It also predicts that by 2027, 75% of organisations that treat AI productivity gains as cost savings will be eclipsed by competitors that “aggressively reinvest those gains into innovation, modernization and upskilling.”<Cite slug={S} src="2026-09-09" />
             </p>
-            <Figure number={29} caption="Two ways to use the same technology, according to Gartner’s September 2026 note. Both figures are Gartner predictions.">
+            <Figure number={46} caption="Two ways to use the same technology, according to Gartner’s September 2026 note. Both figures are Gartner predictions.">
               <AmplifyOrReplace />
             </Figure>
             <p>
@@ -652,12 +914,78 @@ export default function AiAgentsSideBySide() {
               Those five questions are our own, but each maps to something in the evidence: the redesign of work, the modelling of use, the human gate, the safety to experiment, and the reinvestment of gains.
             </p>
 
-            {/* ── 13 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="plan" level="Beginner" number={13}>Your first thirty days</SectionHeading>
+            {/* ── 14 · faq ──────────────────────────────────────────────────*/}
+            <SectionHeading id="faq" level="Beginner" number={14}>Questions people ask</SectionHeading>
+            <p>
+              The questions we hear most, with short answers. Tap one to open it.
+            </p>
+            <div className="space-y-2 !mt-4">
+              {[
+                { q: "What is an AI agent, in one sentence?", a: "A system that takes a goal, plans the steps, uses real tools to carry them out, checks the result and hands finished work back for a person to approve. An assistant, by contrast, waits for your next message." },
+                { q: "Is ChatGPT, Claude or Gemini an agent?", a: "Not by default. When you only chat, it acts as an assistant. Each of these products now also offers agent features, such as OpenAI’s dots or Anthropic’s Cowork, that take a goal and work on their own with tools. The test is whether it can use real tools, work through several steps by itself, and show you what it did." },
+                { q: "Will agents take my job?", a: "Nobody can promise either way. The evidence we found says the smart use is to amplify people: Gartner predicts that 30% of people laid off for AI will need rehiring by 2029, and Microsoft finds that the best users keep control of the thinking. Tasks will change; learning to direct and check agents is the best protection.", cite: "2026-09-09" },
+                { q: "Do I need to know how to code?", a: "No. Most of the recipes in this article need only clear writing. The skill that matters is saying precisely what you want, what the agent may touch and when it should ask you." },
+                { q: "Is it safe to give an agent access to my email and files?", a: "Start on the lowest rungs of the permission ladder: look only, then draft only. Give access to the minimum, keep a human gate before anything irreversible, and never share passwords or one-time codes. Anthropic itself advises against using computer use for finance, legal, medical or others’ personal data.", cite: "14128542" },
+                { q: "What should I never delegate?", a: "Anything where the value lies in it being you: a condolence message, a hard conversation, a signature on a contract, an approval of a large payment. Agents can prepare these; you should do them." },
+                { q: "How do I know when an agent got it wrong?", a: "Ask for sources, sample-check the output, and keep a trail. Microsoft finds that the top human skills as AI does more are quality control (50%) and critical thinking (46%).", cite: "microsoft.com" },
+                { q: "How much does it cost?", a: "It varies and changes often, so check each maker’s page. As examples from the pages we read: OpenAI says the first dot is included in the plan “at no extra cost”, and Anthropic listed computer use as available on Pro and Max plans only.", cite: "openai.com/index/introducing-dots" },
+                { q: "What are MCP and A2A, and why should I care?", a: "MCP is a shared standard for connecting an AI to tools and data; A2A lets agents talk to other agents. You will never touch them, but they decide how easily your assistant can reach your tools, and how easily you can switch.", cite: "anthropic.com/news/model-context-protocol" },
+                { q: "How is this different from the automation I already have, like macros or rules?", a: "A macro or a rule follows a fixed script and breaks when the situation changes. An agent is given a goal and works out the steps, which makes it more flexible and also less predictable. That is why the checking habits in this article matter." },
+                { q: "Where can I learn more on this site?", a: "Start with Agentic AI 101 for how agents work, the article on Meta’s Muse for a consumer agent, the AI governance guide for managing risk, and our brief on OpenAI’s dots for the latest launch." },
+              ].map((item, i) => (
+                <details key={item.q} className="group rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] px-4 py-3">
+                  <summary className="cursor-pointer text-[15px] font-medium text-[var(--text-primary)] list-none flex gap-3">
+                    <span className="mono text-[var(--violet-deep)]">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{item.q}</span>
+                    <span className="text-[var(--text-tertiary)] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                  </summary>
+                  <p className="mt-2 pl-9 text-[14.5px] leading-relaxed text-[var(--text-secondary)]">
+                    {item.a}
+                    {item.cite && <Cite slug={S} src={item.cite} />}
+                  </p>
+                </details>
+              ))}
+            </div>
+
+            {/* ── 15 · glossary ─────────────────────────────────────────────*/}
+            <SectionHeading id="glossary" level="Beginner" number={15}>A pocket glossary</SectionHeading>
+            <p>
+              The words of the agent world, in plain language. Keep this handy when you read vendor pages.
+            </p>
+            <dl className="space-y-2.5 !mt-4">
+              {[
+                ["Agent", "An AI system that takes a goal, plans steps, uses tools and returns finished work for approval."],
+                ["Assistant", "An AI that answers when asked and depends on human input; Gartner calls assistants the “precursor to agentic AI”."],
+                ["Agentwashing", "Calling an assistant or chatbot an “agent” when it does not act on its own; Gartner’s word for it."],
+                ["Tool", "Anything an agent can use to act: a calendar, a spreadsheet, a search, another program."],
+                ["Connector", "A ready-made link that lets an agent use a particular app or data source."],
+                ["MCP (Model Context Protocol)", "An open standard for connecting AI to tools and data, introduced by Anthropic in November 2024."],
+                ["A2A (Agent2Agent)", "An open protocol, announced by Google in April 2025, for agents to communicate and coordinate."],
+                ["AGENTS.md", "A simple standard that gives coding agents a project’s house rules."],
+                ["Orchestration", "One agent, or a system, coordinating several agents on a bigger job."],
+                ["Human in the loop (a gate)", "A step where a person approves, reviews or takes over before the agent goes on."],
+                ["Guardrails", "Limits built around an agent: what it may touch, do, or say."],
+                ["Observability", "The ability to see what an agent did and why: logs, traces and reports."],
+                ["Sandbox / virtual machine (VM)", "An isolated computer-within-a-computer where an agent can run code without touching the rest of your system."],
+                ["Prompt injection", "Hidden instructions in a web page, file or message that try to trick an agent into doing something its owner did not intend."],
+                ["Pull request (PR)", "A proposed change to a codebase that a person reviews before it is merged."],
+                ["CI (continuous integration)", "Automatic checks that run on every code change."],
+                ["RAG (retrieval-augmented generation)", "Having an AI look up approved documents before it writes, so its answers are grounded in them."],
+                ["CRM", "Customer relationship management software: the system where a company keeps its customer records."],
+              ].map(([term, def]) => (
+                <div key={term} className="grid sm:grid-cols-[13rem_1fr] gap-x-4 gap-y-0.5 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] px-4 py-3">
+                  <dt className="text-[14px] font-bold text-[var(--text-primary)]">{term}</dt>
+                  <dd className="text-[14px] leading-snug text-[var(--text-secondary)]">{def}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* ── 16 ────────────────────────────────────────────────────────*/}
+            <SectionHeading id="plan" level="Beginner" number={16}>Your first thirty days</SectionHeading>
             <p>
               Enough reading. Here is a month, in four steps, that fits around a full-time job.
             </p>
-            <Figure number={30} caption="A thirty-day plan, our own. It asks for about an hour a week.">
+            <Figure number={47} caption="A thirty-day plan, our own. It asks for about an hour a week.">
               <ThirtyDays />
             </Figure>
             <h3>Back to Asha</h3>
@@ -704,7 +1032,7 @@ export default function AiAgentsSideBySide() {
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">
-              Anthropic, Google, Microsoft, Gartner, Novo Nordisk, Block, OpenAI, the Linux Foundation, SRI International and the other organisations named are independent of MSRX; this article is not affiliated with or endorsed by any of them. Facts and quotes are from the linked sources, read on 30 September 2026; the Gartner, Microsoft, Britannica and Novo Nordisk pages were read in a browser, and Turing’s paper was read on the publisher’s page and checked word for word against a public copy. The Novo Nordisk figures come from Anthropic’s own case study and were not independently verified. Gartner’s figures are predictions, not measurements. Asha, the day in the 2030s, the recipes, the delegation card, the permission ladder, the sorting game and the thirty-day plan are our own, and imagined scenes are labelled as such. The photographs are credited beside each; the screenshots are real captures of the sources, taken on 30 September 2026, and belong to their owners. This is general information, not professional advice: check any decision that matters with a qualified person. Spotted something out of date? <a href={`${MAIN_SITE}/contact`}>Tell us</a>.
+              Anthropic, Google, Microsoft, Gartner, Novo Nordisk, Cognition, Salesforce, 11x, Glean, Block, OpenAI, the Linux Foundation, SRI International, Britannica and the other organisations named are independent of MSRX; this article is not affiliated with or endorsed by any of them. Facts and quotes are from the linked sources, read on 30 September 2026; the Gartner, Microsoft, Britannica, Novo Nordisk, Salesforce, OpenAI and the vendor pages for the six agents were read in a browser, and Turing’s paper was read on the publisher’s page and checked word for word against a public copy. The Novo Nordisk figures come from Anthropic’s own case study and were not independently verified. Gartner’s figures are predictions, not measurements. Every statistic in the section on six agents is a claim by the maker or its customers, and we have not tested those products. The image in the story of the 2060s and the dots artwork were supplied to MSRX and belong to their creators. Asha, Leela, the day in the 2030s, the story of the 2060s, the recipes, the delegation card, the permission ladder, the sorting game and the thirty-day plan are our own, and imagined scenes are labelled as such. The photographs are credited beside each; the screenshots are real captures of the sources, taken on 30 September 2026, and belong to their owners. This is general information, not professional advice: check any decision that matters with a qualified person. Spotted something out of date? <a href={`${MAIN_SITE}/contact`}>Tell us</a>.
             </p>
           </article>
 

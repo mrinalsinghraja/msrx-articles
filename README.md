@@ -23,7 +23,7 @@ standards. `CLAUDE.md` points every session at it.
 
 ## Checks that run by themselves
 
-- **Build:** every article must have 5–10 references, and every `<Cite>` must match exactly one.
+- **Build:** every article must have 5–10 references (up to 20 if flagged `longFeature` in `lib/articles.ts`), and every `<Cite>` must match exactly one.
 - **Monthly:** `.github/workflows/link-check.yml` opens every reference on the 1st of each month
   (`node scripts/check-links.mjs lib/references.ts` runs it locally) and fails, which emails the
   owner, if a link is dead. Bot-walled sites are listed for a manual look.
