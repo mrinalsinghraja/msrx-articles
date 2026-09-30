@@ -57,19 +57,21 @@ export function PicPair({ items }: { items: { file: string; alt: string; width: 
 
 /** Company logos on a white card so they read in dark mode too. */
 export function LogoStrip() {
+  // Display sizes are set explicitly: some of these SVGs carry only a viewBox, so
+  // letting CSS pick "auto" width collapses them to nothing.
   const logos: { file: string; alt: string; w: number; h: number; who: string }[] = [
-    { file: "anthropic-logo.svg", alt: "Anthropic wordmark", w: 256, h: 29, who: "Anthropic" },
-    { file: "claude-logo.svg", alt: "Claude logo", w: 230, h: 49, who: "Claude (Anthropic)" },
-    { file: "openai-wordmark.svg", alt: "OpenAI wordmark", w: 200, h: 54, who: "OpenAI" },
-    { file: "chatgpt-logo.svg", alt: "ChatGPT logo", w: 64, h: 64, who: "ChatGPT (OpenAI)" },
+    { file: "anthropic-logo.svg", alt: "Anthropic wordmark", w: 190, h: 21, who: "Anthropic" },
+    { file: "claude-logo.svg", alt: "Claude logo", w: 172, h: 37, who: "Claude (Anthropic)" },
+    { file: "openai-wordmark.svg", alt: "OpenAI wordmark", w: 150, h: 40, who: "OpenAI" },
+    { file: "chatgpt-logo.svg", alt: "ChatGPT logo", w: 48, h: 48, who: "ChatGPT (OpenAI)" },
   ];
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
       {logos.map((l) => (
         <div key={l.file} className="rounded-[var(--radius)] border border-[var(--border)] bg-white p-4 flex flex-col items-center justify-between gap-3">
-          <div className="flex h-14 items-center">
+          <div className="flex h-14 w-full items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BASE}/${l.file}`} width={l.w} height={l.h} alt={l.alt} loading="lazy" decoding="async" className="max-h-12 w-auto max-w-full" />
+            <img src={`${BASE}/${l.file}`} width={l.w} height={l.h} alt={l.alt} loading="lazy" decoding="async" style={{ width: l.w, height: l.h, maxWidth: "100%", objectFit: "contain" }} />
           </div>
           <p className="text-[11.5px] text-neutral-600 text-center">{l.who}</p>
         </div>
