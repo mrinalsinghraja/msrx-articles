@@ -11,7 +11,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const path = "/author";
 const DESCRIPTION =
-  "Mrinal Singh Raja, a software engineer in Bengaluru, builds free apps under MSRX and writes The AI World: AI explained for beginners and technical readers at once.";
+  "Mrinal Singh Raja, an IT professional in Bengaluru, builds free apps under MSRX and writes The AI World: AI explained for beginners and technical readers at once.";
 
 export const metadata: Metadata = {
   title: `${AUTHOR.name}, author`,
@@ -40,7 +40,7 @@ export default function Author() {
             "@id": `${abs(path)}#person`,
             name: AUTHOR.name,
             url: abs(path),
-            jobTitle: "Software engineer",
+            jobTitle: "IT professional",
             homeLocation: { "@type": "Place", name: "Bengaluru, India" },
             sameAs: AUTHOR.sameAs,
           },
@@ -51,7 +51,7 @@ export default function Author() {
         <p className="eyebrow text-[var(--text-tertiary)] mt-8 mb-3">Author</p>
         <h1 className="display text-[clamp(32px,5vw,52px)] text-[var(--text-primary)] mb-4">{AUTHOR.name}</h1>
         <p className="text-[18px] leading-relaxed text-[var(--text-secondary)] mb-10">
-          Software engineer in Bengaluru, and the writer behind <em>The AI World</em>.
+          IT professional in Bengaluru, and the writer behind <em>The AI World</em>.
         </p>
 
         <div className="article-prose">
