@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "ai-agents-side-by-side",
+    title: "Side by side: the long road to AI coworkers, and how to work with them today",
+    subtitle: "From Greek steam-powered birds to a robot called Shakey, and from a standard plug for AI to the office of 2026. A story of how machines went from performing tricks to sharing our work, what agents already do, the risks worth respecting, and ten easy ways to put one to work for you this week",
+    description:
+      "A story-led, sourced journey through two thousand years of machine helpers: ancient automata, Lovelace and Turing, Shakey the robot, the new standards that let AI agents use tools and talk to each other, what Gartner, Microsoft and Novo Nordisk report about agents at work, an honest look at the risks, an imagined day in the 2030s, and practical, everyday recipes, a delegation card and a 30-day plan.",
+    published: "2026-09-30",
+    updated: "2026-09-30",
+    readingMinutes: 33,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["AI agents", "Agentic AI", "Future of work", "Model Context Protocol", "Agent2Agent", "Productivity", "Human-AI collaboration", "History of AI"],
+    accent: "#0E7490",
+  },
+  {
     slug: "pacing-the-frontier",
     title: "Hands on the brake, foot on the gas: the month AI’s leaders asked the world to slow down",
     subtitle: "In September 2026 the heads of Anthropic and OpenAI called for “pacing the frontier”. The same month, prices fell, faster models shipped and one company moved toward the biggest stock-market debut ever. The story of that contradiction, told with the quotes, the numbers and the photographs, and what it means for everyone outside the room",

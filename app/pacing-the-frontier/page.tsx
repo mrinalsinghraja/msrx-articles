@@ -30,6 +30,7 @@ import { BrakeOrGasDemo } from "@/components/figures/BrakeOrGasDemo";
 const article = getArticle("pacing-the-frontier") as Article;
 const previous = getArticle("ai-governance-risk-management") as Article;
 const governance = previous;
+const next = getArticle("ai-agents-side-by-side") as Article;
 const muse = getArticle("meta-muse-everyday-automation") as Article;
 const path = `/${article.slug}`;
 const S = article.slug;
@@ -582,11 +583,11 @@ export default function PacingTheFrontier() {
             </p>
             <p className="display-sm text-[18px] text-[var(--text-primary)]">{previous.title}</p>
           </Link>
-          <Link href={`/${muse.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
+          <Link href={`/${next.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
             <p className="flex sm:justify-end items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
-              Related: an agent for everyone <ArrowRight size={13} aria-hidden="true" />
+              Next article <ArrowRight size={13} aria-hidden="true" />
             </p>
-            <p className="display-sm text-[18px] text-[var(--text-primary)]">{muse.title}</p>
+            <p className="display-sm text-[18px] text-[var(--text-primary)]">{next.title}</p>
           </Link>
         </div>
       </section>
