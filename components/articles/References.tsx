@@ -66,7 +66,7 @@ export function References({ slug }: { slug: string }) {
         <p className="!my-0 font-semibold text-[var(--text-primary)]">How this article was made</p>
         <p className="!my-0 mt-1 text-[var(--text-secondary)]">
           Researched and drafted with the help of AI assistants, checked against the sources above, and published by{" "}
-          <Link href="/author">Mrinal Singh Raja</Link>, who is responsible for what it says. Our{" "}
+          <Link href="/author">Mrinal Singh Raja</Link> as general information, not professional advice. Facts come from the sources listed and may change, so please check them before relying on them. Spotted a mistake? Tell us and we will correct it. Our{" "}
           <Link href="/standards#ai">editorial standards</Link> explain how AI is used here.
         </p>
       </div>

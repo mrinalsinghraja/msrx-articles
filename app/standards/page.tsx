@@ -60,7 +60,10 @@ export default function Standards() {
             <em>The AI World</em> is about artificial intelligence, and it is made with its help too. AI assistants support the research, the drafting, the diagrams and the code examples. That help comes with the same rules as everything else here: facts are checked against the primary sources listed at the end of each article, code examples are labelled, and anything illustrative is marked as such.
           </p>
           <p>
-            Every article is published by <Link href="/author">{AUTHOR.name}</Link>, who decides what appears on this site and is responsible for what it says. We mention this at the end of every article because readers deserve to know how what they read is made.
+            Every article is published by <Link href="/author">{AUTHOR.name}</Link>, who decides what appears on this site. We mention this at the end of every article because readers deserve to know how what they read is made.
+          </p>
+          <p>
+            Articles are general information, written in good faith from the sources listed at the end of each one. They are not legal, financial, security, medical or other professional advice, and they are provided as they are, without any promise that they are complete, current or suited to your situation. Products, prices, laws and standards change quickly, so please check the primary sources before you rely on anything here, and take advice from a qualified professional where it matters. Opinions expressed are the author&rsquo;s own.
           </p>
 
           <h2 id="updates">Updates and corrections</h2>
