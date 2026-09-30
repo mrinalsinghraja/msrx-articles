@@ -40,6 +40,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "pacing-the-frontier",
+    title: "Hands on the brake, foot on the gas: the month AI’s leaders asked the world to slow down",
+    subtitle: "In September 2026 the heads of Anthropic and OpenAI called for “pacing the frontier”. The same month, prices fell, faster models shipped and one company moved toward the biggest stock-market debut ever. The story of that contradiction, told with the quotes, the numbers and the photographs, and what it means for everyone outside the room",
+    description:
+      "A story-driven, sourced account of September 2026, when Dario Amodei and Sam Altman called for slowing the pace of AI capability jumps while their companies kept launching cheaper, faster models: the summer of rogue agents, the essay, the UN Security Council session, the money, the critics, a scorecard of what each lab said and did, and what a real brake would look like.",
+    published: "2026-09-30",
+    updated: "2026-09-30",
+    readingMinutes: 25,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Anthropic", "OpenAI", "Dario Amodei", "Sam Altman", "AI safety", "Pacing the frontier", "AI policy", "Recursive self-improvement"],
+    accent: "#BE123C",
+  },
+  {
     slug: "ai-governance-risk-management",
     title: "AI governance and risk management: a practical guide",
     subtitle: "What governance and risk management mean, how the EU AI Act, NIST’s framework, ISO/IEC 42001, the OECD principles and India’s guidelines fit together, and how to build a working programme with tiers, owners, a risk register and a 90-day plan",
