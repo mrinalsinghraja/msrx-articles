@@ -735,6 +735,121 @@ export function ImaginedRoles() {
   );
 }
 
+// ── 24. India's thread: rules, numbers, logic ────────────────────────────────
+
+export function IndiaThread() {
+  const items: { when: string; who: string; what: string; tone: Tone }[] = [
+    { when: "6th–4th c. BCE (dates uncertain)", who: "Pāṇini", what: "Aṣṭādhyāyī: just under 4,000 rules that build the structure of Sanskrit", tone: "g" },
+    { when: "c. 2nd century BCE", who: "Piṅgala", what: "Chandaḥśāstra: procedures for listing every metre and counting them, using recursion", tone: "c" },
+    { when: "5th century CE", who: "Āryabhaṭa", what: "A recursive algorithm for building a table of sines", tone: "c" },
+    { when: "628 CE", who: "Brahmagupta", what: "Brāhmasphuṭasiddhānta: rules for arithmetic with zero, “fortunes” and “debts”", tone: "a" },
+    { when: "c. 8th–11th century CE", who: "Bakhshālī manuscript", what: "Birch-bark mathematics “notable for the number of zeros it contains”", tone: "a" },
+    { when: "14th century CE", who: "Gaṅgeśa", what: "The Jewel of Reflection on the Truth: sources of knowledge, inference and “pervasion”", tone: "v" },
+  ];
+  return (
+    <div>
+      <ol className="space-y-2">
+        {items.map((i) => (
+          <li key={i.who} className="grid sm:grid-cols-[10.5rem_9rem_1fr] gap-x-3 gap-y-0.5 rounded-[var(--radius)] border-2 p-3" style={{ borderColor: T[i.tone].fg, background: T[i.tone].soft }}>
+            <span className="mono text-[11.5px] font-semibold" style={{ color: T[i.tone].fg }}>{i.when}</span>
+            <span className="text-[13.5px] font-bold text-[var(--text-primary)]">{i.who}</span>
+            <span className="text-[12.5px] leading-snug text-[var(--text-primary)]">{i.what}</span>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Dates are as given in the sources we opened; several are debated, and the Bakhshālī range is Oxford’s 2024 radiocarbon result for five folios. Green: rules. Blue: counting. Amber: zero. Violet: logic.</p>
+    </div>
+  );
+}
+
+// ── 25. Claim check ──────────────────────────────────────────────────────────
+
+export function ClaimCheck() {
+  const rows: { claim: string; says: string; verdict: string; tone: Tone }[] = [
+    { claim: "“Pāṇini was the world’s first programmer.”", says: "He wrote precise, ordered rules that build Sanskrit; MacTutor calls him a forerunner of formal language theory. How powerful his system is remains debated.", verdict: "Fair, but a slogan", tone: "a" },
+    { claim: "“Piṅgala invented binary computing.”", says: "He gave procedures to list and count every pattern of short and long syllables, using recursion. That is binary-like counting, not a computer.", verdict: "Stretched", tone: "a" },
+    { claim: "“Āryabhaṭa invented zero.”", says: "Not supported by the sources we opened. The clearest rules for zero we could verify are Brahmagupta’s, in 628 CE.", verdict: "Not supported here", tone: "r" },
+    { claim: "“The Bakhshālī manuscript holds the world’s oldest zero, from the 3rd or 4th century.”", says: "Oxford’s 2024 report dates five folios to about 773–1032 CE and says an earlier measurement on one folio was inaccurate.", verdict: "Out of date", tone: "r" },
+    { claim: "“Navya-Nyāya is the blueprint for modern AI.”", says: "It is a rigorous tradition of logic and theory of knowledge. Links to knowledge representation are suggested by some; we found no source here that settles it.", verdict: "Unproven", tone: "a" },
+  ];
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[620px] border-separate border-spacing-y-1.5 text-[12.5px]">
+        <thead>
+          <tr className="text-left text-[11px] mono uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+            <th className="px-3 font-semibold">You may have read</th>
+            <th className="px-3 font-semibold">What the sources we opened say</th>
+            <th className="px-3 font-semibold">Our verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.claim} className="align-top">
+              <td className="px-3 py-2 rounded-l-[var(--radius)] font-medium leading-snug text-[var(--text-primary)]" style={{ background: T[r.tone].soft, borderLeft: `4px solid ${T[r.tone].fg}` }}>{r.claim}</td>
+              <td className="px-3 py-2 leading-snug text-[var(--text-primary)]" style={{ background: T[r.tone].soft }}>{r.says}</td>
+              <td className="px-3 py-2 rounded-r-[var(--radius)] font-bold" style={{ background: T[r.tone].soft, color: T[r.tone].fg }}>{r.verdict}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="mt-2 text-[11.5px] text-[var(--text-tertiary)]">Our own summary of what the cited sources say. It is a verdict on the claims as popularly phrased, not on the remarkable work itself.</p>
+    </div>
+  );
+}
+
+// ── 26. Indian everyday recipes ──────────────────────────────────────────────
+
+const INDIA_RECIPES: { t: string; ask: string; keep: string; tone: Tone }[] = [
+  { t: "Scheme finder", ask: "Which central and state government schemes might apply to a small dairy farmer in Punjab? List eligibility and documents, with links to the official portals.", keep: "You confirm on the official site before applying.", tone: "g" },
+  { t: "Family trip by train", ask: "Plan four days in Kerala in June for two adults and a parent, starting by train from Bengaluru, with a backup if the ticket is waitlisted.", keep: "You book and pay yourself.", tone: "c" },
+  { t: "Admission paperwork", ask: "Here is a school admission form. List every document it asks for, check which ones are in this folder, and tell me what is missing.", keep: "You check the documents and submit the form.", tone: "a" },
+  { t: "Learn in your language", ask: "Explain how photosynthesis works in Tamil, then quiz me in Tamil, one question at a time.", keep: "You do the learning; check facts in the textbook.", tone: "v" },
+  { t: "Shop-counter reconciliation", ask: "Match the UPI credits in this statement against today’s sales list, and show me the entries that do not match.", keep: "You investigate the differences.", tone: "r" },
+  { t: "WhatsApp replies", ask: "Draft replies in Hindi and English to these five customer messages about delivery times. Do not send anything.", keep: "You read each one and press send.", tone: "g" },
+];
+
+export function IndiaRecipes() {
+  return (
+    <div>
+      <div className="grid sm:grid-cols-2 gap-2.5">
+        {INDIA_RECIPES.map((r, i) => (
+          <div key={r.t} className="rounded-[var(--radius)] border-2 p-3.5" style={{ borderColor: T[r.tone].fg, background: T[r.tone].soft }}>
+            <p className="text-[14px] font-bold text-[var(--text-primary)]"><span className="mono text-[11px] mr-1.5" style={{ color: T[r.tone].fg }}>{String(i + 1).padStart(2, "0")}</span>{r.t}</p>
+            <p className="mt-1.5 text-[12.5px] leading-snug text-[var(--text-primary)]"><span className="mono text-[10.5px] uppercase tracking-[0.08em] block text-[var(--text-tertiary)]">Ask</span>“{r.ask}”</p>
+            <p className="mt-1.5 text-[12px] font-semibold" style={{ color: T[r.tone].fg }}>You keep: {r.keep}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Our own suggestions for everyday life in India. None is tax, legal or financial advice: confirm anything that matters with the official source or a qualified professional. Never share your Aadhaar number, PAN, UPI PIN or an OTP with an agent.</p>
+    </div>
+  );
+}
+
+// ── 27. The fence around an agent's spending (UPI) ───────────────────────────
+
+export function UpiFence() {
+  const steps: { t: string; b: string; tone: Tone }[] = [
+    { t: "You set the fence, once", b: "Pre-authorise an amount with two-factor authentication.", tone: "g" },
+    { t: "The agent shops", b: "It picks groceries or a mobile recharge inside the chat.", tone: "v" },
+    { t: "The rails check the limit", b: "Existing UPI tools cap what can be spent: reported ceilings of ₹10,000 (Reserve Pay, up to 90 days) and ₹15,000 a month (UPI Circle).", tone: "a" },
+    { t: "The payment data stays out", b: "Razorpay said the AI companies do not get access to it.", tone: "c" },
+  ];
+  return (
+    <div>
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+        {steps.map((st, i) => (
+          <li key={st.t} className="rounded-[var(--radius)] border-2 p-3.5" style={{ borderColor: T[st.tone].fg, background: T[st.tone].soft }}>
+            <p className="mono text-[11px] font-semibold" style={{ color: T[st.tone].fg }}>STEP {i + 1}</p>
+            <p className="mt-0.5 text-[14px] font-bold text-[var(--text-primary)]">{st.t}</p>
+            <p className="mt-1 text-[12.5px] leading-snug text-[var(--text-secondary)]">{st.b}</p>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-3 text-[11.5px] text-[var(--text-tertiary)]">Drawn from the 2025 pilot described by TechCrunch and the September 2026 report by AI in Asia. The limits were reported as under review, and the liability rules and regulator approval were not yet published, so this is a sketch of the design, not a description of a live service.</p>
+    </div>
+  );
+}
+
 /** A small wrapper so the page can drop a caption-less block in a figure. */
 export function Block({ children }: { children: ReactNode }) {
   return <div>{children}</div>;

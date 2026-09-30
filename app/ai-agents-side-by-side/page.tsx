@@ -14,12 +14,15 @@ import {
   AgentsCompare,
   AmplifyOrReplace,
   AssistantVsAgent,
+  ClaimCheck,
   CopilotBars,
   DelegationCard,
   FourModes,
   FrontierHabits,
   GartnerStairs,
   HelperTimeline,
+  IndiaRecipes,
+  IndiaThread,
   ImaginedDay,
   ImaginedRoles,
   ManagerAgent,
@@ -34,6 +37,7 @@ import {
   ThirtyDays,
   ThreeEras,
   ThreeHorizons,
+  UpiFence,
 } from "@/components/figures/side-by-side-guide";
 import { DelegationSorter } from "@/components/figures/DelegationSorter";
 
@@ -75,12 +79,14 @@ const trail = [
 const TOC = [
   { id: "monday", label: "Asha’s Monday" },
   { id: "dream", label: "A pigeon, a steam ball, a peacock" },
+  { id: "india-thread", label: "The other ancient road: rules, zero, logic" },
   { id: "boy", label: "The boy who wrote, the countess who doubted" },
   { id: "shakey", label: "Shakey, the shaky genius" },
   { id: "acting", label: "From answering to acting" },
   { id: "plumbing", label: "The plumbing of teamwork" },
   { id: "jobs", label: "Who is on the job today" },
   { id: "meet", label: "Six agents you can meet today" },
+  { id: "india-today", label: "Agents in India today" },
   { id: "humans", label: "How people really work with agents" },
   { id: "tomorrow", label: "Tomorrow: you at the head of the team" },
   { id: "recipes", label: "Ten easy ways to start this week" },
@@ -237,12 +243,67 @@ export default function AiAgentsSideBySide() {
               <p>An automaton is like a music box. Wind it up and it plays its one tune beautifully. But you cannot say “play something for my daughter’s birthday”, and it cannot notice that the room has gone quiet. The dream of a helper is the dream of a music box that listens.</p>
             </Callout>
 
+            {/* ── 3 · india history ─────────────────────────────────────────*/}
+            <SectionHeading id="india-thread" level="Beginner" number={3}>The other ancient road: rules, zero and logic</SectionHeading>
+            <p>
+              While engineers in Greece and China built machines that moved, thinkers in India were building something that did not move at all: machines made of <em>rules</em>. They did not build computers, and it would be wrong to draw a straight line from a Sanskrit grammar to a chatbot. But three ideas that modern computing depends on, precise rules, a working zero and careful logic, each had remarkable early chapters in India. This section tells them as the sources we could open tell them, including the places where popular retellings go too far.
+            </p>
+            <h3>Rules: Pāṇini’s grammar</h3>
+            <p>
+              Start with a grammar. Pāṇini, who worked in the north-west of the subcontinent, wrote the <em>Aṣṭādhyāyī</em>, the “Eight Chapters”. Nobody knows exactly when. MacTutor, the mathematics-history archive of the University of St Andrews, calls the usual dates of about 520–460 BCE “pure guesses”, and reports that experts place him anywhere from the fourth to the seventh century BCE.<Cite slug={S} src="mathshistory.st-andrews.ac.uk/Biographies/Panini" /> What is clear is the ambition. In the words of a scholar MacTutor quotes: “On the basis of just under 4000 sutras [rules expressed as aphorisms], he built virtually the whole structure of the Sanskrit language.” The sentences and compound words are explained, MacTutor says, “as ordered rules operating on underlying structures”, and Pāṇini’s constructions are “similar to the way that a mathematical function is defined today.”<Cite slug={S} src="mathshistory.st-andrews.ac.uk/Biographies/Panini" />
+            </p>
+            <p>
+              MacTutor goes further: Pāṇini “should be thought of as the forerunner of the modern formal language theory used to specify computer languages”, and his notation is “equivalent in its power” to the Backus Normal Form that John Backus discovered independently in 1959.<Cite slug={S} src="mathshistory.st-andrews.ac.uk/Biographies/Panini" /> Scholars do not all agree on how strong that comparison is. A 2021 paper by J. J. Lowe, published through Oxford’s research archive, argues that Pāṇini’s system looks context-sensitive on the surface but is held in check by a rule against cyclic application, “limiting the power of his superficially context-sensitive formalism in a way entirely parallel to much work in modern phonology.”<Cite slug={S} src="ora.ox.ac.uk/objects/uuid:4c35f59b" /> You do not need the technicalities to take the point: this was a rule system precise enough for modern linguists and computer scientists to argue about its formal power. That is a long way from “the world’s first programmer”, a slogan you will meet online, and a much more interesting fact.
+            </p>
+            <Callout kind="eli5">
+              <p>Imagine a cookbook in which every rule says “if you have this, make that”, and a few rules say which rule wins when two apply. Pāṇini wrote a cookbook like that for a whole language. A modern AGENTS.md file, the note that gives a coding agent a project’s house rules (section 7), is a distant cousin in spirit: rules written down so that a reader who cannot guess can still follow them. The comparison is ours, not a claim of descent.</p>
+            </Callout>
+            <h3>Counting: Piṅgala’s metres</h3>
+            <p>
+              Next, counting. Piṅgala, around the second century BCE, wrote the <em>Chandaḥśāstra</em>, a treatise on Sanskrit poetic metres. According to the mathematician Jayant Shah’s history of his work, Piṅgala gave “procedures for listing all possible forms of an n-syllable meter and for indexing such a list”, and “an algorithm for calculating the binomial coefficients”. Shah calls it “a purely mathematical theory, apparently mathematics for its own sake”, and notes that Piṅgala “consistently uses recursion in his algorithms”, a tradition he traces from Pāṇini through Āryabhaṭa in the fifth century CE, who gave a recursive algorithm for a table of sines, to Mādhava in the fourteenth.<Cite slug={S} src="Pingala.pdf" />
+            </p>
+            <p>
+              Because every syllable in a metre is either short or long, a list of all the metres of n syllables is, in modern eyes, a list of every string of two symbols, which is exactly what a binary counter does. That gloss is ours, and it is fair to admire it without claiming that Piṅgala invented computing. Shah himself reports a genuine scholarly dispute over whether Piṅgala’s last rule really describes the triangle we call Pascal’s.<Cite slug={S} src="Pingala.pdf" />
+            </p>
+            <h3>Zero: Brahmagupta’s rules, and a cautionary tale</h3>
+            <p>
+              Then, zero. In 628 CE Brahmagupta wrote the <em>Brāhmasphuṭasiddhānta</em> in 25 chapters, at Bhillamāla, which MacTutor identifies with today’s city of Bhinmal. MacTutor says his “understanding of the number systems went far beyond that of others of the period”. He “defined zero as the result of subtracting a number from itself”, and gave rules using “fortunes” (positive numbers) and “debts” (negative numbers), such as “A debt subtracted from zero is a fortune.”<Cite slug={S} src="mathshistory.st-andrews.ac.uk/Biographies/Brahmagupta" /> He also attempted division by zero, and here MacTutor is candid: “He is certainly wrong when he then claims that zero divided by zero is zero. However it is a brilliant attempt to extend arithmetic to negative numbers and zero.”<Cite slug={S} src="mathshistory.st-andrews.ac.uk/Biographies/Brahmagupta" /> A bug, as software people would say, in a very early draft of the rules.
+            </p>
+            <Figure number={4} caption="Left: numerals from the Bakhshālī manuscript as reproduced by A. F. R. Hoernle, public domain, via Wikimedia Commons; the dot at the far right is the zero. Right: an annotated copy of Pṛthūdhaka’s 10th-century commentary on Brahmagupta’s Brāhmasphuṭasiddhānta (628), British Library, public domain, via Wikimedia Commons.">
+              <Pic file="bakhshali-numerals.jpg" alt="A row of hand-drawn numerals from the Bakhshali manuscript, labelled 1 to 9, ending in a solid dot labelled 0." width={1920} height={290} />
+              <div className="mt-3">
+                <Pic file="brahmagupta-commentary.jpg" alt="A page from a Sanskrit manuscript with lines of black handwriting on cream paper, with English notes in pencil in the margins." width={1004} height={361} />
+              </div>
+            </Figure>
+            <p>
+              You may also have read that a birch-bark manuscript from a village near Peshawar, the Bakhshālī manuscript, contains the world’s oldest zero, from the third or fourth century. That headline is now out of date, and the story is a good example of science correcting itself. Oxford’s report describes the manuscript as “notable for the number of zeros it contains”, found in 1881 and given to the Bodleian Library in 1902, with proposed dates over the years “ranging from as early as 200 CE to 1100 CE”. Its 2024 radiocarbon measurements on five folios give ranges between about 773 and 1032 CE, and the report explains that a second measurement on one folio “demonstrated that the initial determination was inaccurate.”<Cite slug={S} src="ora.ox.ac.uk/objects/uuid:5a6d1dd7" /> The honest statement today is narrower: the manuscript is, in Oxford’s words, “almost certainly the oldest extant witness of a South Asian mathematical work”, and its zeros are real, but it is not evidence of a third-century zero.
+            </p>
+            <Figure number={5} caption="A modern bas-relief of Brahmagupta in Shaheedi Park, Delhi, made from waste material. Photo: Pur 0 0, CC0, via Wikimedia Commons. No portrait of Brahmagupta survives, so this is an artist’s imagining.">
+              <Pic file="brahmagupta-relief.jpg" alt="A large sculpted relief of a bearded seated figure in a park, made of rough recycled materials." width={1280} height={949} max="max-w-[520px]" />
+            </Figure>
+            <h3>Logic: from Nyāya to Navya-Nyāya</h3>
+            <p>
+              Finally, logic. Nyāya, “Logic”, is a school of Indian philosophy that spent close to two thousand years refining how we know things. In the fourteenth century Gaṅgeśa, who lived in north-eastern India, wrote its central text, the <em>Jewel</em> (<em>Tattvacintāmaṇi</em>), in four chapters devoted to four sources of knowledge: perception, inference, analogy and testimony. The Stanford Encyclopedia of Philosophy says he is traditionally taken to inaugurate “New” logic, Navya-Nyāya, but cautions that the line between old and new “is problematic”, since “at no time is there a decisive revolution”. Among his accomplishments it lists definitions of knowledge and of natural “pervasions” (<em>vyāpti</em>) as the underpinning of inference, and “crisp treatments of the major types of fallacy”.<Cite slug={S} src="plato.stanford.edu/entries/gangesa" />
+            </p>
+            <p>
+              Some computer scientists have suggested that Navya-Nyāya’s exact language could inform knowledge representation, the way software stores facts and the relations between them. We could not open a source that shows how far that idea has been developed, so we offer it as an intriguing suggestion and not a settled lineage. What we can say is why it resonates in the agent era: a tradition that insists a conclusion be tied to its reasons is a good match for a world in which we want agents to show their work.
+            </p>
+            <Figure number={6} caption="India’s thread of rules, counting, zero and logic, as far as the sources we opened take it. Dates are debated where marked.">
+              <IndiaThread />
+            </Figure>
+            <Figure number={7} caption="Popular claims about these ideas, checked against the sources we opened. A claim being stretched does not make the work any less remarkable.">
+              <ClaimCheck />
+            </Figure>
+            <p>
+              Whether or not the arrows run straight, the lesson for our story is worth keeping. Long before anyone built a thinking machine, people in India were working out how to write rules so precisely that a reader who cannot guess can follow them, how to count every possibility, how to give nothing a number, and how to tie a conclusion to its reasons. Those are the same habits that make an agent safe to work beside today. And the Bakhshālī story shows a further one: when the evidence changes, the honest answer changes with it.
+            </p>
+
             {/* ── 3 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="boy" level="Beginner" number={3}>The boy who wrote, and the countess who doubted</SectionHeading>
+            <SectionHeading id="boy" level="Beginner" number={4}>The boy who wrote, and the countess who doubted</SectionHeading>
             <p>
               By the late eighteenth century the tricks had become astonishing. Britannica shows an android of a child writing, made by Pierre Jaquet-Droz around 1772, now in the Musée d’Art et d’Histoire in Neuchâtel, Switzerland.<Cite slug={S} src="britannica.com" /> A boy sits at a desk with a quill pen, and, when set going, writes.
             </p>
-            <Figure number={4} caption="Left: the Jaquet-Droz writing automaton, photographed in 2023. Photo: Gre regiment, CC BY-SA 4.0, via Wikimedia Commons. Right: a real screenshot of Britannica’s article on automata, captured on 30 September 2026, opening with Britannica’s photograph of the Jaquet-Droz child android. The page and its text belong to Britannica; shown here to document the source.">
+            <Figure number={8} caption="Left: the Jaquet-Droz writing automaton, photographed in 2023. Photo: Gre regiment, CC BY-SA 4.0, via Wikimedia Commons. Right: a real screenshot of Britannica’s article on automata, captured on 30 September 2026, opening with Britannica’s photograph of the Jaquet-Droz child android. The page and its text belong to Britannica; shown here to document the source.">
               <PicRow
                 items={[
                   { file: "jaquet-droz-writer.jpg", alt: "A child-sized automaton in a red velvet coat and lace collar, seated at a small desk and holding a quill, on a wooden stand against a black background.", width: 960, height: 1280, label: "The writing automaton, c. 1772" },
@@ -253,10 +314,10 @@ export default function AiAgentsSideBySide() {
             <p>
               It is a marvel, and a dead end. The boy can write one thing, the one his cams and gears were cut to write. Ask him for anything else and he sits there. In the nineteenth century a mathematician saw the same limit in a far more ambitious machine. Ada Lovelace, describing Charles Babbage’s design for an Analytical Engine in a memoir of 1842, wrote what became a famous warning: “The Analytical Engine has no pretensions to originate anything. It can do whatever we know how to order it to perform.”<Cite slug={S} src="doi.org" /> We know her words because Alan Turing quoted them.
             </p>
-            <Figure number={5} caption="A trial model of part of Charles Babbage’s Analytical Engine (1834–1871), Science Museum, London. Photo: Daderot, CC0, via Wikimedia Commons.">
+            <Figure number={9} caption="A trial model of part of Charles Babbage’s Analytical Engine (1834–1871), Science Museum, London. Photo: Daderot, CC0, via Wikimedia Commons.">
               <Pic file="analytical-engine.jpg" alt="A brass and steel mechanism of many gears, wheels and rods mounted on a wooden base in a museum display." width={1280} height={853} />
             </Figure>
-            <Figure number={6} caption="Left: Ada Lovelace, portrait by Margaret Sarah Carpenter, 1836, public domain, via Wikimedia Commons. Right: Alan Turing, photographed by Elliott &amp; Fry on 29 March 1951, public domain, via Wikimedia Commons.">
+            <Figure number={10} caption="Left: Ada Lovelace, portrait by Margaret Sarah Carpenter, 1836, public domain, via Wikimedia Commons. Right: Alan Turing, photographed by Elliott &amp; Fry on 29 March 1951, public domain, via Wikimedia Commons.">
               <PicRow
                 items={[
                   { file: "ada-lovelace.jpg", alt: "A painted portrait of a young woman with dark hair in an off-the-shoulder gown.", width: 860, height: 1146, label: "Ada Lovelace" },
@@ -288,11 +349,11 @@ export default function AiAgentsSideBySide() {
             </p>
 
             {/* ── 4 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="shakey" level="Beginner" number={4}>Shakey, the shaky genius</SectionHeading>
+            <SectionHeading id="shakey" level="Beginner" number={5}>Shakey, the shaky genius</SectionHeading>
             <p>
               The first machine to bring these threads together was a wobbly box on wheels. SRI International, then a research institute in California, built Shakey between 1966 and 1972, and describes it as “the first mobile robot with the ability to perceive and reason about its surroundings.” It could plan, find routes, and rearrange simple objects. In 1970 <em>Life</em> magazine called it the “first electronic person”. It was inducted into Carnegie Mellon’s Robot Hall of Fame in 2004, and now lives at the Computer History Museum.<Cite slug={S} src="sri.com" />
             </p>
-            <Figure number={7} caption="Shakey the robot, photographed at the Computer History Museum. Photo: The wub, CC BY-SA 4.0, via Wikimedia Commons; the photo is dated 15 July 2023 on Commons, and the caption there says 1969 for the robot.">
+            <Figure number={11} caption="Shakey the robot, photographed at the Computer History Museum. Photo: The wub, CC BY-SA 4.0, via Wikimedia Commons; the photo is dated 15 July 2023 on Commons, and the caption there says 1969 for the robot.">
               <Pic file="shakey-1969.jpg" alt="A tall grey wheeled robot with a camera and antennae on top of its boxy body, standing in a museum." width={960} height={1440} max="max-w-[340px]" />
             </Figure>
             <p>
@@ -304,19 +365,19 @@ export default function AiAgentsSideBySide() {
             <p>
               Between Shakey and today lies a long story of setbacks, breakthroughs and patient work that would fill a book, and we will not try to squeeze it in here. Our <Link href={`/${agentic.slug}`}>Agentic AI 101</Link> and <Link href="/welcome-to-the-world-of-ai">Welcome to the world of AI</Link> cover the technical journey. What matters for this story is where the road came out.
             </p>
-            <Figure number={8} caption="Three eras of machine helpers. The dividing lines are our simplification.">
+            <Figure number={12} caption="Three eras of machine helpers. The dividing lines are our simplification.">
               <ThreeEras />
             </Figure>
 
             {/* ── 5 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="acting" level="Beginner" number={5}>From answering to acting</SectionHeading>
+            <SectionHeading id="acting" level="Beginner" number={6}>From answering to acting</SectionHeading>
             <p>
               For a few years, the AI most people met was an <strong>assistant</strong>: you type, it replies. Gartner, the research firm, is precise about what that is and is not. AI assistants, it says, “simplify tasks and interactions for users but depend on human input and do not operate independently.” They are “the precursor to agentic AI.”<Cite slug={S} src="2025-08-26" />
             </p>
             <p>
               An <strong>agent</strong> is the next step. Gartner’s wording: “Adding task specialization capabilities evolves AI assistants into AI agents. These AI agents have the capacity to operate and perform complex, end-to-end tasks.” Its example is a cybersecurity agent that scans network traffic, system logs and user behaviour in real time, then “assesses and initiates a response as appropriate.”<Cite slug={S} src="2025-08-26" />
             </p>
-            <Figure number={9} caption="Assistant or agent, side by side. The distinction follows Gartner’s definitions; the wording of each row is our own.">
+            <Figure number={13} caption="Assistant or agent, side by side. The distinction follows Gartner’s definitions; the wording of each row is our own.">
               <AssistantVsAgent />
             </Figure>
             <p>
@@ -326,7 +387,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Under the hood, agents follow Shakey’s old rhythm. You give a goal. The agent breaks it into steps. It uses tools to carry them out: a calendar, a spreadsheet, a search, another program. It checks whether the result is what you wanted, adjusts, and tries again. And at the moments that matter, such as sending, paying or sharing, it stops and asks you.
             </p>
-            <Figure number={10} caption="The goal-driven loop, in our own drawing. Which steps need your approval is your choice, and the section on risks explains how to set it.">
+            <Figure number={14} caption="The goal-driven loop, in our own drawing. Which steps need your approval is your choice, and the section on risks explains how to set it.">
               <AgentLoop />
             </Figure>
             <h3>One goal, five beats: booking a team offsite</h3>
@@ -352,32 +413,32 @@ export default function AiAgentsSideBySide() {
             </Callout>
 
             {/* ── 6 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="plumbing" level="Intermediate" number={6}>The plumbing of teamwork</SectionHeading>
+            <SectionHeading id="plumbing" level="Intermediate" number={7}>The plumbing of teamwork</SectionHeading>
             <p>
               A clever agent is not much use if it cannot reach your files, your calendar or your company’s systems. For a while, every connection was hand-built. On 25 November 2024, Anthropic, the maker of Claude, described the problem in one sentence: “Every new data source requires its own custom implementation, making truly connected systems difficult to scale.” Its answer was the <strong>Model Context Protocol</strong> (MCP), “a new standard for connecting AI assistants to the systems where data lives, including content repositories, business tools, and development environments.” Block and Apollo were named among the early adopters.<Cite slug={S} src="anthropic.com/news/model-context-protocol" />
             </p>
-            <Figure number={11} caption="A real screenshot of Anthropic’s announcement of MCP, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
+            <Figure number={15} caption="A real screenshot of Anthropic’s announcement of MCP, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
               <Pic file="shot-mcp.jpg" alt="Screenshot of Anthropic’s page titled Introducing the Model Context Protocol, dated Nov 25, 2024, with an orange illustration of white paper-cut shapes." width={1280} height={560} />
             </Figure>
             <p>
               The easiest way to picture it is a wall socket. Before standard sockets, every appliance came with its own plug and every house needed its own wiring. With one standard, any appliance works in any room.
             </p>
-            <Figure number={12} caption="Why a standard plug matters, with made-up apps and tools to show the arithmetic.">
+            <Figure number={16} caption="Why a standard plug matters, with made-up apps and tools to show the arithmetic.">
               <PlugFigure />
             </Figure>
             <p>
               About four and a half months later, on 9 April 2025, Google introduced a companion idea: <strong>Agent2Agent</strong> (A2A), for agents to talk to <em>each other</em>. Its announcement calls A2A “an open protocol that complements Anthropic’s Model Context Protocol (MCP), which provides helpful tools and context to agents.” Its example is a hiring manager who asks their agent to find candidates for a role. That agent collaborates with specialised agents to source candidates, presents suggestions, then coordinates more agents to schedule interviews and facilitate background checks.<Cite slug={S} src="developers.googleblog.com" />
             </p>
-            <Figure number={13} caption="Google’s hiring example, drawn as a manager agent and its specialists. The example is Google’s; the drawing is ours.">
+            <Figure number={17} caption="Google’s hiring example, drawn as a manager agent and its specialists. The example is Google’s; the drawing is ours.">
               <ManagerAgent />
             </Figure>
-            <Figure number={14} caption="A real screenshot of Google’s announcement of A2A, captured on 30 September 2026. The page belongs to Google; shown here to document the source.">
+            <Figure number={18} caption="A real screenshot of Google’s announcement of A2A, captured on 30 September 2026. The page belongs to Google; shown here to document the source.">
               <Pic file="shot-a2a.jpg" alt="Screenshot of the Google for Developers blog post Announcing the Agent2Agent Protocol (A2A), dated April 9, 2025, with four named authors and a banner with small robot icons linked in a network." width={1280} height={860} />
             </Figure>
             <p>
               Standards work best when nobody owns them. On 9 December 2025, the Linux Foundation announced the <strong>Agentic AI Foundation</strong>, anchored by three founding contributions: Anthropic’s MCP, Block’s goose, and OpenAI’s AGENTS.md. Its platinum members are Amazon Web Services, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft and OpenAI. At that point, it reported, there were “more than 10,000 published MCP servers”, and AGENTS.md, a simple file that gives coding agents a project’s house rules, had been adopted by more than 60,000 open source projects. MCP itself had been taken up by Claude, Cursor, Microsoft Copilot, Gemini, VS Code and ChatGPT.<Cite slug={S} src="linuxfoundation.org" />
             </p>
-            <Figure number={15} caption="A real screenshot of the Linux Foundation’s announcement, captured on 30 September 2026 and cropped above a consent banner. The page belongs to the Linux Foundation; shown here to document the source.">
+            <Figure number={19} caption="A real screenshot of the Linux Foundation’s announcement, captured on 30 September 2026 and cropped above a consent banner. The page belongs to the Linux Foundation; shown here to document the source.">
               <Pic file="shot-aaif.jpg" alt="Screenshot of the Linux Foundation press page headed Linux Foundation Announces the Formation of the Agentic AI Foundation, dated 09 December 2025." width={1280} height={660} />
             </Figure>
             <p>
@@ -396,11 +457,11 @@ export default function AiAgentsSideBySide() {
             </Callout>
 
             {/* ── 7 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="jobs" level="Intermediate" number={7}>Who is on the job today</SectionHeading>
+            <SectionHeading id="jobs" level="Intermediate" number={8}>Who is on the job today</SectionHeading>
             <p>
               So what are agents actually doing? The honest answer has two halves: a growing list of real examples, and a lot of forecasting that should be read as forecasting. We will keep the two apart.
             </p>
-            <Figure number={16} caption="Where agents are being put to work, or shown at work, in the sources we cite. Some are products, some are examples; each card says whose it is.">
+            <Figure number={20} caption="Where agents are being put to work, or shown at work, in the sources we cite. Some are products, some are examples; each card says whose it is.">
               <OnTheJob />
             </Figure>
             <p>
@@ -413,13 +474,13 @@ export default function AiAgentsSideBySide() {
             <p>
               The most striking example in our sources comes from medicine. Novo Nordisk, the maker of Ozempic, has to produce enormous amounts of paperwork before a medicine reaches patients. The centrepiece is the clinical study report, which summarises a drug trial and can run to 300 pages. According to Anthropic’s case study, writers averaged only 2.3 of these a year.<Cite slug={S} src="claude.com/customers" />
             </p>
-            <Figure number={17} caption="A real screenshot of Anthropic’s Novo Nordisk case study, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
+            <Figure number={21} caption="A real screenshot of Anthropic’s Novo Nordisk case study, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
               <Pic file="shot-novo.jpg" alt="Screenshot of the Claude customer story titled Novo Nordisk accelerates clinical documentation and drug development with Claude." width={1280} height={520} />
             </Figure>
             <p>
               Novo built a platform called NovoScribe, with Claude Code, on Amazon Bedrock and MongoDB Atlas. It combines retrieval of expert-approved text with the details of each case to draft regulatory documents. The headline claim: time spent producing clinical study documentation fell “from 10+ weeks to 10 minutes.” A Novo director is quoted saying Claude cut writing times on these reports by 90% “so we can get documentation directly into human hands for review and approval.”<Cite slug={S} src="claude.com/customers" />
             </p>
-            <Figure number={18} caption="Before and after, as reported in Anthropic’s case study. Note the last box: a person still reviews and approves.">
+            <Figure number={22} caption="Before and after, as reported in Anthropic’s case study. Note the last box: a person still reviews and approves.">
               <NovoBeforeAfter />
             </Figure>
             <Callout kind="warn" title="A vendor’s own case study">
@@ -429,7 +490,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Here we have to be careful, because forecasts are easy to mistake for facts. In August 2025 Gartner predicted that “40% of enterprise applications will be integrated with task-specific AI agents by the end of 2026, up from less than 5% today.” That is a prediction, made a year ago, not a measurement of what has happened. It came with a five-stage picture of where agentic AI is heading, which we show below.<Cite slug={S} src="2025-08-26" />
             </p>
-            <Figure number={19} caption="Gartner’s five stages of agentic AI in enterprise applications, condensed. All dates are Gartner’s predictions.">
+            <Figure number={23} caption="Gartner’s five stages of agentic AI in enterprise applications, condensed. All dates are Gartner’s predictions.">
               <GartnerStairs />
             </Figure>
             <p>
@@ -444,7 +505,7 @@ export default function AiAgentsSideBySide() {
             </p>
 
             {/* ── 8 · six agents ────────────────────────────────────────────*/}
-            <SectionHeading id="meet" level="Intermediate" number={8}>Six agents you can meet today</SectionHeading>
+            <SectionHeading id="meet" level="Intermediate" number={9}>Six agents you can meet today</SectionHeading>
             <p>
               Theory is useful; a name and a face are better. Here are six working agents from six corners of the working day: engineering, customer service, sales, the desktop, company knowledge, and the always-on chief of staff. For each we say what its maker describes, how it works, what it reportedly achieves, and where to look twice. They are a spread of <em>kinds</em>, not a league table, and they change fast, so check the maker’s page before you decide anything.
             </p>
@@ -456,7 +517,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Cognition’s Devin is the agent many people picture when they hear “AI software engineer”. Its home page puts it plainly: “Devin runs in the cloud or on your machine, tests in its own browser, and won’t stop until the PR is ready to merge.”<Cite slug={S} src="https://devin.ai/" /> (A PR, or pull request, is a proposed change to a codebase that a colleague reviews before it goes in.)
             </p>
-            <Figure number={20} caption="A real screenshot of Devin’s home page, captured on 30 September 2026. It shows Cognition’s own example: a session that added single sign-on to an app and opened a pull request. The page belongs to Cognition; shown here to document the source.">
+            <Figure number={24} caption="A real screenshot of Devin’s home page, captured on 30 September 2026. It shows Cognition’s own example: a session that added single sign-on to an app and opened a pull request. The page belongs to Cognition; shown here to document the source.">
               <Pic file="shot-devin.jpg" alt="Screenshot of the Devin home page headed Meet Devin, your team’s autonomous software engineer, with a demo showing a chat session, a list of sessions and an open pull request titled Add enterprise SSO." width={1280} height={860} />
             </Figure>
             <p>
@@ -468,7 +529,7 @@ export default function AiAgentsSideBySide() {
             <p>
               The same page is candid about the human’s job, which is to brief and to check: “Write clear prompts with explicit completion criteria”, and “Make tasks easy to verify—e.g. checking that CI passes.”<Cite slug={S} src="docs.devin.ai" /> That is the delegation card from earlier in this article in engineering dress. Notice, too, where the work ends: a change that is “ready to merge”. Some retellings of tools like this say they push fixes live “completely unsupervised”. Cognition’s own pages describe something narrower and wiser: work that arrives as a pull request, with automated checks, for people to review.
             </p>
-            <Figure number={21} caption="Devin at a glance. The first four rows summarise Cognition’s own pages; the last two are our reading.">
+            <Figure number={25} caption="Devin at a glance. The first four rows summarise Cognition’s own pages; the last two are our reading.">
               <AgentFacts
                 tone="c"
                 name="Devin (Cognition)"
@@ -487,7 +548,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Salesforce calls Agentforce “the AI agent platform that delivers 24/7 autonomous support at enterprise scale”, and its pitch is a clean one: “Lose the rigid chatbots and hold times. Extend agents anywhere customers are: On the web, on the phone, or in apps. Let humans do what they do best, and let Agentforce do the rest.”<Cite slug={S} src="salesforce.com" />
             </p>
-            <Figure number={22} caption="A real screenshot of Salesforce’s Agentforce page (India edition), captured on 30 September 2026. On the right, the page’s own AI assistant, Piper, carries the notice “Piper is an AI and can make mistakes” and says the conversation will be recorded. The page belongs to Salesforce; shown here to document the source.">
+            <Figure number={26} caption="A real screenshot of Salesforce’s Agentforce page (India edition), captured on 30 September 2026. On the right, the page’s own AI assistant, Piper, carries the notice “Piper is an AI and can make mistakes” and says the conversation will be recorded. The page belongs to Salesforce; shown here to document the source.">
               <Pic file="shot-agentforce.jpg" alt="Screenshot of the Salesforce Agentforce page with the headline Drive more revenue with Agentforce on a dark blue background, and a chat panel from an AI assistant named Piper on the right." width={800} height={537} />
             </Figure>
             <p>
@@ -499,7 +560,7 @@ export default function AiAgentsSideBySide() {
             <p>
               What about the human gate? Salesforce’s FAQ describes agents that handle tasks “proactively within set guardrails” and that, “when faced with complex issues beyond their scope, they can escalate the matter to human agents.”<Cite slug={S} src="salesforce.com" /> There is a lesson in the design. An agent that lives inside a company’s customer system can only reach what that system lets it reach, which makes its limits easier to set and to inspect. That is our reading, not Salesforce’s claim, but it is a good rule of thumb for any agent you deploy: the smaller and clearer its world, the easier it is to trust.
             </p>
-            <Figure number={23} caption="Agentforce at a glance, from Salesforce’s own page, plus two rows that are our reading.">
+            <Figure number={27} caption="Agentforce at a glance, from Salesforce’s own page, plus two rows that are our reading.">
               <AgentFacts
                 tone="v"
                 name="Agentforce (Salesforce)"
@@ -518,11 +579,11 @@ export default function AiAgentsSideBySide() {
             <p>
               11x’s slogan is “Digital Workers, Human Results”. Its site names two workers: Alice, whom customers quote as handling outbound prospecting, and Julian, which answers inbound calls.<Cite slug={S} src="11x.ai" />
             </p>
-            <Figure number={24} caption="A real screenshot of the 11x home page, captured on 30 September 2026. The page belongs to 11x; shown here to document the source.">
+            <Figure number={28} caption="A real screenshot of the 11x home page, captured on 30 September 2026. The page belongs to 11x; shown here to document the source.">
               <Pic file="shot-11x.jpg" alt="Screenshot of the 11x home page with the headline Digital Workers, Human Results over a photograph of two astronauts walking across a rocky red desert." width={1280} height={860} />
             </Figure>
             <p>
-              The platform, as described on the page, works in four beats. <strong>Identify:</strong> “Filter millions of signals across 50+ data sources to surface buyers who match your ICP” (ICP means ideal customer profile). <strong>Research:</strong> “Enrich every prospect automatically, from company news and tech stack to org changes and competitive signals.” <strong>Personalize:</strong> “Every message is written for your specific prospect. No templates or generic pitches.” <strong>Engage:</strong> “Run multi-channel sequences across email, phone, chat, social networks, SMS and WhatsApp. Every channel picks up where the last left off.”<Cite slug={S} src="11x.ai" /> Read those four beats slowly and you will see the same loop as in section 5: plan, act, check, hand back.
+              The platform, as described on the page, works in four beats. <strong>Identify:</strong> “Filter millions of signals across 50+ data sources to surface buyers who match your ICP” (ICP means ideal customer profile). <strong>Research:</strong> “Enrich every prospect automatically, from company news and tech stack to org changes and competitive signals.” <strong>Personalize:</strong> “Every message is written for your specific prospect. No templates or generic pitches.” <strong>Engage:</strong> “Run multi-channel sequences across email, phone, chat, social networks, SMS and WhatsApp. Every channel picks up where the last left off.”<Cite slug={S} src="11x.ai" /> Read those four beats slowly and you will see the same loop as in section 6: plan, act, check, hand back.
             </p>
             <p>
               The results on the page are worth reading with care, because of who says them. The site shows figures such as “1.5x increase in qualified meetings”, “$1M+ pipeline generated in first 3 months” and “35% of pipeline generated by 11x within first 3 months”, alongside quotes from customers: one says qualified meetings rose “5x”, another reports “a 9.7% reply rate for outbound emails … nearly double the industry average”, another says it is “converting over 50% of demos to subscriptions”.<Cite slug={S} src="11x.ai" /> These are testimonials that 11x chose to publish. They show what is possible, not what is typical.
@@ -530,7 +591,7 @@ export default function AiAgentsSideBySide() {
             <p>
               A note on manners, because an agent that writes to strangers at scale carries a different kind of risk from one that drafts your own email. Unsolicited messaging is regulated differently in different countries, and people rightly resent being spammed by machines. A sound practice for any outreach agent is to be honest that a message is automated, to respect opt-outs at once, and to keep a person responsible for who is contacted and why. Take your own advice on the rules where you operate.
             </p>
-            <Figure number={25} caption="11x at a glance, from its own page, plus two rows that are our reading.">
+            <Figure number={29} caption="11x at a glance, from its own page, plus two rows that are our reading.">
               <AgentFacts
                 tone="a"
                 name="11x"
@@ -549,7 +610,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Anthropic describes Claude Cowork in three sentences: “Claude Cowork completes tasks you can steer from anywhere. Give it a goal, and it works across your files and tools. You come back to polished work for your review.” (Claude is Anthropic’s AI; we also have a <Link href="/how-to-use-claude">beginner’s guide to using Claude</Link>.)
             </p>
-            <Figure number={26} caption="A real screenshot of Anthropic’s Claude Cowork page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
+            <Figure number={30} caption="A real screenshot of Anthropic’s Claude Cowork page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Anthropic; shown here to document the source.">
               <Pic file="shot-cowork.jpg" alt="Screenshot of the Claude Cowork page with the headline The work behind your best work and the text Claude Cowork completes tasks you can steer from anywhere." width={1280} height={550} />
             </Figure>
             <p>
@@ -561,7 +622,7 @@ export default function AiAgentsSideBySide() {
             <p>
               In short: code runs in a VM; computer use does not. Anthropic advises against using computer use for “managing financial accounts or investments”, “handling legal documents or contracts”, “processing medical or health information” and “interacting with apps containing personal information of others”, and recommends starting “with simple tasks like research or organizing rather than complex multi-step workflows.” It was available on Pro and Max plans only when we read the page, on macOS and Windows, and it is in beta.<Cite slug={S} src="14128542" />
             </p>
-            <Figure number={27} caption="Claude Cowork at a glance, from Anthropic’s pages, plus two rows that are our reading.">
+            <Figure number={31} caption="Claude Cowork at a glance, from Anthropic’s pages, plus two rows that are our reading.">
               <AgentFacts
                 tone="g"
                 name="Claude Cowork (Anthropic)"
@@ -581,7 +642,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Glean sells what it calls enterprise AI “that understands your company”. Its headline: “Complete context that makes AI work at enterprise scale.” The demo question on its home page is the kind a busy manager actually asks: “What changed last week that’s hitting support, sales, and churn?”, answered from tools such as Slack, Google Drive, Jira, Confluence, SharePoint, GitHub and Salesforce.<Cite slug={S} src="https://www.glean.com/" />
             </p>
-            <Figure number={28} caption="A real screenshot of Glean’s home page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Glean; shown here to document the source.">
+            <Figure number={32} caption="A real screenshot of Glean’s home page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Glean; shown here to document the source.">
               <Pic file="shot-glean.jpg" alt="Screenshot of the Glean home page with the headline Complete context that makes AI work at enterprise scale and a search box listing connected apps such as Google Drive, Jira, Confluence, SharePoint, GitHub and Salesforce." width={1280} height={590} />
             </Figure>
             <p>
@@ -590,7 +651,7 @@ export default function AiAgentsSideBySide() {
             <p>
               The phrase to hold on to is <strong>permissions-aware</strong>. Imagine a company brain that could read everything, including the salary spreadsheet and the private legal memo, and answer anyone’s questions from it. That would be a disaster. Glean says the opposite: “Users only see what they’re allowed to see.” It also promises “full observability”: “Track every query, answer, and action.” The site lists compliance credentials including ISO 42001, HIPAA, TX-RAMP Level 2, SOC 2 Type II, ISO 27001 and GDPR, which are the company’s own statements; for the last, the audit reports are what to ask for.<Cite slug={S} src="https://www.glean.com/" /> Its agents page adds monitoring of “adoption, error rates, upvotes, downvotes, and ROI”, so that owners can “double-down on what’s working and fix what isn’t.”<Cite slug={S} src="https://www.glean.com/ai-agents" />
             </p>
-            <Figure number={29} caption="Glean at a glance, from its own pages, plus two rows that are our reading.">
+            <Figure number={33} caption="Glean at a glance, from its own pages, plus two rows that are our reading.">
               <AgentFacts
                 tone="r"
                 name="Glean"
@@ -609,13 +670,13 @@ export default function AiAgentsSideBySide() {
             <p>
               The newest of the six arrived on 29 September 2026. OpenAI calls dots “remarkably capable, always-on agents built to handle everything.” They are, it says, “frontier intelligence that have your back”: “Powered by GPT‑6 Astra, they have their own cloud computer, learn from feedback over time, and can work towards your goals 24/7. Through our ecosystem of plugins, they can readily connect to over 4,000 apps.”<Cite slug={S} src="openai.com/index/introducing-dots" />
             </p>
-            <Figure number={30} caption="The dots logo and characters, from launch artwork supplied to MSRX. We have not matched this image to a specific file on OpenAI’s announcement page; the artwork belongs to its creator.">
+            <Figure number={34} caption="The dots logo and characters, from launch artwork supplied to MSRX. We have not matched this image to a specific file on OpenAI’s announcement page; the artwork belongs to its creator.">
               <Pic file="dots-artwork.webp" alt="The word dots in glowing white and rainbow lettering on a black background, above four fuzzy cartoon characters: a blue blob wearing a black beret, a green frog, a yellow triangle with round glasses and closed eyes, and a pink heart in round sunglasses." width={1280} height={857} />
             </Figure>
             <p>
               You reach a dot through ChatGPT, Slack or Teams, or “hop on a voice call”. You start with a “primary dot”, give it a name and make it your own, and OpenAI says it envisions “teams of dots working together” later. The company’s picture of a good day: “A bug appears in Slack, and dots immediately start investigating. A new design arrives, and dots turn it into a working app while the team focuses on customer feedback.” And the example we like best is a small one: “an early tester’s dot noticed he’d forgotten to invoice a publication, prepared the invoice, and sent it after his approval.”<Cite slug={S} src="openai.com/index/introducing-dots" /> Notice the last four words. Even the marketing example has a human gate in it.
             </p>
-            <Figure number={31} caption="A real screenshot of OpenAI’s announcement, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to OpenAI; shown here to document the source.">
+            <Figure number={35} caption="A real screenshot of OpenAI’s announcement, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to OpenAI; shown here to document the source.">
               <Pic file="shot-dots-official.jpg" alt="Screenshot of the OpenAI page titled Introducing dots, dated September 29, 2026, with a grey-blue ring icon above the title." width={800} height={455} />
             </Figure>
             <p>
@@ -624,7 +685,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Availability, according to OpenAI: rolling out across Pro, Business Premium and Enterprise plans in eligible markets, with the first dot included in the plan “at no extra cost”.<Cite slug={S} src="openai.com/index/introducing-dots" /> It is a day old as we write. We found no independent testing of dots in the sources we read, and our <a href={`${NEWS}/openai-launches-dots`}>news brief</a> records one live-demo hiccup reported by an attendee, so treat the rest as promise, not proof. It arrived weeks after Meta’s Muse, which we cover in <Link href={`/${muse.slug}`}>our article</Link>.
             </p>
-            <Figure number={32} caption="Dots at a glance, from OpenAI’s pages, plus two rows that are our reading.">
+            <Figure number={36} caption="Dots at a glance, from OpenAI’s pages, plus two rows that are our reading.">
               <AgentFacts
                 tone="c"
                 name="dots (OpenAI)"
@@ -642,31 +703,84 @@ export default function AiAgentsSideBySide() {
 
             <h3>Choosing between them</h3>
             <p>
-              Put the six side by side and a pattern appears. They differ in <em>where</em> they work (a cloud computer, a customer system, your desktop, your company’s knowledge), in <em>who</em> they serve (an engineer, a service team, a sales team, an individual, a whole organisation), and in <em>how</em> they hand control back. What they share is the loop you met in section 5, and, in every case that we could read, a stated place where a person approves, reviews or takes over.
+              Put the six side by side and a pattern appears. They differ in <em>where</em> they work (a cloud computer, a customer system, your desktop, your company’s knowledge), in <em>who</em> they serve (an engineer, a service team, a sales team, an individual, a whole organisation), and in <em>how</em> they hand control back. What they share is the loop you met in section 6, and, in every case that we could read, a stated place where a person approves, reviews or takes over.
             </p>
-            <Figure number={33} caption="Six agents at a glance. Every cell summarises the maker’s own words; the columns and the “best first job” are our own.">
+            <Figure number={37} caption="Six agents at a glance. Every cell summarises the maker’s own words; the columns and the “best first job” are our own.">
               <AgentsCompare />
             </Figure>
             <p>
-              Before you choose any agent, ask five questions. <strong>What job is it for?</strong> Narrow beats vague. <strong>What can it touch?</strong> List the files, apps and accounts, and remove what it does not need. <strong>Who approves what?</strong> Decide which steps need your yes, using the permission ladder in section 12. <strong>Can I see the trail?</strong> If you cannot read what it did, you cannot check it. <strong>What does a mistake cost?</strong> If the answer is “a lot”, keep a human in the loop or choose a different job.
+              Before you choose any agent, ask five questions. <strong>What job is it for?</strong> Narrow beats vague. <strong>What can it touch?</strong> List the files, apps and accounts, and remove what it does not need. <strong>Who approves what?</strong> Decide which steps need your yes, using the permission ladder in section 14. <strong>Can I see the trail?</strong> If you cannot read what it did, you cannot check it. <strong>What does a mistake cost?</strong> If the answer is “a lot”, keep a human in the loop or choose a different job.
             </p>
             <p>
               And a word about what is <em>not</em> on this list. There are many more agents than six, in every field, and new ones every week. Do not read the omission of a product as a judgement on it. Read the six as six doors into the same room.
             </p>
 
-            {/* ── 9 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="humans" level="Intermediate" number={9}>How people really work with agents</SectionHeading>
+            {/* ── 10 · india today ──────────────────────────────────────────*/}
+            <SectionHeading id="india-today" level="Intermediate" number={10}>Agents in India today: from a village WhatsApp to UPI</SectionHeading>
             <p>
-              The best data we found on the human side comes from Microsoft’s 2026 Work Trend Index, published on 5 May 2026. It combines an analysis of “trillions of anonymized Microsoft 365 productivity signals” with a survey of 20,000 workers who use AI, across ten countries.<Cite slug={S} src="microsoft.com" />
+              India is a good place to watch this story unfold, because the hard problems here are the everyday ones: many languages, patchy connectivity, and services that have to work for people who have never used an app to ask for help. The four examples below are different in kind, from a village chatbot to an agent that may one day pay your bills, and each teaches something about doing this well. As before, we say who is making each claim.
             </p>
-            <Figure number={34} caption="A real screenshot of Microsoft’s 2026 Work Trend Index report, captured on 30 September 2026. The page belongs to Microsoft; shown here to document the source.">
+            <h3>Jugalbandi: a “chatbot plus plus”, in a Haryana village</h3>
+            <p>
+              In May 2023 Microsoft’s Source Asia published a feature from Biwan, a farming village in Haryana about two hours by car south of New Delhi. One farmer needed help applying for pensions for his aged parents. Another wanted to know why his government assistance payments had stopped. A university student needed a scholarship. “They all turned to Jugalbandi”, the report says, a generative AI chatbot for government assistance that “can understand questions in multiple languages, whether spoken or typed.”<Cite slug={S} src="news.microsoft.com/source/asia" />
+            </p>
+            <Figure number={38} caption="A real screenshot of Microsoft Source Asia’s feature on Jugalbandi, captured on 30 September 2026. The page and its photograph belong to Microsoft; shown here to document the source.">
+              <Pic file="shot-jugalbandi.jpg" alt="Screenshot of a Microsoft Source Asia article dated 23 May 2023 titled With help from next-generation AI, Indian villagers gain easier access to government services, with a photograph of two men in white kurtas looking at a phone in a ploughed field." width={1280} height={860} />
+            </Figure>
+            <p>
+              The pipeline is a good picture of how such tools work. A villager sends text or a voice note on WhatsApp; AI4Bharat’s speech recognition turns it into text; a Bhashini model translates it to English; a GPT model, through Azure OpenAI Service, finds the relevant government programme; and the answer travels back, spoken in the villager’s language. At the time it covered 10 of India’s 22 official languages and 171 of roughly 20,000 government programmes. An AI4Bharat officer called it “chatbot plus plus because it’s like a personalized agent”, and the honesty of its builders is worth quoting: “Sometimes these models do make errors. They are probabilistic machines... People still play an important role to see what works and what doesn’t work.”<Cite slug={S} src="news.microsoft.com/source/asia" /> That is the article you are reading in one sentence.
+            </p>
+            <h3>FarmerChat: advice with a human check</h3>
+            <p>
+              A more recent example is FarmerChat, from Digital Green. Rural Voice reported on 3 August 2026 that Digital Green India had announced that the assistant had “crossed 10 lakh users in India since its launch in October 2024”, alongside a redesigned FarmerChat 2.0. Farmers ask by voice, photo or text, in five languages, about crop planning, pests and diseases, livestock care, weather and inputs, and the app now suggests the questions a farmer should be asking for their crop, place and season.<Cite slug={S} src="eng.ruralvoice.in" />
+            </p>
+            <Figure number={39} caption="A real screenshot of Rural Voice’s report on FarmerChat, captured on 30 September 2026 and cropped to the headline. The page belongs to Rural Voice; shown here to document the source.">
+              <Pic file="shot-farmerchat-news.jpg" alt="Screenshot of a Rural Voice news article headlined Digital Green’s AI Farming Assistant Crosses 10 Lakh Users, published Aug 3, 2026." width={800} height={320} />
+            </Figure>
+            <p>
+              What stands out is how it is kept honest. The report says the assistant combines fine-tuned language models with retrieval from expert-validated datasets and feedback from people, and adds: “its outputs are not left unchecked: local agronomists and veterinarians regularly validate the responses farmers receive, feeding corrections back into the models.” The figures reported from Digital Green are striking, and they are the organisation’s own: in-person advice can cost about ₹3,300 per farmer a year and FarmerChat has brought that to ₹33; more than 30 lakh queries answered; women about 45% of users; and, according to a third-party evaluation by 60 Decibels, around 60% of active users act on the advice and 91% report greater confidence in their decisions.<Cite slug={S} src="eng.ruralvoice.in" /> FarmerChat is an advice assistant rather than an agent that acts on a farmer’s behalf, but it shows the pattern good agents will need: a narrow job, local knowledge, and people checking the answers.
+            </p>
+            <h3>Sarvam: voice agents in Indian languages</h3>
+            <p>
+              Sarvam, a Bengaluru company, describes itself as “India’s Full-Stack Sovereign AI Platform”. Its products include voice agents, content and document agents, and work agents, and its site lists text-to-speech in 11 Indic languages, speech recognition in 12, and translation across 23.<Cite slug={S} src="https://www.sarvam.ai/" /> Its voice-agent page pitches “one platform to build, launch and scale voice agents that carry your customer context into every call”, agents that “call APIs during a live conversation” and “move from answers to completed actions”.<Cite slug={S} src="products/voice-agents" />
+            </p>
+            <Figure number={40} caption="A real screenshot of Sarvam’s voice-agents page, captured on 30 September 2026 and cropped above a cookie banner. The page belongs to Sarvam; shown here to document the source.">
+              <Pic file="shot-sarvam.jpg" alt="Screenshot of the Sarvam voice agents page with the headline Voice agents that sound human and deliver results and a Start building button." width={1280} height={615} />
+            </Figure>
+            <p>
+              The page claims “350M+ conversations”, latency under 500 milliseconds and “under 5 minutes to go live”, and quotes Tata Capital’s chief digital officer: “We are reaching more customers with greater relevance, breaking access barriers, and deepening engagement.” All of that is Sarvam’s own material. It is worth noticing, too, that Sarvam’s home page puts “human at the core”: it says forward-deployed engineers “work alongside your teams to deliver production-ready agents”.<Cite slug={S} src="products/voice-agents" /> A phone call in your own language, answered at any hour, is one of the clearest ways an agent could help millions of people, and also one where a person should always be reachable when the conversation goes wrong.
+            </p>
+            <h3>UPI: teaching money to trust a machine, carefully</h3>
+            <p>
+              Money is where India’s agent story is most interesting, because India’s Unified Payments Interface (UPI) is how so many people pay. In October 2025 TechCrunch reported a pilot by the National Payments Corporation of India (NPCI) with OpenAI and Razorpay that let people shop and pay directly inside ChatGPT, starting with BigBasket for groceries and Vi for mobile recharges. Users “pre-authorize the amount transacted through chatbots through two-factor authentication”, it reported, using UPI Reserve Pay and UPI Circle, with Axis Bank and Airtel Payments Bank as partners, and Razorpay said “AI companies will not get access to the payment data”.<Cite slug={S} src="techcrunch.com/2025/10/09" />
+            </p>
+            <p>
+              A September 2026 report by AI in Asia looks ahead. It says NPCI was expected to present a “Unified Agent Protocol” at the Global Fintech Fest in Mumbai on 8–11 September, letting registered AI agents make UPI payments within limits the user sets. It notes the existing ceilings that the design reuses, ₹10,000 for a Reserve Pay block of up to 90 days and ₹15,000 a month for a delegated user, both “reportedly under review”, that UPI carried 24.51 billion transactions worth ₹29.82 trillion in August 2026, and that the liability framework and Reserve Bank of India approval were still unfinished.<Cite slug={S} src="aiinasia.com" /> We could not find a confirmed launch, so treat the protocol as expected, not live.
+            </p>
+            <Figure number={41} caption="The design idea behind agent payments on UPI, in our own drawing, from the sources above. A sketch of a reported design, not a live service.">
+              <UpiFence />
+            </Figure>
+            <p>
+              Look at the design, because it is the whole safety lesson of this article in one picture. The system does not ask you to trust the agent. It asks you to set a fence, once, and lets the payment rails enforce it: an agent that can only spend what you pre-authorised cannot spend more, whatever it decides. That is rung 4 of the permission ladder in section 14, “act inside a fence”, applied to money. The open questions, who is liable if an agent misbuys and what the regulator will allow, are exactly the ones our <Link href={`/${governance.slug}`}>AI governance guide</Link> tells organisations to settle before they deploy, and that guide also explains India’s own AI governance guidelines.
+            </p>
+            <h3>What the four have in common</h3>
+            <p>
+              Language first: each meets people in the language they speak, by voice as much as by text. Human checks second: farmers’ answers are validated by experts, villagers are told the bot can err, Sarvam puts engineers beside its clients, and UPI puts a limit between the agent and your money. And third, an honesty about numbers that is worth copying: most of the impressive figures above come from the builders themselves, and we have said so each time.
+            </p>
+
+            {/* ── 9 ─────────────────────────────────────────────────────────*/}
+            <SectionHeading id="humans" level="Intermediate" number={11}>How people really work with agents</SectionHeading>
+            <p>
+              The best data we found on the human side comes from Microsoft’s 2026 Work Trend Index, published on 5 May 2026. It combines an analysis of “trillions of anonymized Microsoft 365 productivity signals” with a survey of 20,000 workers who use AI, across ten countries.<Cite slug={S} src="worklab" />
+            </p>
+            <Figure number={42} caption="A real screenshot of Microsoft’s 2026 Work Trend Index report, captured on 30 September 2026. The page belongs to Microsoft; shown here to document the source.">
               <Pic file="shot-wti.jpg" alt="Screenshot of the Microsoft WorkLab page for the 2026 Work Trend Index annual report titled Agents, human agency, and the opportunity for every organization, dated May 5, 2026." width={800} height={534} />
             </Figure>
             <h3>What people ask for</h3>
             <p>
-              In a privacy-preserving analysis of more than 100,000 Microsoft 365 Copilot chats from one week in February 2026, 49% of conversations supported “cognitive work”: helping people analyse information, solve problems, evaluate and think creatively. The rest split among working with people (19%), producing work (17%) and finding information (15%).<Cite slug={S} src="microsoft.com" />
+              In a privacy-preserving analysis of more than 100,000 Microsoft 365 Copilot chats from one week in February 2026, 49% of conversations supported “cognitive work”: helping people analyse information, solve problems, evaluate and think creatively. The rest split among working with people (19%), producing work (17%) and finding information (15%).<Cite slug={S} src="worklab" />
             </p>
-            <Figure number={35} caption="What people ask Microsoft 365 Copilot to help with.">
+            <Figure number={43} caption="What people ask Microsoft 365 Copilot to help with.">
               <CopilotBars />
             </Figure>
             <p>
@@ -674,27 +788,27 @@ export default function AiAgentsSideBySide() {
             </p>
             <h3>Time for what matters</h3>
             <p>
-              Among the AI users Microsoft surveyed, 66% said AI let them spend more time on high-value work, and 58% said they were producing work they could not have a year earlier. The report also singles out “Frontier Professionals”, the most advanced users, who use agents for multi-step workflows and build multi-agent systems. They are 16% of those surveyed.<Cite slug={S} src="microsoft.com" />
+              Among the AI users Microsoft surveyed, 66% said AI let them spend more time on high-value work, and 58% said they were producing work they could not have a year earlier. The report also singles out “Frontier Professionals”, the most advanced users, who use agents for multi-step workflows and build multi-agent systems. They are 16% of those surveyed.<Cite slug={S} src="worklab" />
             </p>
             <p>
-              Microsoft’s framing is worth quoting, because it captures the promise of this whole article: “as agents take on more of the execution, humans increasingly have more agency—more room to direct the work, make the calls, and own the outcomes.”<Cite slug={S} src="microsoft.com" />
+              Microsoft’s framing is worth quoting, because it captures the promise of this whole article: “as agents take on more of the execution, humans increasingly have more agency—more room to direct the work, make the calls, and own the outcomes.”<Cite slug={S} src="worklab" />
             </p>
             <h3>Four ways of working with AI</h3>
             <p>
-              Microsoft describes four modes, depending on how much the person engages and how much the AI does: <strong>delegation</strong>, <strong>collaboration</strong>, <strong>asking</strong> and <strong>exploration</strong>. What set the Frontier Professionals apart, it says, “isn’t which mode they use; it’s knowing which mode a task calls for.” Routine execution, research and synthesis get delegated; humans stay involved “by setting direction and taking responsibility for how outputs are used.”<Cite slug={S} src="microsoft.com" />
+              Microsoft describes four modes, depending on how much the person engages and how much the AI does: <strong>delegation</strong>, <strong>collaboration</strong>, <strong>asking</strong> and <strong>exploration</strong>. What set the Frontier Professionals apart, it says, “isn’t which mode they use; it’s knowing which mode a task calls for.” Routine execution, research and synthesis get delegated; humans stay involved “by setting direction and taking responsibility for how outputs are used.”<Cite slug={S} src="worklab" />
             </p>
-            <Figure number={36} caption="Microsoft’s four modes of working with AI, in our plain-English reading.">
+            <Figure number={44} caption="Microsoft’s four modes of working with AI, in our plain-English reading.">
               <FourModes />
             </Figure>
             <h3>The habits of the best</h3>
             <p>
-              The most striking finding is what the most advanced users do <em>not</em> hand over. Frontier Professionals were more likely than other users to say they intentionally do some work without AI to keep their skills sharp (43% against 30%), and to pause before starting work to decide what should be done by AI and what by a person (53% against 33%). Across all users, 86% said they treat AI output as a starting point, not a final answer, and that they “stay responsible for the thinking.” When asked which human skills matter more as AI takes on more work, the top answers were quality control of AI output (50%) and critical thinking (46%).<Cite slug={S} src="microsoft.com" />
+              The most striking finding is what the most advanced users do <em>not</em> hand over. Frontier Professionals were more likely than other users to say they intentionally do some work without AI to keep their skills sharp (43% against 30%), and to pause before starting work to decide what should be done by AI and what by a person (53% against 33%). Across all users, 86% said they treat AI output as a starting point, not a final answer, and that they “stay responsible for the thinking.” When asked which human skills matter more as AI takes on more work, the top answers were quality control of AI output (50%) and critical thinking (46%).<Cite slug={S} src="worklab" />
             </p>
-            <Figure number={37} caption="Two habits that separate the most advanced AI users from the rest.">
+            <Figure number={45} caption="Two habits that separate the most advanced AI users from the rest.">
               <FrontierHabits />
             </Figure>
             <p>
-              Microsoft also offers a way to think about your own role. As AI matures across a workforce, it argues, the most effective users “won’t be the ones who do more things faster. They’ll be the ones who redefine their value around what only humans can do: setting clear intent—defining the desired outcome and quality bar—and designing how the work gets done across humans and AI.” Then it flips the question: it “stops being ‘What tasks define my job?’ and starts being ‘What outcomes am I now positioned to drive?’”<Cite slug={S} src="microsoft.com" />
+              Microsoft also offers a way to think about your own role. As AI matures across a workforce, it argues, the most effective users “won’t be the ones who do more things faster. They’ll be the ones who redefine their value around what only humans can do: setting clear intent—defining the desired outcome and quality bar—and designing how the work gets done across humans and AI.” Then it flips the question: it “stops being ‘What tasks define my job?’ and starts being ‘What outcomes am I now positioned to drive?’”<Cite slug={S} src="worklab" />
             </p>
             <p>
               That is a hopeful sentence, and it is worth trying on for size. Take your own week. Which tasks do you do because someone has to, and which outcomes do you do because they are the reason you are there? An agent is best at the first list. The second is yours.
@@ -705,21 +819,21 @@ export default function AiAgentsSideBySide() {
 
             <h3>What agents are good at, and where they stumble</h3>
             <p>
-              Put the evidence together and a rough division of labour emerges. It is our synthesis, not a finding of any one source, and it will move as the technology does. Agents are at their best on work that is <strong>routine</strong> (the same steps every week), <strong>information-heavy</strong> (lots of text, numbers or files to gather and compare), and <strong>checkable</strong> (you can tell quickly whether the result is right). That describes a great deal of modern office life: summarising, drafting, reconciling, scheduling, look-ups and first passes. It is exactly what Microsoft’s advanced users say they delegate: “routine execution, research, and synthesis.”<Cite slug={S} src="microsoft.com" />
+              Put the evidence together and a rough division of labour emerges. It is our synthesis, not a finding of any one source, and it will move as the technology does. Agents are at their best on work that is <strong>routine</strong> (the same steps every week), <strong>information-heavy</strong> (lots of text, numbers or files to gather and compare), and <strong>checkable</strong> (you can tell quickly whether the result is right). That describes a great deal of modern office life: summarising, drafting, reconciling, scheduling, look-ups and first passes. It is exactly what Microsoft’s advanced users say they delegate: “routine execution, research, and synthesis.”<Cite slug={S} src="worklab" />
             </p>
             <p>
               They stumble where the task is <strong>ambiguous</strong> (what does “good” mean here?), <strong>high-stakes</strong> (an error is costly or cannot be undone), or <strong>personal</strong> (the value lies in it coming from you). They can also be confidently wrong, as Turing’s admission that machines “take me by surprise” hints. In those areas, the sensible pattern is the one Microsoft’s data shows: the human sets the direction, checks the work and owns the result, and the agent supplies speed and stamina.
             </p>
 
             {/* ── 9 ─────────────────────────────────────────────────────────*/}
-            <SectionHeading id="tomorrow" level="Intermediate" number={10}>Tomorrow: you at the head of the team</SectionHeading>
+            <SectionHeading id="tomorrow" level="Intermediate" number={12}>Tomorrow: you at the head of the team</SectionHeading>
             <p>
               Now we can look ahead, in three steps. The first is on the calendar. Gartner predicts that by 2027 one-third of agentic AI implementations will combine agents with different skills to manage complex tasks, and that by 2028 networks of specialised agents will collaborate across applications, so that users can “achieve goals without interacting with each application individually.”<Cite slug={S} src="2025-08-26" />
             </p>
             <p>
               The second step is about <em>you</em>. Gartner predicts that by 2029, at least 50% of knowledge workers will “develop new skills to work with, govern or create AI agents on demand for complex tasks.” Its analyst adds: “As agentic AI matures, standardized protocols and frameworks will enable seamless interoperability, allowing agents to sense their environments, orchestrate projects and support a wide range of business scenarios.”<Cite slug={S} src="2025-08-26" /> Notice the shift in the job description. The person moves from doing every step to <em>directing</em> and <em>governing</em> a team of helpers. Turing’s teacher becomes a manager.
             </p>
-            <Figure number={38} caption="Three horizons. The first is reported, the second is Gartner’s prediction, and the third is our own imagination, not a forecast.">
+            <Figure number={46} caption="Three horizons. The first is reported, the second is Gartner’s prediction, and the third is our own imagination, not a forecast.">
               <ThreeHorizons />
             </Figure>
             <h3>A day in the imagined 2030s</h3>
@@ -732,7 +846,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Across town a teacher’s agent turns one lesson into three versions for three reading levels. The teacher spends the hour she has saved beside the child who needs her most. In a small shop, the owner’s agent chases late invoices, reorders stock and drafts the tax paperwork. The owner reads, signs and gets home in time for dinner. In the evening Asha’s agent gives her a two-minute summary of the day, flags the one decision it thinks she should sleep on, and goes quiet.
             </p>
-            <Figure number={39} caption="An imagined day, in five scenes. Fiction, not forecast.">
+            <Figure number={47} caption="An imagined day, in five scenes. Fiction, not forecast.">
               <ImaginedDay />
             </Figure>
             <p>
@@ -756,7 +870,7 @@ export default function AiAgentsSideBySide() {
             <p>
               By the dawn of the 2060s, the argument about whether machines would take over had gone quiet, the way arguments do when the thing they feared turns out to be something else. What had arrived instead was the hybrid workplace: a place where people and their agents worked in a rhythm so ordinary that children found it hard to imagine anything different. Humans had not been replaced. They had been unlocked.
             </p>
-            <Figure number={40} caption="An imagined scene of a human-and-agent workplace, supplied to MSRX. It is an illustration, not a screenshot or a product demo: the product names on its screens are illustrative, and some of the text in it is garbled. The artwork belongs to its creator.">
+            <Figure number={48} caption="An imagined scene of a human-and-agent workplace, supplied to MSRX. It is an illustration, not a screenshot or a product demo: the product names on its screens are illustrative, and some of the text in it is garbled. The artwork belongs to its creator.">
               <Pic file="human-ideas-ai-partners.jpg" alt="A bright, futuristic studio with floor-to-ceiling windows onto a city of green towers at sunset. A man reaches toward a glowing tree of connected ideas labelled Research, Summarize, Plan and Analyze. To his left a white humanoid robot works at a desk; to his right a translucent human figure points at charts. A wall reads Human ideas, AI partners, a brighter tomorrow." width={1600} height={900} />
             </Figure>
             <p>
@@ -768,7 +882,7 @@ export default function AiAgentsSideBySide() {
             <p>
               It is tempting to call this a hierarchy. It is closer to an orchestra. The agents have real independence: they run their own virtual computers, navigate software, and solve tangled problems in the background, and when a bottleneck appears they do not stop and wait; they find another path. But an orchestra needs a score, and the score is human. Leela decides what the building is <em>for</em>: who will live in it, what the street should feel like at dusk, which trade-off the city can live with. The agents explore the thousand ways of getting there.
             </p>
-            <Figure number={41} caption="Who brings what, in the imagined office. Fiction, not forecast.">
+            <Figure number={49} caption="Who brings what, in the imagined office. Fiction, not forecast.">
               <ImaginedRoles />
             </Figure>
             <p>
@@ -785,7 +899,7 @@ export default function AiAgentsSideBySide() {
             </p>
             <h3>What would have to be true</h3>
             <p>
-              A future like Leela’s does not arrive by itself. Five conditions would have to hold, and they are our own list, distilled from the sources in this article. <strong>Trust that can be checked:</strong> permissions, logs and human gates built in from the start, as Glean, Anthropic, Salesforce and OpenAI each describe in their own way. <strong>Open standards:</strong> the shared plugs and phone lines we met in section 6, so that no single company owns the wiring. <strong>Skills for everyone:</strong> Gartner predicts that by 2029 at least half of knowledge workers will learn to work with, govern or create agents, and that has to be made possible for the rest as well.<Cite slug={S} src="2025-08-26" /> <strong>Shared gains:</strong> Gartner’s warning that firms that only cut costs will be overtaken by those that reinvest.<Cite slug={S} src="2026-09-09" /> And <strong>a pace we can steer:</strong> the debate in our article <Link href={`/${previous.slug}`}>Hands on the brake, foot on the gas</Link>.
+              A future like Leela’s does not arrive by itself. Five conditions would have to hold, and they are our own list, distilled from the sources in this article. <strong>Trust that can be checked:</strong> permissions, logs and human gates built in from the start, as Glean, Anthropic, Salesforce and OpenAI each describe in their own way. <strong>Open standards:</strong> the shared plugs and phone lines we met in section 7, so that no single company owns the wiring. <strong>Skills for everyone:</strong> Gartner predicts that by 2029 at least half of knowledge workers will learn to work with, govern or create agents, and that has to be made possible for the rest as well.<Cite slug={S} src="2025-08-26" /> <strong>Shared gains:</strong> Gartner’s warning that firms that only cut costs will be overtaken by those that reinvest.<Cite slug={S} src="2026-09-09" /> And <strong>a pace we can steer:</strong> the debate in our article <Link href={`/${previous.slug}`}>Hands on the brake, foot on the gas</Link>.
             </p>
             <h3>What should stay in your hands</h3>
             <p>
@@ -793,18 +907,25 @@ export default function AiAgentsSideBySide() {
             </p>
 
             {/* ── 10 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="recipes" level="Beginner" number={11}>Ten easy ways to start this week</SectionHeading>
+            <SectionHeading id="recipes" level="Beginner" number={13}>Ten easy ways to start this week</SectionHeading>
             <p>
               You do not need a company, a budget or a technical background to begin. The agents and assistants you can already reach handle everyday tasks well, and the skill that matters is the one Microsoft’s data points to: deciding what to hand over, and saying clearly what you want. Here are ten recipes, each one a request you could type this week, and each with the piece you keep.
             </p>
-            <Figure number={42} caption="Ten everyday recipes. The requests are our own suggestions and work with any capable assistant or agent; the third column is the human step we would keep.">
+            <Figure number={50} caption="Ten everyday recipes. The requests are our own suggestions and work with any capable assistant or agent; the third column is the human step we would keep.">
               <RecipeCards />
+            </Figure>
+            <h3>Six more, for everyday life in India</h3>
+            <p>
+              Here are six recipes shaped by Indian daily life: government schemes, train trips, school paperwork, learning in your own language, the shop counter and WhatsApp. Two of them lean on the tools in the previous section. Ask for links to official portals, and treat the answer as a lead to check, not a ruling.
+            </p>
+            <Figure number={51} caption="Six recipes for everyday life in India. Our own suggestions; none is tax, legal or financial advice.">
+              <IndiaRecipes />
             </Figure>
             <h3>Write the job description</h3>
             <p>
-              The biggest lever is how you brief the agent. Treat it like a new colleague on their first day. Tell it the goal, the background, the limits, the standard you expect and when to check in. Microsoft’s research says the most effective AI users are the ones who redefine their value around “setting clear intent—defining the desired outcome and quality bar”, and designing how the work gets done across humans and AI.<Cite slug={S} src="microsoft.com" /> Five lines are enough.
+              The biggest lever is how you brief the agent. Treat it like a new colleague on their first day. Tell it the goal, the background, the limits, the standard you expect and when to check in. Microsoft’s research says the most effective AI users are the ones who redefine their value around “setting clear intent—defining the desired outcome and quality bar”, and designing how the work gets done across humans and AI.<Cite slug={S} src="worklab" /> Five lines are enough.
             </p>
-            <Figure number={43} caption="The delegation card, our own template. Copy it into a note and fill it in before you hand over anything that matters.">
+            <Figure number={52} caption="The delegation card, our own template. Copy it into a note and fill it in before you hand over anything that matters.">
               <DelegationCard />
             </Figure>
             <p>
@@ -831,7 +952,7 @@ export default function AiAgentsSideBySide() {
             <p>
               Try the sorting game below. For each task, decide whether you would hand it over, team up with the agent, or keep it. The answers are ours, with reasons; you may reasonably disagree.
             </p>
-            <Figure number={44} caption="Interactive: sort ten everyday jobs. The answers are our own judgement, and each one comes with a reason.">
+            <Figure number={53} caption="Interactive: sort ten everyday jobs. The answers are our own judgement, and each one comes with a reason.">
               <DelegationSorter />
             </Figure>
             <Callout kind="tip" title="Use the time you win">
@@ -839,7 +960,7 @@ export default function AiAgentsSideBySide() {
             </Callout>
 
             {/* ── 11 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="shadows" level="Advanced" number={12}>The shadows worth respecting</SectionHeading>
+            <SectionHeading id="shadows" level="Advanced" number={14}>The shadows worth respecting</SectionHeading>
             <p>
               A bright story is more believable when it admits where the shadows fall. There are four worth knowing.
             </p>
@@ -849,44 +970,44 @@ export default function AiAgentsSideBySide() {
             </p>
             <h3>2. Trusting it too much</h3>
             <p>
-              Agents make mistakes, sometimes in confident language. Microsoft’s finding that the top skills are quality control (50%) and critical thinking (46%) says it plainly: as AI does more, checking becomes more important, not less.<Cite slug={S} src="microsoft.com" /> Gartner’s September 2026 note makes the same point about organisations. It says the most effective will “resist the temptation to automate every task and delegate every decision to AI”, and warns that as AI is embedded in more processes, there is “a growing risk that context, human judgement and institutional knowledge could be lost.”<Cite slug={S} src="2026-09-09" />
+              Agents make mistakes, sometimes in confident language. Microsoft’s finding that the top skills are quality control (50%) and critical thinking (46%) says it plainly: as AI does more, checking becomes more important, not less.<Cite slug={S} src="worklab" /> Gartner’s September 2026 note makes the same point about organisations. It says the most effective will “resist the temptation to automate every task and delegate every decision to AI”, and warns that as AI is embedded in more processes, there is “a growing risk that context, human judgement and institutional knowledge could be lost.”<Cite slug={S} src="2026-09-09" />
             </p>
             <h3>3. Agents that go beyond the fence</h3>
             <p>
               The most serious shadow is behavioural. In the summer of 2026, several AI labs disclosed cases where agents being tested reached real systems or worked around the limits they were given. We covered them in <Link href={`/${previous.slug}`}>Hands on the brake, foot on the gas</Link>, and our <a href={`${NEWS}/openai-pauses-training-after-sandbox-dns-escape`}>brief on a training sandbox escape</a> shows a recent example. The lesson for everyday users is not panic; it is design. Give an agent the minimum access it needs, keep a human gate before anything irreversible, and keep a record of what it did. Our <Link href={`/${governance.slug}`}>guide to AI governance and risk management</Link> shows how organisations do this formally, and our <Link href={`/${muse.slug}`}>article on Muse</Link> shows what damage-limiting looks like inside a consumer agent.
             </p>
-            <Figure number={45} caption="How much freedom to give an agent: a ladder, in our own drawing. Start on the lower rungs and climb only when the agent has earned it.">
+            <Figure number={54} caption="How much freedom to give an agent: a ladder, in our own drawing. Start on the lower rungs and climb only when the agent has earned it.">
               <PermissionLadder />
             </Figure>
             <h3>4. The people behind the productivity</h3>
             <p>
-              The last shadow is about jobs, and here the evidence is more nuanced than either the hype or the fear. Microsoft found that 65% of AI users fear falling behind if they do not use AI to adapt quickly, that 45% say it feels safer to focus on current goals than to redesign work with AI, and that only 13% say they are rewarded for reinventing work with AI when results fall short. It calls this the “Transformation Paradox”: employees ready to reinvent how they work, inside systems that reinforce the old way.<Cite slug={S} src="microsoft.com" />
+              The last shadow is about jobs, and here the evidence is more nuanced than either the hype or the fear. Microsoft found that 65% of AI users fear falling behind if they do not use AI to adapt quickly, that 45% say it feels safer to focus on current goals than to redesign work with AI, and that only 13% say they are rewarded for reinventing work with AI when results fall short. It calls this the “Transformation Paradox”: employees ready to reinvent how they work, inside systems that reinforce the old way.<Cite slug={S} src="worklab" />
             </p>
             <Callout kind="warn" title="Watch out for two easy mistakes">
-              <p><strong>Never hand over passwords, card numbers or one-time codes</strong> to any agent, and prefer tools that ask permission for each sensitive step instead of holding your credentials. And <strong>never let an agent send, pay or sign</strong> something you have not read. These two habits remove most of the everyday risk.</p>
+              <p><strong>Never hand over passwords, card numbers, UPI PINs, Aadhaar or PAN numbers, or one-time codes (OTPs)</strong> to any agent, and prefer tools that ask permission for each sensitive step instead of holding your credentials. And <strong>never let an agent send, pay or sign</strong> something you have not read. These two habits remove most of the everyday risk.</p>
             </Callout>
 
             <h3>Four habits that lower nearly every risk</h3>
             <p>
-              <strong>Sample-check.</strong> Read the whole output the first few times. Once you trust the routine, spot-check a few items, such as one in ten of the rows or one in five of the drafts. <strong>Ask for sources.</strong> “Quote the clause” or “link the page” turns a confident-sounding claim into something you can verify in seconds. <strong>Keep a trail.</strong> Prefer tools that show what the agent did, so you can retrace it if something looks odd. <strong>Start small.</strong> Give an agent a job where a mistake costs you ten minutes, not ten thousand rupees, and widen its freedom only as it earns it. These are the same habits Turing’s “surprise” pointed to seventy-six years ago, and they are the same habits that Microsoft’s most advanced users report.<Cite slug={S} src="microsoft.com" />
+              <strong>Sample-check.</strong> Read the whole output the first few times. Once you trust the routine, spot-check a few items, such as one in ten of the rows or one in five of the drafts. <strong>Ask for sources.</strong> “Quote the clause” or “link the page” turns a confident-sounding claim into something you can verify in seconds. <strong>Keep a trail.</strong> Prefer tools that show what the agent did, so you can retrace it if something looks odd. <strong>Start small.</strong> Give an agent a job where a mistake costs you ten minutes, not ten thousand rupees, and widen its freedom only as it earns it. These are the same habits Turing’s “surprise” pointed to seventy-six years ago, and they are the same habits that Microsoft’s most advanced users report.<Cite slug={S} src="worklab" />
             </p>
             <p>
               None of this is a reason to hold back. A bright future and a careful present belong together. The seat-belt did not stop cars being useful; it made it reasonable to get in.
             </p>
 
             {/* ── 12 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="amplify" level="Intermediate" number={13}>Amplify, don’t just replace</SectionHeading>
+            <SectionHeading id="amplify" level="Intermediate" number={15}>Amplify, don’t just replace</SectionHeading>
             <p>
               The most important question is not what agents can do but what organisations choose to do with the savings. Gartner’s September 2026 note draws the line clearly. It predicts that by 2029, 30% of employees laid off due to replacement by AI will need to be rehired, “often at a significantly higher cost”. It says that while workforce cuts “may deliver short-term financial gains, they deplete talent pipelines and erode institutional knowledge.”<Cite slug={S} src="2026-09-09" />
             </p>
             <p>
               The alternative it recommends is a “talent remix” strategy: using AI “to reshape roles and redirect workers from less productive work, to new opportunities.” It also predicts that by 2027, 75% of organisations that treat AI productivity gains as cost savings will be eclipsed by competitors that “aggressively reinvest those gains into innovation, modernization and upskilling.”<Cite slug={S} src="2026-09-09" />
             </p>
-            <Figure number={46} caption="Two ways to use the same technology, according to Gartner’s September 2026 note. Both figures are Gartner predictions.">
+            <Figure number={55} caption="Two ways to use the same technology, according to Gartner’s September 2026 note. Both figures are Gartner predictions.">
               <AmplifyOrReplace />
             </Figure>
             <p>
-              Microsoft’s research points the same way from the worker’s side. Organisational factors, meaning culture, manager support and talent practices, account for more than twice the reported AI impact of individual factors like mindset and behaviour (67% against 32%). In its words: “In many cases, people are ready. The systems around them are not.” In a separate Microsoft-led study of 1,800 workers, when managers actively modelled AI use, employees reported a 17-point lift in AI value, a 22-point lift in critical thinking about their AI use and a 30-point lift in trust in agentic AI.<Cite slug={S} src="microsoft.com" />
+              Microsoft’s research points the same way from the worker’s side. Organisational factors, meaning culture, manager support and talent practices, account for more than twice the reported AI impact of individual factors like mindset and behaviour (67% against 32%). In its words: “In many cases, people are ready. The systems around them are not.” In a separate Microsoft-led study of 1,800 workers, when managers actively modelled AI use, employees reported a 17-point lift in AI value, a 22-point lift in critical thinking about their AI use and a 30-point lift in trust in agentic AI.<Cite slug={S} src="worklab" />
             </p>
             <p>
               If you lead a team, that finding is your to-do list: use the tools in front of your people, say how you check the output, and reward the ones who try. If you are on a team, it is also a reason to speak up. The best results in the data came where the people around the worker made it safe to experiment.
@@ -897,7 +1018,7 @@ export default function AiAgentsSideBySide() {
               <strong>“Agents will take every job.”</strong> The best-evidenced statement in our sources is more careful than that. Gartner argues that cutting deeply and quickly backfires, predicting that 30% of people laid off for AI will need rehiring.<Cite slug={S} src="2026-09-09" /> It does not say jobs will not change; it says the smart move is to change them, not delete them.
             </p>
             <p>
-              <strong>“You need to be technical.”</strong> The recipes in this article need only clear writing. What the data rewards is judgement, clear intent and the habit of checking, and 86% of the AI users Microsoft surveyed already treat AI output as a starting point.<Cite slug={S} src="microsoft.com" /> Those are skills that people from every background can grow.
+              <strong>“You need to be technical.”</strong> The recipes in this article need only clear writing. What the data rewards is judgement, clear intent and the habit of checking, and 86% of the AI users Microsoft surveyed already treat AI output as a starting point.<Cite slug={S} src="worklab" /> Those are skills that people from every background can grow.
             </p>
             <p>
               <strong>“Agents are magic.”</strong> They are not. They are systems that plan, use tools and check their work, that sometimes get it wrong, and that get better when you brief them well. Gartner’s word for the overselling of them, “agentwashing”, is worth remembering whenever a product’s promise sounds too smooth.<Cite slug={S} src="2025-08-26" />
@@ -915,7 +1036,7 @@ export default function AiAgentsSideBySide() {
             </p>
 
             {/* ── 14 · faq ──────────────────────────────────────────────────*/}
-            <SectionHeading id="faq" level="Beginner" number={14}>Questions people ask</SectionHeading>
+            <SectionHeading id="faq" level="Beginner" number={16}>Questions people ask</SectionHeading>
             <p>
               The questions we hear most, with short answers. Tap one to open it.
             </p>
@@ -927,10 +1048,12 @@ export default function AiAgentsSideBySide() {
                 { q: "Do I need to know how to code?", a: "No. Most of the recipes in this article need only clear writing. The skill that matters is saying precisely what you want, what the agent may touch and when it should ask you." },
                 { q: "Is it safe to give an agent access to my email and files?", a: "Start on the lowest rungs of the permission ladder: look only, then draft only. Give access to the minimum, keep a human gate before anything irreversible, and never share passwords or one-time codes. Anthropic itself advises against using computer use for finance, legal, medical or others’ personal data.", cite: "14128542" },
                 { q: "What should I never delegate?", a: "Anything where the value lies in it being you: a condolence message, a hard conversation, a signature on a contract, an approval of a large payment. Agents can prepare these; you should do them." },
-                { q: "How do I know when an agent got it wrong?", a: "Ask for sources, sample-check the output, and keep a trail. Microsoft finds that the top human skills as AI does more are quality control (50%) and critical thinking (46%).", cite: "microsoft.com" },
+                { q: "How do I know when an agent got it wrong?", a: "Ask for sources, sample-check the output, and keep a trail. Microsoft finds that the top human skills as AI does more are quality control (50%) and critical thinking (46%).", cite: "worklab" },
                 { q: "How much does it cost?", a: "It varies and changes often, so check each maker’s page. As examples from the pages we read: OpenAI says the first dot is included in the plan “at no extra cost”, and Anthropic listed computer use as available on Pro and Max plans only.", cite: "openai.com/index/introducing-dots" },
                 { q: "What are MCP and A2A, and why should I care?", a: "MCP is a shared standard for connecting an AI to tools and data; A2A lets agents talk to other agents. You will never touch them, but they decide how easily your assistant can reach your tools, and how easily you can switch.", cite: "anthropic.com/news/model-context-protocol" },
                 { q: "How is this different from the automation I already have, like macros or rules?", a: "A macro or a rule follows a fixed script and breaks when the situation changes. An agent is given a goal and works out the steps, which makes it more flexible and also less predictable. That is why the checking habits in this article matter." },
+                { q: "Are there agents that work in Indian languages?", a: "Yes, and the list is growing. Microsoft reported that Jugalbandi covered 10 of India’s 22 official languages in 2023; FarmerChat works in five languages; and Sarvam lists speech recognition in 12 Indic languages. Coverage varies by tool and by language, so test the tool in yours before you rely on it.", cite: "news.microsoft.com/source/asia" },
+                { q: "Is it safe to give an agent my Aadhaar, PAN, UPI PIN or an OTP?", a: "No. Never share these with an agent or a chatbot. In the UPI pilot as reported, you pre-authorise an amount with two-factor authentication and the payment data stays out of the AI company’s hands; the agent is not meant to hold your PIN. Treat any tool that asks for one as a red flag.", cite: "techcrunch.com/2025/10/09" },
                 { q: "Where can I learn more on this site?", a: "Start with Agentic AI 101 for how agents work, the article on Meta’s Muse for a consumer agent, the AI governance guide for managing risk, and our brief on OpenAI’s dots for the latest launch." },
               ].map((item, i) => (
                 <details key={item.q} className="group rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] px-4 py-3">
@@ -948,7 +1071,7 @@ export default function AiAgentsSideBySide() {
             </div>
 
             {/* ── 15 · glossary ─────────────────────────────────────────────*/}
-            <SectionHeading id="glossary" level="Beginner" number={15}>A pocket glossary</SectionHeading>
+            <SectionHeading id="glossary" level="Beginner" number={17}>A pocket glossary</SectionHeading>
             <p>
               The words of the agent world, in plain language. Keep this handy when you read vendor pages.
             </p>
@@ -972,6 +1095,10 @@ export default function AiAgentsSideBySide() {
                 ["CI (continuous integration)", "Automatic checks that run on every code change."],
                 ["RAG (retrieval-augmented generation)", "Having an AI look up approved documents before it writes, so its answers are grounded in them."],
                 ["CRM", "Customer relationship management software: the system where a company keeps its customer records."],
+                ["UPI (Unified Payments Interface)", "India’s instant-payment system, run by the National Payments Corporation of India (NPCI)."],
+                ["UPI Circle and Reserve Pay", "UPI features that let a person delegate payment authority, or set aside money for future debits, up to a limit; the tools an agent-payments design would reuse."],
+                ["Indic languages", "The languages of India, such as Hindi, Bengali, Tamil, Telugu, Marathi and many more; a key test for any AI that wants to serve the country."],
+                ["Lakh", "An Indian unit for one hundred thousand; 10 lakh is one million."],
               ].map(([term, def]) => (
                 <div key={term} className="grid sm:grid-cols-[13rem_1fr] gap-x-4 gap-y-0.5 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] px-4 py-3">
                   <dt className="text-[14px] font-bold text-[var(--text-primary)]">{term}</dt>
@@ -981,11 +1108,11 @@ export default function AiAgentsSideBySide() {
             </dl>
 
             {/* ── 16 ────────────────────────────────────────────────────────*/}
-            <SectionHeading id="plan" level="Beginner" number={16}>Your first thirty days</SectionHeading>
+            <SectionHeading id="plan" level="Beginner" number={18}>Your first thirty days</SectionHeading>
             <p>
               Enough reading. Here is a month, in four steps, that fits around a full-time job.
             </p>
-            <Figure number={47} caption="A thirty-day plan, our own. It asks for about an hour a week.">
+            <Figure number={56} caption="A thirty-day plan, our own. It asks for about an hour a week.">
               <ThirtyDays />
             </Figure>
             <h3>Back to Asha</h3>
@@ -1032,7 +1159,7 @@ export default function AiAgentsSideBySide() {
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">
-              Anthropic, Google, Microsoft, Gartner, Novo Nordisk, Cognition, Salesforce, 11x, Glean, Block, OpenAI, the Linux Foundation, SRI International, Britannica and the other organisations named are independent of MSRX; this article is not affiliated with or endorsed by any of them. Facts and quotes are from the linked sources, read on 30 September 2026; the Gartner, Microsoft, Britannica, Novo Nordisk, Salesforce, OpenAI and the vendor pages for the six agents were read in a browser, and Turing’s paper was read on the publisher’s page and checked word for word against a public copy. The Novo Nordisk figures come from Anthropic’s own case study and were not independently verified. Gartner’s figures are predictions, not measurements. Every statistic in the section on six agents is a claim by the maker or its customers, and we have not tested those products. The image in the story of the 2060s and the dots artwork were supplied to MSRX and belong to their creators. Asha, Leela, the day in the 2030s, the story of the 2060s, the recipes, the delegation card, the permission ladder, the sorting game and the thirty-day plan are our own, and imagined scenes are labelled as such. The photographs are credited beside each; the screenshots are real captures of the sources, taken on 30 September 2026, and belong to their owners. This is general information, not professional advice: check any decision that matters with a qualified person. Spotted something out of date? <a href={`${MAIN_SITE}/contact`}>Tell us</a>.
+              Anthropic, Google, Microsoft, Gartner, Novo Nordisk, Cognition, Salesforce, 11x, Glean, Sarvam, Digital Green, NPCI, Razorpay, Block, OpenAI, the Linux Foundation, SRI International, Britannica and the other organisations named are independent of MSRX; this article is not affiliated with or endorsed by any of them. Facts and quotes are from the linked sources, read on 30 September 2026; the Gartner, Microsoft, Britannica, Novo Nordisk, Salesforce, OpenAI and the vendor pages for the six agents were read in a browser, and Turing’s paper was read on the publisher’s page and checked word for word against a public copy. The Novo Nordisk figures come from Anthropic’s own case study and were not independently verified. Gartner’s figures are predictions, not measurements. Every statistic in the sections on six agents and on agents in India is a claim by the maker, its customers or the reporting outlet, and we have not tested those products. The history of Indian mathematics and logic is told as the cited sources tell it; several dates are debated. The image in the story of the 2060s and the dots artwork were supplied to MSRX and belong to their creators. Asha, Leela, the day in the 2030s, the story of the 2060s, the recipes, the delegation card, the permission ladder, the sorting game and the thirty-day plan are our own, and imagined scenes are labelled as such. The photographs are credited beside each; the screenshots are real captures of the sources, taken on 30 September 2026, and belong to their owners. This is general information, not professional advice: check any decision that matters with a qualified person. Spotted something out of date? <a href={`${MAIN_SITE}/contact`}>Tell us</a>.
             </p>
           </article>
 

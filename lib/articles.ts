@@ -35,7 +35,7 @@ export interface Article {
   tags: string[];
   /** AA against white, like the app accents. */
   accent: string;
-  /** A long feature (over about 6,000 words, many products or sources) may cite up to 20 references instead of 10. */
+  /** A long feature (over about 6,000 words, many products or sources) may cite up to 35 references instead of 10. */
   longFeature?: boolean;
 }
 
@@ -46,10 +46,10 @@ export const articles: Article[] = [
     title: "Side by side: the long road to AI coworkers, and how to work with them today",
     subtitle: "From Greek steam-powered birds to a robot called Shakey, and from a standard plug for AI to the office of 2026. A story of how machines went from performing tricks to sharing our work, six real agents profiled with their makers’ own pages, the risks worth respecting, a bright story of the 2060s, and ten easy ways to put one to work for you this week",
     description:
-      "A story-led, sourced journey through two thousand years of machine helpers: ancient automata, Lovelace and Turing, Shakey the robot, the new standards that let AI agents use tools and talk to each other, what Gartner, Microsoft and Novo Nordisk report about agents at work, six working agents profiled in depth (Devin, Agentforce, 11x, Claude Cowork, Glean and OpenAI’s dots), an honest look at the risks, an imagined day in the 2030s and a story from the 2060s, practical everyday recipes, a delegation card, an FAQ, a glossary and a 30-day plan.",
+      "A story-led, sourced journey through two thousand years of machine helpers: ancient automata, Lovelace and Turing, Shakey the robot, the new standards that let AI agents use tools and talk to each other, what Gartner, Microsoft and Novo Nordisk report about agents at work, six working agents profiled in depth (Devin, Agentforce, 11x, Claude Cowork, Glean and OpenAI’s dots), an honest look at the risks, India’s early rules, zero and logic (with a claim check), agents in India today (Jugalbandi, FarmerChat, Sarvam and UPI), an imagined day in the 2030s and a story from the 2060s, practical everyday recipes including six for life in India, a delegation card, an FAQ, a glossary and a 30-day plan.",
     published: "2026-09-30",
     updated: "2026-09-30",
-    readingMinutes: 51,
+    readingMinutes: 63,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",
     tags: ["AI agents", "Agentic AI", "Future of work", "Model Context Protocol", "Agent2Agent", "Productivity", "Human-AI collaboration", "History of AI"],
