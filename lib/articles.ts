@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "ai-electricity-and-india",
+    title: "AI runs on electricity, and India is where demand is growing fastest",
+    subtitle: "A post about electricity and a chart about India sent us to the energy agencies’ own tables: what AI will ask of the world’s grids by 2030, what it means for India, and why “India leads” needs careful words",
+    description:
+      "A sourced look at how much electricity AI will use and where India fits. Using the IEA’s 2025 and 2026 reports and the Energy Institute’s data, it explains the units, the 485-to-950 TWh projection for data centres, India’s demand growth, grid strain and data-centre build-out, and checks a widely shared chart that put India at 60,000 TWh by 2051 against the agencies’ numbers.",
+    published: "2026-10-12",
+    updated: "2026-10-12",
+    readingMinutes: 16,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["AI electricity demand", "Data centres", "India", "Energy", "IEA", "Power grid", "AI infrastructure", "Fact-check"],
+    accent: "#B45309",
+  },
+  {
     slug: "ai-agents-side-by-side",
     title: "Side by side: the long road to AI coworkers, and how to work with them today",
     subtitle: "From Greek steam-powered birds to a robot called Shakey, and from a standard plug for AI to the office of 2026. A story of how machines went from performing tricks to sharing our work, six real agents profiled with their makers’ own pages, the risks worth respecting, a bright story of the 2060s, and ten easy ways to put one to work for you this week",

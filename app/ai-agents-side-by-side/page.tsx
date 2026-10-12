@@ -50,6 +50,7 @@ import { DelegationSorter } from "@/components/figures/DelegationSorter";
 
 const article = getArticle("ai-agents-side-by-side") as Article;
 const previous = getArticle("pacing-the-frontier") as Article;
+const next = getArticle("ai-electricity-and-india") as Article;
 const agentic = getArticle("agentic-ai-101") as Article;
 const muse = getArticle("meta-muse-everyday-automation") as Article;
 const governance = getArticle("ai-governance-risk-management") as Article;
@@ -1259,18 +1260,24 @@ export default function AiAgentsSideBySide() {
       </div>
 
       <section className="border-t border-[var(--border)] bg-[var(--paper-tint)]">
-        <div className="max-w-6xl mx-auto px-5 sm:px-6 py-12 grid sm:grid-cols-2 gap-4">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 py-12 grid sm:grid-cols-3 gap-4">
           <Link href={`/${previous.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5">
             <p className="flex items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
               <ArrowLeft size={13} aria-hidden="true" /> Previous article
             </p>
             <p className="display-sm text-[18px] text-[var(--text-primary)]">{previous.title}</p>
           </Link>
-          <Link href={`/${agentic.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
-            <p className="flex sm:justify-end items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
+          <Link href={`/${agentic.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-center">
+            <p className="flex sm:justify-center items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
               Go deeper: how agents work <ArrowRight size={13} aria-hidden="true" />
             </p>
             <p className="display-sm text-[18px] text-[var(--text-primary)]">{agentic.title}</p>
+          </Link>
+          <Link href={`/${next.slug}`} className="card-hover rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 sm:text-right">
+            <p className="flex sm:justify-end items-center gap-1.5 eyebrow text-[var(--text-tertiary)] mb-2">
+              Next article <ArrowRight size={13} aria-hidden="true" />
+            </p>
+            <p className="display-sm text-[18px] text-[var(--text-primary)]">{next.title}</p>
           </Link>
         </div>
       </section>

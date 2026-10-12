@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getReferences, REFERENCES_CHECKED } from "@/lib/references";
+import { getReferences, referencesCheckedOn } from "@/lib/references";
 import { formatArticleDate } from "@/lib/articles";
 
 /**
@@ -40,7 +40,7 @@ export function References({ slug }: { slug: string }) {
       <h2 id="references">References</h2>
       <p className="text-[14.5px] text-[var(--text-secondary)]">
         The sources behind this article: original papers, official announcements and documentation. Each link was opened and checked on{" "}
-        <time dateTime={REFERENCES_CHECKED}>{formatArticleDate(REFERENCES_CHECKED)}</time>; documentation without a fixed date is cited as it read that day.
+        <time dateTime={referencesCheckedOn(slug)}>{formatArticleDate(referencesCheckedOn(slug))}</time>; documentation without a fixed date is cited as it read that day.
       </p>
       <ol className="!mt-6 !pl-0 list-none space-y-4">
         {refs.map((r, i) => (

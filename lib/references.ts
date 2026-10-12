@@ -16,6 +16,15 @@ import { articles } from "@/lib/articles";
 
 export const REFERENCES_CHECKED = "2026-09-28";
 
+/** Articles whose sources were opened later than REFERENCES_CHECKED, by slug. */
+const CHECKED_ON: Record<string, string> = {
+  "ai-electricity-and-india": "2026-10-12",
+};
+
+export function referencesCheckedOn(slug: string): string {
+  return CHECKED_ON[slug] ?? REFERENCES_CHECKED;
+}
+
 export type ReferenceKind = "Paper" | "Announcement" | "Documentation" | "Reporting" | "Guide";
 
 export interface Reference {
@@ -169,6 +178,18 @@ const references: Record<string, Reference[]> = {
     { authors: "ISO/IEC", date: "December 2023", title: "ISO/IEC 42001:2023 — Information technology — Artificial intelligence — Management system", container: "ISO", url: "https://www.iso.org/standard/42001", kind: "Documentation", note: "What the AI management-system standard specifies and who it is for" },
     { authors: "Press Information Bureau, Government of India", date: "15 February 2026", title: "India AI Governance Guidelines: Enabling Safe and Trusted AI Innovation (PIB Backgrounder)", container: "Press Information Bureau", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2228315&reg=48&lang=2", kind: "Announcement", note: "The seven sutras, six pillars, legal position and proposed institutions" },
     { authors: "Sheasha, T.", date: "8 September 2026", title: "How We Built Safety Into Muse", container: "Meta AI Research", url: "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse", kind: "Announcement", note: "An example of technical guardrails: a separate permission authority, read/write separation and in-app approvals" },
+  ],
+  "ai-electricity-and-india": [
+    { authors: "Musk, E. (@elonmusk)", date: "10 October 2026", title: "Electricity production is the best metric for the true strength of any large-scale economy imo", container: "X", url: "https://x.com/elonmusk/status/2108952286030356925", kind: "Announcement", note: "Musk’s post, the a16z post it quotes (“There are no low electricity, rich countries”) and the description of a16z’s chart; 4.5 million views when read on 12 October 2026" },
+    { authors: "Our World in Data, using Ember and the Energy Institute", date: "updated 30 June 2026", title: "Primary energy consumption (total energy supply, TWh), with the same site’s electricity-generation and per-capita electricity charts", container: "Our World in Data", url: "https://ourworldindata.org/grapher/primary-energy-cons", kind: "Documentation", note: "2001 and 2025 total energy supply, electricity generation and electricity per person for India, China, the United States and the world; used to check the supplied chart" },
+    { authors: "International Energy Agency", date: "16 April 2026", title: "Key Questions on Energy and AI", container: "IEA", url: "https://www.iea.org/reports/key-questions-on-energy-and-ai", kind: "Reporting", note: "Data-centre electricity 485 TWh in 2025 to about 950 TWh in 2030; +17% and +50% in 2025; energy per task, agentic tasks, bottlenecks; the regional table (Table A.4); India’s 2026 budget and the AI Impact Summit" },
+    { authors: "International Energy Agency", date: "April 2025", title: "Energy and AI", container: "IEA", url: "https://www.iea.org/reports/energy-and-ai", kind: "Reporting", note: "415 TWh in 2024; shares by region; India’s data centres (about 9 TWh, 2 GW in June 2024, nearly 5 GW by 2030), grid reliability and open-access power purchases" },
+    { authors: "International Energy Agency", date: "February 2026", title: "Electricity 2026: Analysis and forecast to 2030", container: "IEA", url: "https://www.iea.org/reports/electricity-2026", kind: "Reporting", note: "India’s demand growth, 2021–2025 and 2026–2030 (6.4% a year, over 570 TWh), its sources, data-centre growth in India and in the United States, China’s share of global growth" },
+    { authors: "International Energy Agency", date: "12 November 2025", title: "World Energy Outlook 2025", container: "IEA", url: "https://www.iea.org/reports/world-energy-outlook-2025", kind: "Reporting", note: "Total energy supply (Table A.6) and electricity generation (Table A.17) by country in the Stated and Current Policies scenarios; India’s growth in energy demand" },
+    { authors: "International Energy Agency", date: "July 2026", title: "Electricity Mid-Year Update 2026", container: "IEA", url: "https://www.iea.org/reports/electricity-mid-year-update-2026", kind: "Reporting", note: "India’s 2025 and 2026 demand growth, the 270.8 GW peak on 21 May 2026, evening net load, shortages, prices and the nuclear and solar outlook" },
+    { authors: "India Brand Equity Foundation (reporting CBRE South Asia)", date: "7 October 2026", title: "India likely to add more than 200 MW of new data centre capacity in H2 2026, pushing total capacity to 2 GW: CBRE", container: "IBEF", url: "https://www.ibef.org/news/india-likely-to-add-more-than-200-mw-of-new-data-centre-capacity-in-h2-2026-pushing-total-capacity-to-2-gw-cbre", kind: "Reporting", note: "CBRE’s figures for India: about 130 MW added in H1 2026, 2 GW expected by end-2026, US$38 billion and US$173 billion of commitments, more than 15% tied to AI (CBRE’s own release was not retrieved)" },
+    { authors: "Google", date: "14 October 2025", title: "Our First AI Hub in India, Powered by a $15 Billion Investment", container: "Google India Blog", url: "https://blog.google/intl/en-in/company-news/our-first-ai-hub-in-india-powered-by-a-15-billion-investment/", kind: "Announcement", note: "About US$15 billion over 2026–2030, the Visakhapatnam campus “capable of gigawatt-scale compute capacity”, and the transmission, clean energy and storage it says it will deliver with partners" },
+    { authors: "Amazon", title: "Amazon announces it will invest $48 billion in India by 2030", container: "About Amazon", url: "https://www.aboutamazon.com/news/company-news/amazon-india-investment", kind: "Announcement", note: "US$48 billion total for 2026–2030, including an additional US$13 billion for AI and cloud infrastructure and AWS capacity in Mumbai and Hyderabad (the page carries no date; it refers to a 25 June meeting and to a 2025 announcement as past)" },
   ],
   "ai-agents-side-by-side": [
     { authors: "Britannica Editors", title: "Automaton", container: "Encyclopaedia Britannica", url: "https://www.britannica.com/technology/automaton", kind: "Guide", note: "Archytas’s pigeon, Heron, the Han orchestra, al-Jazarī’s peacocks, Jaquet-Droz’s writing android; most automata were objects of fancy" },
