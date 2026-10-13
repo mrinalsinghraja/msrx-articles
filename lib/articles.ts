@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "redesigning-source-control",
+    title: "When AI writes the code, source control becomes the bottleneck",
+    subtitle: "Anthropic went from about 2,500 merges a day to over 30,000 and replaced git for its monorepo in five months: what it built, why, and what its post does and does not claim",
+    description:
+      "A sourced walk through Anthropic’s 13 October 2026 engineering post on Scion, its in-house version-control system. It explains why git’s offline-first design strained under agent-scale merging, the five design principles, how changesets and cache tiers work, the results Anthropic reports, and what is and is not claimed.",
+    published: "2026-10-14",
+    updated: "2026-10-14",
+    readingMinutes: 13,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Source control", "Git", "Anthropic", "Scion", "Monorepo", "AI coding agents", "Developer infrastructure", "CI"],
+    accent: "#0E7490",
+  },
+  {
     slug: "ai-electricity-and-india",
     title: "AI runs on electricity, and India is where demand is growing fastest",
     subtitle: "A post about electricity and a chart about India sent us to the energy agencies’ own tables: what AI will ask of the world’s grids by 2030, what it means for India, and why “India leads” needs careful words",

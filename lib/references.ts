@@ -19,6 +19,7 @@ export const REFERENCES_CHECKED = "2026-09-28";
 /** Articles whose sources were opened later than REFERENCES_CHECKED, by slug. */
 const CHECKED_ON: Record<string, string> = {
   "ai-electricity-and-india": "2026-10-12",
+  "redesigning-source-control": "2026-10-14",
 };
 
 export function referencesCheckedOn(slug: string): string {
@@ -190,6 +191,14 @@ const references: Record<string, Reference[]> = {
     { authors: "India Brand Equity Foundation (reporting CBRE South Asia)", date: "7 October 2026", title: "India likely to add more than 200 MW of new data centre capacity in H2 2026, pushing total capacity to 2 GW: CBRE", container: "IBEF", url: "https://www.ibef.org/news/india-likely-to-add-more-than-200-mw-of-new-data-centre-capacity-in-h2-2026-pushing-total-capacity-to-2-gw-cbre", kind: "Reporting", note: "CBRE’s figures for India: about 130 MW added in H1 2026, 2 GW expected by end-2026, US$38 billion and US$173 billion of commitments, more than 15% tied to AI (CBRE’s own release was not retrieved)" },
     { authors: "Google", date: "14 October 2025", title: "Our First AI Hub in India, Powered by a $15 Billion Investment", container: "Google India Blog", url: "https://blog.google/intl/en-in/company-news/our-first-ai-hub-in-india-powered-by-a-15-billion-investment/", kind: "Announcement", note: "About US$15 billion over 2026–2030, the Visakhapatnam campus “capable of gigawatt-scale compute capacity”, and the transmission, clean energy and storage it says it will deliver with partners" },
     { authors: "Amazon", title: "Amazon announces it will invest $48 billion in India by 2030", container: "About Amazon", url: "https://www.aboutamazon.com/news/company-news/amazon-india-investment", kind: "Announcement", note: "US$48 billion total for 2026–2030, including an additional US$13 billion for AI and cloud infrastructure and AWS capacity in Mumbai and Hyderabad (the page carries no date; it refers to a 25 June meeting and to a 2025 announcement as past)" },
+  ],
+  "redesigning-source-control": [
+    { authors: "Anthropic (Nick G. and the source control team)", date: "13 October 2026", title: "Redesigning source control at Anthropic", container: "Anthropic Engineering", url: "https://www.anthropic.com/engineering/redesigning-source-control", kind: "Announcement", note: "The primary source: the merge growth, the 100 GB and 25 GB sizes, the principles, Scion’s design, the reported results and what the team learned" },
+    { authors: "Anthropic (@AnthropicAI)", date: "October 2026", title: "New on our Engineering blog: Creating in-house source control", container: "X", url: "https://x.com/AnthropicAI/status/2110047081414987957", kind: "Announcement", note: "Anthropic’s own summary post, with the 2,500 and 30,000 figures and the “bottlenecked by developer infrastructure” line" },
+    { authors: "Git project", title: "partial-clone", container: "Git documentation", url: "https://git-scm.com/docs/partial-clone", kind: "Documentation", note: "What a partial clone is: limiting the blobs and trees downloaded" },
+    { authors: "Git project", title: "git-sparse-checkout", container: "Git documentation", url: "https://git-scm.com/docs/git-sparse-checkout", kind: "Documentation", note: "What a sparse checkout is: only a subset of tracked files present in the working tree" },
+    { authors: "Potvin, R., & Levenberg, J.", date: "2016", title: "Why Google Stores Billions of Lines of Code in a Single Repository", container: "Communications of the ACM, 59, 78–87", url: "https://research.google/pubs/why-google-stores-billions-of-lines-of-code-in-a-single-repository/", kind: "Paper", note: "Google’s custom-built monolithic repository, the prior art the post names (Piper)" },
+    { authors: "Goode, D., & Bolin, M.", date: "15 November 2022", title: "Sapling: Source control that’s user-friendly and scalable", container: "Meta Engineering", url: "https://engineering.fb.com/2022/11/15/open-source/sapling-source-control-scalable/", kind: "Announcement", note: "Meta’s Sapling: ten years of work, a repository with tens of millions of files" },
   ],
   "ai-agents-side-by-side": [
     { authors: "Britannica Editors", title: "Automaton", container: "Encyclopaedia Britannica", url: "https://www.britannica.com/technology/automaton", kind: "Guide", note: "Archytas’s pigeon, Heron, the Han orchestra, al-Jazarī’s peacocks, Jaquet-Droz’s writing android; most automata were objects of fancy" },
