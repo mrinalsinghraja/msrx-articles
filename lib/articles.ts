@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "typesafe-jev-real-usage-cost",
+    title: "What $1.26 bought: a real day of TypeSafe Jev, and what the same tokens cost elsewhere",
+    subtitle: "One real usage page, 54,890 requests and 38 million tokens: how to read it, what the same tokens cost at other published prices, and what the screenshot cannot show",
+    description:
+      "A sourced case study built on a real TypeSafe console usage page: 54,890 requests, 38.3 million tokens and an estimated $1.26 in 24 hours. It recomputes the bill, prices the same tokens at Anthropic’s published list prices (about 5.7 to 570 times as much), explains batching and Jev’s limits, and says what the page cannot prove.",
+    published: "2026-10-15",
+    updated: "2026-10-15",
+    readingMinutes: 12,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["TypeSafe", "Jev", "AI inference cost", "System One", "Token pricing", "Case study", "LLM cost comparison"],
+    accent: "#6D28D9",
+  },
+  {
     slug: "redesigning-source-control",
     title: "When AI writes the code, source control becomes the bottleneck",
     subtitle: "Anthropic went from about 2,500 merges a day to over 30,000 and replaced git for its monorepo in five months: what it built, why, and what its post does and does not claim",

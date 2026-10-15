@@ -20,6 +20,7 @@ export const REFERENCES_CHECKED = "2026-09-28";
 const CHECKED_ON: Record<string, string> = {
   "ai-electricity-and-india": "2026-10-12",
   "redesigning-source-control": "2026-10-14",
+  "typesafe-jev-real-usage-cost": "2026-10-15",
 };
 
 export function referencesCheckedOn(slug: string): string {
@@ -191,6 +192,15 @@ const references: Record<string, Reference[]> = {
     { authors: "India Brand Equity Foundation (reporting CBRE South Asia)", date: "7 October 2026", title: "India likely to add more than 200 MW of new data centre capacity in H2 2026, pushing total capacity to 2 GW: CBRE", container: "IBEF", url: "https://www.ibef.org/news/india-likely-to-add-more-than-200-mw-of-new-data-centre-capacity-in-h2-2026-pushing-total-capacity-to-2-gw-cbre", kind: "Reporting", note: "CBRE’s figures for India: about 130 MW added in H1 2026, 2 GW expected by end-2026, US$38 billion and US$173 billion of commitments, more than 15% tied to AI (CBRE’s own release was not retrieved)" },
     { authors: "Google", date: "14 October 2025", title: "Our First AI Hub in India, Powered by a $15 Billion Investment", container: "Google India Blog", url: "https://blog.google/intl/en-in/company-news/our-first-ai-hub-in-india-powered-by-a-15-billion-investment/", kind: "Announcement", note: "About US$15 billion over 2026–2030, the Visakhapatnam campus “capable of gigawatt-scale compute capacity”, and the transmission, clean energy and storage it says it will deliver with partners" },
     { authors: "Amazon", title: "Amazon announces it will invest $48 billion in India by 2030", container: "About Amazon", url: "https://www.aboutamazon.com/news/company-news/amazon-india-investment", kind: "Announcement", note: "US$48 billion total for 2026–2030, including an additional US$13 billion for AI and cloud infrastructure and AWS capacity in Mumbai and Hyderabad (the page carries no date; it refers to a 25 June meeting and to a 2025 announcement as past)" },
+  ],
+  "typesafe-jev-real-usage-cost": [
+    { authors: "TypeSafe AI", date: "captured 15 October 2026", title: "Usage (console), last 24 hours", container: "TypeSafe console (login required; shown as a real screenshot in Figure 1)", url: "https://console.typesafe.ai/usage", kind: "Documentation", note: "Spend $1.2609, 38,304,199 tokens, 54,890 requests, 30,021,743 input tokens; the page’s own footnote on price" },
+    { authors: "TypeSafe AI", title: "Models", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/models", kind: "Documentation", note: "$0.042 per million input tokens, output free; Jev 1.14 available from 14 October 2026; context limits" },
+    { authors: "Anthropic", title: "Pricing", container: "Claude Platform Docs", url: "https://platform.claude.com/docs/en/about-claude/pricing", kind: "Documentation", note: "List prices per million tokens for Haiku 5.5, Sonnet 5.5, Opus 5.5 and Fable 5.1" },
+    { authors: "TypeSafe AI", title: "System One", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/concepts/system-one", kind: "Documentation", note: "What a System One model is, that it returns typed answers and does not generate text" },
+    { authors: "TypeSafe AI", title: "How to build with TypeSafe", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/concepts/how-to-build-with-system-one", kind: "Documentation", note: "Keep code in control; give the model narrow, structured decisions" },
+    { authors: "TypeSafe AI", title: "Parallel questions", container: "TypeSafe cookbooks", url: "https://docs.typesafe.ai/cookbooks/parallel_questions", kind: "Documentation", note: "13 questions batched in one call: 12.2× cheaper and 10.0× faster, run on jev-1.12" },
+    { authors: "TypeSafe AI", date: "last reviewed 2 October 2026", title: "Jev 1.13 jaggedness", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/model-jaggedness/jev-1.13", kind: "Documentation", note: "Literal reading, numbers, dates, indirection, large noisy state and generation as weak spots" },
   ],
   "redesigning-source-control": [
     { authors: "Anthropic (Nick G. and the source control team)", date: "13 October 2026", title: "Redesigning source control at Anthropic", container: "Anthropic Engineering", url: "https://www.anthropic.com/engineering/redesigning-source-control", kind: "Announcement", note: "The primary source: the merge growth, the 100 GB and 25 GB sizes, the principles, Scion’s design, the reported results and what the team learned" },
