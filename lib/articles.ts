@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "tesla-roadster-flying-launch",
+    title: "Tesla’s flying Roadster: what was shown, and what was only said",
+    subtitle: "The 15 October 2026 reveal checked against Tesla’s own pages and four news reports: the three versions, the thrusters, the deposits, the regulators, and four AI claims we could not find",
+    description:
+      "A sourced look at Tesla’s Roadster reveal on 15 October 2026. Using Tesla’s Roadster and reservation pages and reports from TechCrunch, CBS News, Fox Business and Space.com, it covers what happened on stage, the Performance, Thrust and Rocket versions, how the suction and cold-gas thrusters work, what reserving costs, safety and regulators, and which AI claims are not supported.",
+    published: "2026-10-18",
+    updated: "2026-10-18",
+    readingMinutes: 12,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Tesla Roadster", "Elon Musk", "SpaceX", "Cold-gas thrusters", "Flying car", "Fact-check", "Electric vehicles"],
+    accent: "#B91C1C",
+  },
+  {
     slug: "typesafe-jev-real-usage-cost",
     title: "What $1.26 bought: a real day of TypeSafe Jev, and what the same tokens cost elsewhere",
     subtitle: "One real usage page, 54,890 requests and 38 million tokens: how to read it, what the same tokens cost at other published prices, and what the screenshot cannot show",
