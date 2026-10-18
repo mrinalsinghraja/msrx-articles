@@ -21,6 +21,27 @@ const T: Record<Tone, { fg: string; soft: string }> = {
   r: { fg: "var(--fig-rose)", soft: "var(--fig-rose-soft)" },
 };
 
+
+const BASE = "/tesla-roadster-flying-launch";
+
+/** A picture from Tesla's own Roadster page, hosted here because the site's CSP allows only same-origin images. */
+export function Pic({ file, alt, width, height }: { file: string; alt: string; width: number; height: number }) {
+  return (
+    <div className="mx-auto max-w-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`${BASE}/${file}`}
+        width={width}
+        height={height}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-auto rounded-[var(--radius)] border border-[var(--border)] bg-black"
+      />
+    </div>
+  );
+}
+
 function Note({ children }: { children: ReactNode }) {
   return <p className="mt-3 text-[11.5px] leading-snug text-[var(--text-tertiary)]">{children}</p>;
 }
@@ -171,6 +192,7 @@ export function Specs() {
         <tbody>
           {[
             ["0–60 mph", "Under 1 second", "Thrust (Tesla’s page)"],
+            ["0–60 mph, as posted", "0.81 seconds", "Tesla’s X post, 16 October (a video clip)"],
             ["Range", "300 miles", "All three trims (TechCrunch)"],
             ["Top speed", "More than 230 mph", "All three trims (TechCrunch); Fox Business: Musk, “certain versions”"],
             ["Seats", "2 (Performance, Thrust), 1 (Rocket)", "Tesla’s page"],
@@ -184,7 +206,7 @@ export function Specs() {
           ))}
         </tbody>
       </table>
-      <Note>Claims, not test results. The car was shown accelerating to 60 mph in under a second during the event, as Fox Business and TechCrunch report; there has been no independent measurement.</Note>
+      <Note>Claims, not test results. The car was shown accelerating to 60 mph in under a second during the event, as Fox Business and TechCrunch report, and Tesla later posted a clip captioned 0.81 seconds; there has been no independent measurement.</Note>
     </div>
   );
 }
@@ -228,7 +250,7 @@ export function Reserve() {
 export function Conflicts() {
   const rows: { t: string; d: string; tone: Tone; tag: string }[] = [
     { t: "Deposit: $5,000 or $50,000?", d: "Both are right. CBS reported the $5,000 due today; TechCrunch and Fox reported the $50,000 total. Tesla’s page shows $5,000 now and $45,000 within 10 days.", tone: "g", tag: "Resolved" },
-    { t: "0–60: “under a second”, “one second” or 0.8?", d: "Tesla’s page says “under 1 second” for Thrust. TechCrunch also wrote “one second”. A 0.8-second figure appeared in a search summary we saw, but not in any source we read.", tone: "a", tag: "Use Tesla’s" },
+    { t: "0–60: “under a second”, “one second” or 0.81?", d: "All three are Tesla’s own. Its page says “under 1 second” for Thrust, TechCrunch wrote “one second”, and Tesla’s X account posted a clip captioned “0-60 mph in 0.81 seconds” on 16 October. They are consistent, but 0.81 is a claim from one video, not a measured test.", tone: "g", tag: "Resolved" },
     { t: "Event date: 15 or 16 October?", d: "The event was Thursday 15 October in Texas. Space.com’s text says “last night (Oct. 16)”, which conflicts with its own and others’ dates.", tone: "a", tag: "15 Oct" },
     { t: "Where: Waco or McGregor?", d: "The SpaceX test site is in McGregor, near Waco. Both are used.", tone: "g", tag: "Same place" },
   ];

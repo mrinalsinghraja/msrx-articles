@@ -14,6 +14,7 @@ import {
   AirSystem,
   Conflicts,
   OnStage,
+  Pic,
   Reserve,
   SafetyRegs,
   Specs,
@@ -32,6 +33,7 @@ const S = article.slug;
 /** Exact URLs, so every citation matches one reference. */
 const U = {
   page: "https://www.tesla.com/roadster",
+  xpost: "https://x.com/Tesla/status/2110963770763649487",
   reserve: "https://www.tesla.com/roadster/reserve",
   tc: "https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/",
   cbs: "https://www.cbsnews.com/news/tesla-roadster-debut-elon-musk-flying-cars-are-real/",
@@ -167,19 +169,27 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               The event was livestreamed on Tesla’s X account from a SpaceX rocket-testing site in McGregor, near Waco, Texas.<Cite slug={S} src={U.cbs} /><Cite slug={S} src={U.fox} /> Elon Musk, who runs both Tesla and SpaceX, said “flying cars are real”, and added that the car’s “success is not guaranteed” but that “it will probably work.”<Cite slug={S} src={U.cbs} />
             </p>
-            <Figure number={1} caption="What happened in the demonstration, from the press accounts.">
+            <Figure number={1} caption="Tesla’s own picture of the Roadster, with its upward-opening doors raised. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026. It is a marketing image, not a photograph from the event, and Tesla does not say whether it is a render.">
+              <Pic file="rear-three-quarter.jpg" alt="Tesla marketing image of the Roadster from behind and the side with its doors raised, against a starry desert sky." width={1400} height={1134} />
+            </Figure>
+
+            <Figure number={2} caption="What happened in the demonstration, from the press accounts.">
               <OnStage />
             </Figure>
             <p>
               The car clung to the ramp by suction, dropped away, rolled and landed using cold-gas thrusters, then used the same thrusters to leap over a line of vehicles. TechCrunch lists a Cybercab, Cybertruck, Tesla Semi, Model Y and Model 3.<Cite slug={S} src={U.tc} /> Space.com counts six vehicles including a Semi cab and notes that the driver’s seat held a mannequin in a SpaceX spacesuit, a nod to the dummy that rode the first Roadster into space in 2018.<Cite slug={S} src={U.space} />
             </p>
+            <Figure number={3} caption="The picture Tesla’s page labels “Roadster orbiting Earth”, a spacesuited figure at the wheel. It echoes the Starman dummy in the 2018 Roadster that SpaceX launched into orbit. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026.">
+              <Pic file="starman-orbit.jpg" alt="Tesla marketing image of a Roadster with a spacesuited figure at the wheel, with Earth behind it." width={1400} height={803} />
+            </Figure>
+
             <Callout kind="eli5">
               <p>Think of it as a stage show for an engineering idea. The stunts prove the pieces can work together once, under controlled conditions. They do not show that anyone will be able to buy and use such a car.</p>
             </Callout>
             <p>
               The date matters because this car has been promised for a long time. Tesla first showed the second-generation Roadster in 2017 and, as Fox Business recounts, said deliveries would begin in 2020.<Cite slug={S} src={U.fox} />
             </p>
-            <Figure number={2} caption="Nine years from the first reveal to this one, as TechCrunch recounts it.">
+            <Figure number={4} caption="Nine years from the first reveal to this one, as TechCrunch recounts it.">
               <Timeline />
             </Figure>
 
@@ -188,13 +198,20 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               Tesla now describes three versions, and it matters which one a claim is about. Performance is “road ready”, with two seats, active aerodynamics and a suction system. Thrust is “race ready”, with rear thrusters. Rocket is “air ready”, with one seat and thrusters around the car.<Cite slug={S} src={U.page} />
             </p>
-            <Figure number={3} caption="The three versions, in Tesla’s words.">
+            <Figure number={5} caption="The Roadster’s angular nose and low roofline, as Tesla shows them. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026.">
+              <Pic file="front-three-quarter.jpg" alt="Tesla marketing image of a white Roadster seen from the front and side on a dark floor." width={1400} height={1037} />
+            </Figure>
+
+            <Figure number={6} caption="The three versions, in Tesla’s words.">
               <Trims />
             </Figure>
+            <Figure number={7} caption="The rear as Tesla shows it: a taillight bar above four round ports. Tesla’s page ties rear cold-gas thrusters to the Thrust version; this picture does not say which version it shows. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026.">
+              <Pic file="thruster-ports.jpg" alt="Close-up of the rear of the Roadster showing a glowing red taillight bar above four round ports." width={1400} height={1134} />
+            </Figure>
             <p>
-              Tesla’s page says the Thrust version goes from 0 to 60 mph in under one second, and a footnote says the specifications on the page are for the Thrust augment only, an optional upgrade.<Cite slug={S} src={U.page} /> TechCrunch reports that all three versions have 300 miles of range and can exceed 230 miles per hour.<Cite slug={S} src={U.tc} />
+              Tesla’s page says the Thrust version goes from 0 to 60 mph in under one second, and a footnote says the specifications on the page are for the Thrust augment only, an optional upgrade.<Cite slug={S} src={U.page} /> A day later Tesla’s X account posted a video clip captioned “0-60 mph in 0.81 seconds”.<Cite slug={S} src={U.xpost} /> TechCrunch reports that all three versions have 300 miles of range and can exceed 230 miles per hour.<Cite slug={S} src={U.tc} />
             </p>
-            <Figure number={4} caption="The headline figures, and who said each one. Claims, not test results.">
+            <Figure number={8} caption="The headline figures, and who said each one. Claims, not test results.">
               <Specs />
             </Figure>
             <p>
@@ -206,13 +223,19 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               There are two systems at work, and only one of them is a rocket. The first is suction. Tesla says a multi-mode fan and ground-sealing system pulls air from beneath the car as a downforce generator, with enough pull to hold it upside down even when stationary.<Cite slug={S} src={U.page} /> Musk said it should help the car stay glued to the road in fast corners.<Cite slug={S} src={U.space} />
             </p>
-            <Figure number={5} caption="The suction system, in three lines.">
+            <Figure number={9} caption="The suction system, in three lines.">
               <Suction />
+            </Figure>
+            <Figure number={10} caption="Tesla’s “Defying Gravity” picture: one view of the car upside down, another with gas venting from the rear. It illustrates the suction and thruster ideas rather than the event itself. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026.">
+              <Pic file="inverted-and-thrusters.jpg" alt="Tesla image of a Roadster seen from behind and upside down above a second view of the car with gas venting from its rear thrusters." width={1400} height={1400} />
+            </Figure>
+            <Figure number={11} caption="Tesla’s chart for its suction system: downforce against speed, with lines for the multi-mode fan, a “tire load limit” and low drag. There are no numbers on the axes, so it shows the idea, not measurements. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026.">
+              <Pic file="fan-downforce-graph.jpg" alt="Tesla graph of downforce against speed with lines for a multi-mode fan, a tyre load limit and low drag, with no numbers on the axes." width={1400} height={787} />
             </Figure>
             <p>
               The second is the thruster system. “Cold-gas” means these are not combustion rockets: they release compressed air. Tesla’s engineering vice-president Lars Moravy said the car has 10 thrusters fed from 600 litres of compressed air, stored in carbon-fibre-wrapped pressure vessels that fill every usable void.<Cite slug={S} src={U.space} /> Musk said the main thrusters are at the rear, with attitude-control thrusters that steer the car’s orientation.<Cite slug={S} src={U.space} /> Tesla said on X that the thrusters produce four to five times the force the tyres can.<Cite slug={S} src={U.fox} />
             </p>
-            <Figure number={6} caption="The air system in numbers. Tesla’s claims.">
+            <Figure number={12} caption="The air system in numbers. Tesla’s claims.">
               <AirSystem />
             </Figure>
             <Callout kind="deep">
@@ -224,7 +247,7 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               There is no price, but there is a way to put money down. Tesla’s reservation page shows $5,000 due today for the Performance version, labelled “fully refundable”, and a further $45,000 due within 10 days, so $50,000 in all.<Cite slug={S} src={U.reserve} /> The page warns that reservations are not final until payment is received and that refunds for modifications are not issued.<Cite slug={S} src={U.reserve} />
             </p>
-            <Figure number={7} caption="Reservation payments as of 18 October 2026. These are deposits, not the price of the car.">
+            <Figure number={13} caption="Reservation payments as of 18 October 2026. These are deposits, not the price of the car.">
               <Reserve />
             </Figure>
             <p>
@@ -239,7 +262,7 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               Regulators have not caught up. The Federal Aviation Administration told CBS News the vehicle does not meet its definition of an aircraft. The National Highway Traffic Safety Administration normally oversees cars but delegates safety certification to the manufacturer. A senior transport official was sceptical it could take off, but said there was no clear answer on who would oversee it.<Cite slug={S} src={U.cbs} />
             </p>
-            <Figure number={8} caption="Statements on safety, and where the regulators stand.">
+            <Figure number={14} caption="Statements on safety, and where the regulators stand.">
               <SafetyRegs />
             </Figure>
             <Callout kind="warn">
@@ -251,13 +274,16 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               This article began with a block of text that described the Roadster as an “intelligent” machine: machine learning balancing the thrusters, predictive tuning of torque, a Grok voice assistant in the cabin, and “Guardian Angel” neural networks that brake and steer to prevent crashes. We do not know where the text came from. We checked each claim against Tesla’s own pages and the four reports.
             </p>
-            <Figure number={9} caption="Four claims from the text we were given, against the sources.">
+            <Figure number={15} caption="Four claims from the text we were given, against the sources.">
               <AiClaims />
+            </Figure>
+            <Figure number={16} caption="The cabin as Tesla shows it: a yoke, a centre touchscreen and light seats. Neither the picture nor the page text mentions a voice assistant. Image: Tesla, from tesla.com/en_in/roadster, retrieved 18 October 2026.">
+              <Pic file="interior.jpg" alt="Tesla marketing image of the Roadster cabin with a yoke steering wheel, a centre touchscreen and light-coloured seats." width={1400} height={661} />
             </Figure>
             <p>
               The result is mixed. The thruster claim has a real basis in Tesla’s description of fast actuator control, but nothing says machine learning is involved. The torque-tuning claim confuses the cause: Tesla attributes the sub-one-second time to the rear thrusters, not to software that learns your driving.<Cite slug={S} src={U.page} /><Cite slug={S} src={U.fox} /> The Grok and “Guardian Angel” claims do not appear in any source we read. The safety claim also sits awkwardly with Musk’s own words about priorities.
             </p>
-            <Figure number={10} caption="Where AI does and does not enter the Roadster story.">
+            <Figure number={17} caption="Where AI does and does not enter the Roadster story.">
               <AiAngle />
             </Figure>
             <p>
@@ -269,7 +295,7 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               A product launch produces a flood of quick stories, and they do not always agree. We found four small conflicts, and checked each against Tesla’s pages where we could.
             </p>
-            <Figure number={11} caption="Conflicts in the coverage, and how we settled them.">
+            <Figure number={18} caption="Conflicts in the coverage, and how we settled them.">
               <Conflicts />
             </Figure>
 
@@ -278,10 +304,10 @@ export default function TeslaRoadsterFlyingLaunch() {
             <p>
               The honest list of what we cannot say is long. There is no price, no independent test, no clear legal path for the flying version, and no description of how the stunts were controlled. Wall Street is also cautious: analyst Dan Ives wrote that the Roadster will not move volume or revenue, and described it as a way to restore the brand’s halo.<Cite slug={S} src={U.cbs} />
             </p>
-            <Figure number={12} caption="What is still unknown.">
+            <Figure number={19} caption="What is still unknown.">
               <Unknowns />
             </Figure>
-            <Figure number={13} caption="What to watch next.">
+            <Figure number={20} caption="What to watch next.">
               <WatchList />
             </Figure>
 
