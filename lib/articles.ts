@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "claude-duet-proactive-agent",
+    title: "Claude Duet: Anthropic’s proactive assistant, what it does, how it works and how to get ready",
+    subtitle: "A plain guide to the research preview announced on 21 October 2026: the morning brief, the cloud computer, what it asks you first, how it is kept safe, who can use it, and what is still unknown",
+    description:
+      "A sourced guide to Claude Duet, the proactive agent Anthropic announced on 21 October 2026. Using Anthropic’s announcement, product page and X thread, plus its pages on trustworthy agents, Managed Agents and auto mode, it covers what Duet does, how it works, the approval rules, the safety design, the connectors, who can join the waitlist, the usage limits and a practical way to get ready.",
+    published: "2026-10-22",
+    updated: "2026-10-22",
+    readingMinutes: 12,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Claude Duet", "Anthropic", "Claude", "AI agents", "Proactive assistant", "AI safety", "Research preview"],
+    accent: "#C2410C",
+  },
+  {
     slug: "tesla-roadster-flying-launch",
     title: "Tesla’s flying Roadster: what was shown, and what was only said",
     subtitle: "The 15 October 2026 reveal checked against Tesla’s own pages and four news reports: the three versions, the thrusters, the deposits, the regulators, and four AI claims we could not find",
