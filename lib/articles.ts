@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "black-october-php2shell",
+    title: "Black October: PHP2Shell, the flaws AI found in the code behind about 70% of websites",
+    subtitle: "How AI found two critical PHP flaws, what it could do before and what it does now, why governments, Wikimedia and others took sites offline, and what the sources say comes next",
+    description:
+      "A sourced look at PHP2Shell, the two critical PHP flaws (CVE-2026-109618 and CVE-2026-109619) fixed on 21 October 2026. Using the BBC, iTWire, The Register and pages from the PHP project, OpenAI, Wiz, Amazon and Google Project Zero, it covers how AI found the bugs, how AI helps defenders and attackers, which government sites and Wikimedia systems went offline, and what experts expect next.",
+    published: "2026-10-24",
+    updated: "2026-10-24",
+    readingMinutes: 16,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["PHP2Shell", "PHP", "AI security", "Vulnerability disclosure", "Cybersecurity", "OpenAI", "Wiz", "Patch the Planet"],
+    accent: "#BE123C",
+  },
+  {
     slug: "claude-duet-proactive-agent",
     title: "Claude Duet: Anthropic’s proactive assistant, what it does, how it works and how to get ready",
     subtitle: "A plain guide to the research preview announced on 21 October 2026: the morning brief, the cloud computer, what it asks you first, how it is kept safe, who can use it, and what is still unknown",
