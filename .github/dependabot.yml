@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    # A release has to survive three days in the wild before it is proposed.
+    cooldown:
+      default-days: 3
+    groups:
+      patch-updates:
+        update-types: [patch]
