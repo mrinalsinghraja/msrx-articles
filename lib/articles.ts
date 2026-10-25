@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "ai-security-scan-70-repositories",
+    title: "I let AI scan all 70 of my repositories: what it found, what it fixed, and why you should do the same",
+    subtitle: "A positive, practical story of an AI-assisted security sweep: 14 findings, one critical Next.js advisory across 25 apps, 11 closed and verified, and a rhythm you can copy to scan your own apps regularly",
+    description:
+      "How one developer uses AI tools to scan 70 repositories and 28 live sites for security problems, fix them and keep them fixed. It covers what was scanned and how, the critical Next.js advisories, the fixes, why a merged fix is not always live, CSP and speed hardening, Dependabot and CI, and a starter plan and safe-use rules so you can scan your own apps with AI.",
+    published: "2026-10-25",
+    updated: "2026-10-25",
+    readingMinutes: 14,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["AI security scanning", "Next.js", "Dependabot", "Content-Security-Policy", "Application security", "DevSecOps", "Case study"],
+    accent: "#15803D",
+  },
+  {
     slug: "black-october-php2shell",
     title: "Black October: PHP2Shell, the flaws AI found in the code behind about 70% of websites",
     subtitle: "How AI found two critical PHP flaws, what it could do before and what it does now, why governments, Wikimedia and others took sites offline, and what the sources say comes next",
