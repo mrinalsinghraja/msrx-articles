@@ -48,7 +48,7 @@ export const articles: Article[] = [
     description:
       "How one developer uses AI tools to scan 70 repositories and 28 live sites for security problems, fix them and keep them fixed. It covers what was scanned and how, the critical Next.js advisories, the fixes, why a merged fix is not always live, CSP and speed hardening, Dependabot and CI, and a starter plan and safe-use rules so you can scan your own apps with AI.",
     published: "2026-10-25",
-    updated: "2026-10-25",
+    updated: "2026-10-27",
     readingMinutes: 14,
     levels: ["Beginner", "Intermediate", "Advanced"],
     series: "The AI World",

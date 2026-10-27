@@ -291,6 +291,9 @@ export default function AiSecurityScan() {
             <p>
               Auto-merge is on only where CI exists, for grouped patch updates; minor and major bumps stay manual. The merge job never checks out or runs a pull request’s code; it only reads the finished CI result and calls the merge API. The next Next.js advisory should arrive as a pull request within days, and on two of my apps it can merge itself.
             </p>
+            <Callout kind="tip" title="Update, 27 October: “green” must mean tests ran">
+              <p>After this article was shared, Vladimir Mikhalev pointed out on LinkedIn that a green badge on a repository without tests says lint, not verified, and that “auto-merge only where tests exist” needs a check that the tests really exist. He is right. I checked: both auto-merge repositories run real suites (about 1,200 unit tests in one and about 780 in the other). I have now added a CI step to each that fails the build if the number of tests run drops below a floor, so an emptied or skipped suite can no longer pass and merge itself. The floors are set a little below today’s counts and need raising as the suites grow.</p>
+            </Callout>
             <Figure number={15} caption="What went right.">
               <WentRight />
             </Figure>
@@ -344,6 +347,7 @@ export default function AiSecurityScan() {
                 { q: "Why does ‘merged’ not always mean ‘live’?", a: "Some apps are deployed from the command line rather than through git, so a fix on the main branch only reaches visitors after someone deploys it. Check what the host is actually serving." },
                 { q: "What does the Dependabot cooldown do, and what does it not do?", a: "It delays version updates for a few days after a release is published. GitHub’s documentation says it does not apply to security updates." },
                 { q: "Name two rules for using AI scanning safely.", a: "Scan only what you own or are authorised to test, and keep a human on the approve, merge and deploy steps. Also never paste secrets into a chat, and verify every fix on the live site." },
+                { q: "Does a green CI badge prove a repository is tested?", a: "No. CI that only lints or builds also shows green. Before trusting auto-merge, check that a real test suite runs, and fail the build if the number of tests falls below a floor." },
                 { q: "How often should you scan?", a: "On a rhythm: grouped dependency updates weekly, an AI review of routes and rules monthly, a same-day check after any big advisory, and a full sweep each quarter. Adjust to your risk." },
               ].map((item, i) => (
                 <details key={item.q} className="group rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] px-4 py-3">
