@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "ai-made-scams-india",
+    title: "AI-made scams in India: cloned voices, deepfake video and “digital arrest”, and the checks that still work",
+    subtitle: "How generative AI makes scam calls more convincing, what Indian government sources actually say about digital arrest, fake telecom threats and call forwarding, and the low-tech checks that beat all of it",
+    description:
+      "A sourced guide to AI-made scams in India. It separates what official sources say (the Ministry of Home Affairs on digital arrest, DoT and TRAI on fake disconnection calls, RBI on unauthorised transactions) from what the AI evidence shows (an FTC alert on cloned voices, a PLOS ONE study of deepfake audio, one deepfake video-call case), says plainly where only press reports exist, and ends with five checks that work whether or not the voice is real: call back on a number you hold, a family code word, refusing secrecy, slowing money down, and reporting to 1930 within hours.",
+    published: "2026-10-30",
+    updated: "2026-10-30",
+    readingMinutes: 15,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["AI scams", "Voice cloning", "Deepfakes", "Digital arrest", "India", "Cyber fraud", "1930", "Online safety"],
+    accent: "#B91C1C",
+  },
+  {
     slug: "ai-security-scan-70-repositories",
     title: "I let AI scan all 70 of my repositories: what it found, what it fixed, and why you should do the same",
     subtitle: "A positive, practical story of an AI-assisted security sweep: 14 findings, one critical Next.js advisory across 25 apps, 11 closed and verified, and a rhythm you can copy to scan your own apps regularly",
