@@ -331,7 +331,7 @@ export default function AiMadeScams() {
               <ToolsMap />
             </Figure>
             <p>
-              A checker is a signal, not a verdict. A message can pass every pattern and still be a scam, and a scary-looking one can be genuine. This ties back to the earlier point: the habit of verifying on a number you hold is what protects you, and a tool only supports it. These tools are MSRX’s own and, like this article, are independent of any government body.
+              A checker is a signal, not a verdict. Our sibling article, <Link href="/can-ai-tell-a-scam-from-a-real-message">can an AI model tell a scam from a real message?</Link>, tests how well rules and an AI model do at exactly this job. A message can pass every pattern and still be a scam, and a scary-looking one can be genuine. This ties back to the earlier point: the habit of verifying on a number you hold is what protects you, and a tool only supports it. These tools are MSRX’s own and, like this article, are independent of any government body.
             </p>
 
             <SectionHeading id="gaps" level="Advanced" number={11}>What I could not verify, and how firm each claim is</SectionHeading>
