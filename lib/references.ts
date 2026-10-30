@@ -25,6 +25,7 @@ const CHECKED_ON: Record<string, string> = {
   "claude-duet-proactive-agent": "2026-10-22",
   "black-october-php2shell": "2026-10-24",
   "ai-security-scan-70-repositories": "2026-10-25",
+  "can-ai-tell-a-scam-from-a-real-message": "2026-10-30",
   "ai-made-scams-india": "2026-10-30",
 };
 
@@ -206,6 +207,18 @@ const references: Record<string, Reference[]> = {
     { authors: "Anthropic", date: "8 April 2026", title: "Scaling Managed Agents: Decoupling the brain from the hands", container: "Anthropic Engineering", url: "https://www.anthropic.com/research/managed-agents", kind: "Announcement", note: "Why credentials are kept in a vault outside the sandbox and reached through a proxy, the design Duet says it follows" },
     { authors: "Anthropic", date: "25 March 2026", title: "How we built Claude Code auto mode: a safer way to skip permissions", container: "Anthropic Engineering", url: "https://www.anthropic.com/research/claude-code-auto-mode", kind: "Announcement", note: "Approval fatigue (93% of manual prompts accepted) and the classifier that decides whether an action matches what the user asked" },
   ],
+  "can-ai-tell-a-scam-from-a-real-message": [
+    { authors: "Ministry of Home Affairs (PIB Delhi)", date: "14 May 2024", title: "Alert against incidents of ‘Blackmail’ and ‘Digital Arrest’ by Cyber Criminals Impersonating State/UT Police, NCB, CBI, RBI and other Law Enforcement Agencies", container: "Press Information Bureau", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2020570", kind: "Announcement", note: "How the “digital arrest” script works, who the callers pose as, and the 1930 helpline and cybercrime.gov.in" },
+    { authors: "Ministry of Home Affairs (PIB Delhi)", date: "10 December 2024", title: "Awareness campaign on cyber crimes", container: "Press Information Bureau", url: "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2082765", kind: "Announcement", note: "I4C’s blocking of Skype IDs and WhatsApp accounts used for digital arrest, the Report and Check Suspect feature, and the awareness channels" },
+    { authors: "Ministry of Home Affairs (PIB Delhi)", date: "12 August 2026", title: "Cyber fraudsters emptying bank accounts by sending fake e-challans", container: "Press Information Bureau", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2298330", kind: "Announcement", note: "Fake e-challans raised in Parliament; NCRB keeps no data on them; the CFCFRMS reporting system" },
+    { authors: "TypeSafe", title: "System One", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/concepts/system-one", kind: "Documentation", note: "What a System One model is, that it returns typed answers and probabilities, and that calibration is measured across groups, not per answer" },
+    { authors: "TypeSafe", title: "Noul", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/primitives/noul", kind: "Documentation", note: "A noul returns the probability that a yes/no answer is yes" },
+    { authors: "TypeSafe", title: "Confidence", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/confidence", kind: "Documentation", note: "Confidence for choices, none for nouls, the |2p − 1| suggestion, and the 0.7 and 0.3 starting thresholds" },
+    { authors: "TypeSafe", title: "Jev 1.13 jaggedness", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/model-jaggedness/jev-1.13", kind: "Documentation", note: "The documented weak spots: literal reading, adversarial content and more" },
+    { authors: "TypeSafe", title: "Confidence-gated routing", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/patterns/confidence-routing", kind: "Documentation", note: "Code, not the model, owns thresholds; higher stakes need higher confidence" },
+    { authors: "CERT-In, Ministry of Electronics and Information Technology", date: "28 April 2022", title: "Directions under sub-section (6) of section 70B of the Information Technology Act, 2000", container: "CERT-In", url: "https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf", kind: "Announcement", note: "Organisations must report listed incidents, phishing attacks among them, within 6 hours" },
+  ],
+
   "ai-security-scan-70-repositories": [
     { authors: "Zaharov-Reutt, A.", date: "23 October 2026", title: "PHP2Shell: the 14-year-old bugs that pulled cyber.gov.au and government sites worldwide offline", container: "iTWire", url: "https://itwire.com/business-it-news/security/php2shell-the-14-year-old-bugs-that-pulled-cyber-gov-au-and-government-sites-worldwide-offline", kind: "Reporting", note: "Scarlett McDermott’s quote on knowing what software you run" },
     { authors: "Big Sleep team (Google Project Zero and Google DeepMind)", date: "1 November 2024", title: "From Naptime to Big Sleep: Using Large Language Models To Catch Vulnerabilities In Real-World Code", container: "Project Zero", url: "https://projectzero.google/2024/10/from-naptime-to-big-sleep.html", kind: "Announcement", note: "An AI agent finding an exploitable bug before release, and the defensive case for finding bugs early" },

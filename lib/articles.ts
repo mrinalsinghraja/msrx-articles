@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "can-ai-tell-a-scam-from-a-real-message",
+    title: "Can an AI model tell a scam from a real message? Real tests of pattern rules and a judgment model on Indian scam SMS",
+    subtitle: "Fourteen hand-written messages, one live checker: where written-down rules and TypeSafe’s Jev each succeed and fail, why the two together never say “safe”, and what a score of 0.99 or 0.12 really means",
+    description:
+      "A real-run look at how a small judgment model (TypeSafe’s Jev) and plain pattern rules judge Indian scam messages: phishing, “digital arrest”, job and e-challan scams against genuine bank texts. It covers the thresholds that combine the two, sentence-level negation, masking before anything is sent, fail-open design, the failures we found, and why a probability is not an accuracy.",
+    published: "2026-10-30",
+    updated: "2026-10-30",
+    readingMinutes: 15,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Scam detection", "Jev", "TypeSafe", "Calibrated probabilities", "Digital arrest", "UPI fraud", "Rules vs AI", "Case study"],
+    accent: "#B45309",
+  },
+  {
     slug: "ai-made-scams-india",
     title: "AI-made scams in India: cloned voices, deepfake video and “digital arrest”, and the checks that still work",
     subtitle: "How generative AI makes scam calls more convincing, what Indian government sources actually say about digital arrest, fake telecom threats and call forwarding, and the low-tech checks that beat all of it",
