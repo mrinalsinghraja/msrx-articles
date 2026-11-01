@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "beyond-the-hype-ai-bubble-correction",
+    title: "Beyond the Hype: The AI Bubble Burst and Why a Massive Stock Correction Won’t Extinguish the Future of Technology",
+    subtitle: "What the reports of 30 and 31 October 2026 say about AI spending, cash flow, debt and funding, what the dot-com crash did and did not erase, and how to read a market fall without confusing it with the fate of a technology",
+    description:
+      "A sourced snapshot of the late-October 2026 tech sell-off: record one-day falls, negative free cash flow at big spenders, $326 billion of new debt, OpenAI’s lowered funding target, a junk-rating warning for Anthropic and Nvidia-backed financing loops. It sets these against the dot-com crash and the real demand the same reports describe, with seven real screenshots and 20 figures.",
+    published: "2026-11-01",
+    updated: "2026-11-01",
+    readingMinutes: 12,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["AI bubble", "Stock market correction", "AI spending", "Dot-com crash", "Free cash flow", "AI funding", "Markets"],
+    accent: "#B91C1C",
+  },
+  {
     slug: "can-ai-tell-a-scam-from-a-real-message",
     title: "Can an AI model tell a scam from a real message? Real tests of pattern rules and a judgment model on Indian scam SMS",
     subtitle: "Fourteen hand-written messages, one live checker: where written-down rules and TypeSafe’s Jev each succeed and fail, why the two together never say “safe”, and what a score of 0.99 or 0.12 really means",

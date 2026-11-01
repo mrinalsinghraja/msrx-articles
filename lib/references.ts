@@ -27,6 +27,7 @@ const CHECKED_ON: Record<string, string> = {
   "ai-security-scan-70-repositories": "2026-10-25",
   "can-ai-tell-a-scam-from-a-real-message": "2026-10-30",
   "ai-made-scams-india": "2026-10-30",
+  "beyond-the-hype-ai-bubble-correction": "2026-11-01",
 };
 
 export function referencesCheckedOn(slug: string): string {
@@ -217,6 +218,18 @@ const references: Record<string, Reference[]> = {
     { authors: "TypeSafe", title: "Jev 1.13 jaggedness", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/model-jaggedness/jev-1.13", kind: "Documentation", note: "The documented weak spots: literal reading, adversarial content and more" },
     { authors: "TypeSafe", title: "Confidence-gated routing", container: "TypeSafe documentation", url: "https://docs.typesafe.ai/patterns/confidence-routing", kind: "Documentation", note: "Code, not the model, owns thresholds; higher stakes need higher confidence" },
     { authors: "CERT-In, Ministry of Electronics and Information Technology", date: "28 April 2022", title: "Directions under sub-section (6) of section 70B of the Information Technology Act, 2000", container: "CERT-In", url: "https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf", kind: "Announcement", note: "Organisations must report listed incidents, phishing attacks among them, within 6 hours" },
+  ],
+
+  "beyond-the-hype-ai-bubble-correction": [
+    { authors: "Bellan, R.", date: "30 October 2026", title: "Cracks are emerging in the AI spending boom", container: "TechCrunch", url: "https://techcrunch.com/2026/10/30/cracks-are-emerging-in-the-ai-spending-boom/", kind: "Reporting", note: "Capex plans, free cash flow, debt raised and the 30 October share moves for the big spenders. A news report, not the companies’ filings." },
+    { authors: "Reuters, via CNA", date: "31 October 2026", title: "S&P Global revises Meta’s outlook to ‘negative’ on AI spending, cash flow worries", container: "CNA (Channel NewsAsia)", url: "https://www.channelnewsasia.com/business/sp-global-revises-metas-outlook-negative-ai-spending-cash-flow-worries-6508631", kind: "Reporting", note: "S&P’s revised Meta outlook, its deficit forecasts, Meta’s reply and the planned $97.5 billion stock sale." },
+    { authors: "Bort, J.", date: "30 October 2026", title: "Intel’s stock crashes, knocking $12B from government’s stake", container: "TechCrunch", url: "https://techcrunch.com/2026/10/30/intels-stock-crashes-knocking-12b-from-governments-stake/", kind: "Reporting", note: "Intel’s weak outlook, the memory-price effect on PC sales and its 78% data centre growth." },
+    { authors: "Ha, A.", date: "31 October 2026", title: "OpenAI reportedly lowers funding target for new round", container: "TechCrunch", url: "https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/", kind: "Reporting", note: "The Financial Times and Wall Street Journal reports on OpenAI’s lowered target and $11 billion secured." },
+    { authors: "Bastian, M.", date: "31 October 2026", title: "OpenAI raises just $11 billion of its $30 billion target as big investors lose their AI appetite", container: "The Decoder", url: "https://the-decoder.com/openai-raises-just-11-billion-of-its-30-billion-target-as-big-investors-lose-their-ai-appetite/", kind: "Reporting", note: "A second account of the same round, plus the planned IPO and Anthropic’s possible November listing." },
+    { authors: "Ropek, L.", date: "30 October 2026", title: "Anthropic expected to receive high ‘junk’ rating from credit agencies following IPO, FT report says", container: "TechCrunch", url: "https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/", kind: "Reporting", note: "Blackstone’s reported expectation of a top-tier junk rating for Anthropic after its IPO." },
+    { authors: "Mehta, A.", date: "30 October 2026", title: "Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia", container: "TechCrunch", url: "https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/", kind: "Reporting", note: "The reported Nvidia debt guarantee talks, Anthropic’s contract and the pressure on neoclouds." },
+    { authors: "Wikipedia contributors", title: "Dot-com bubble", container: "Wikipedia (read 1 November 2026)", url: "https://en.wikipedia.org/wiki/Dot-com_bubble", kind: "Guide", note: "The encyclopedia’s summary of the Nasdaq peak, the 78% fall, telecom borrowing and survival rates. A secondary source." },
+    { authors: "Mehta, I.", date: "30 October 2026", title: "DoorDash said it’s only received ‘several hundred’ orders from AI agents", container: "TechCrunch", url: "https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/", kind: "Reporting", note: "A reality check on how much real use AI agents are getting, from DoorDash’s earnings call." },
   ],
 
   "ai-security-scan-70-repositories": [
