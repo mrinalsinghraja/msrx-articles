@@ -210,8 +210,8 @@ export default function BeyondTheHype() {
             <p>
               Credit agencies noticed too. S&amp;P Global Ratings revised its outlook on Meta to “negative” from “stable” on 30 October, citing uncertainty about capital spending and free operating cash flow, and said it now expects Meta to run cash deficits of $39 billion in 2026 and $71 billion in 2027.<Cite slug={S} src={U.meta} /> Meta did not accept the reasoning: a spokesperson told Reuters the company “respectfully” disagreed with S&amp;P’s assertion about its ability to earn from AI, and pointed to opportunities supporting a “very strong credit profile”.<Cite slug={S} src={U.meta} />
             </p>
-            <Figure number={5} caption="Real screenshot, captured 1 November 2026, of CNA’s report carrying Reuters on S&P Global’s Meta outlook, 31 October 2026.">
-              <Pic file="meta.jpg" alt="Screenshot of a Channel NewsAsia article headline S&P Global revises Meta's outlook to negative on AI spending, cash flow worries" width={1280} height={710} />
+            <Figure number={5} caption="Real screenshot, captured 1 November 2026, of CNA’s report carrying Reuters on S&P Global’s Meta outlook, 31 October 2026. Cropped to leave out adverts.">
+              <Pic file="meta-noads.jpg" alt="Screenshot of a Channel NewsAsia article headline S&P Global revises Meta's outlook to negative on AI spending, cash flow worries" width={920} height={530} />
             </Figure>
             <p>
               Where does the money come from? Not only from profits. TechCrunch, citing S&amp;P Global Market Intelligence, said Microsoft, Alphabet, Amazon, Meta and Oracle raised a combined $326 billion in debt in 2026, triple last year’s amount.<Cite slug={S} src={U.cracks} /> CNA reported that Meta also plans to sell $97.5 billion in stock to fund the buildout.<Cite slug={S} src={U.meta} />
@@ -225,8 +225,8 @@ export default function BeyondTheHype() {
             <p>
               The giants can borrow against their other businesses. The pure AI labs cannot. TechCrunch reported on 31 October that OpenAI had been reported to be raising $30 billion at a $1.4 trillion valuation, then at $1.25 trillion, ahead of a planned IPO, but that the Financial Times said the target had been lowered to $20 billion, with a first close expected to be lower still.<Cite slug={S} src={U.openai} /> A Wall Street Journal follow-up, according to TechCrunch, said OpenAI had secured $11 billion so far and that its fundraising had met with a “tepid” response from some large investors.<Cite slug={S} src={U.openai} />
             </p>
-            <Figure number={7} caption="Real screenshot, captured 1 November 2026, of TechCrunch’s “OpenAI reportedly lowers funding target for new round”, 31 October 2026.">
-              <Pic file="openai.jpg" alt="Screenshot of a TechCrunch In Brief article about OpenAI lowering its funding target, with an OpenAI logo on a phone over a stock chart" width={1280} height={488} />
+            <Figure number={7} caption="Real screenshot, captured 1 November 2026, of TechCrunch’s “OpenAI reportedly lowers funding target for new round”, 31 October 2026. Cropped to leave out adverts and promotions.">
+              <Pic file="openai-noads.jpg" alt="Screenshot of a TechCrunch In Brief article about OpenAI lowering its funding target, with an OpenAI logo on a phone over a stock chart" width={910} height={488} />
             </Figure>
             <Figure number={8} caption="How OpenAI’s round changed, as reported.">
               <Ladder />
@@ -237,8 +237,8 @@ export default function BeyondTheHype() {
             <p>
               Anthropic’s own path looks less smooth than that sounds. TechCrunch, citing the Financial Times, reported that Blackstone, the anchor investor in a recent $63 billion deal to finance Anthropic’s chips, told investors it expects Anthropic to receive a “high” junk rating after its IPO, the top tier of speculative grade, having previously said it would be investment grade before 2027.<Cite slug={S} src={U.junk} /> TechCrunch noted that this is a prediction, that Anthropic and Blackstone declined to comment, and that a junk rating would make raising money more difficult and costly.<Cite slug={S} src={U.junk} />
             </p>
-            <Figure number={9} caption="Real screenshot, captured 1 November 2026, of TechCrunch’s report on Blackstone’s expectation for Anthropic’s credit rating, 30 October 2026.">
-              <Pic file="junk.jpg" alt="Screenshot of a TechCrunch In Brief article about Anthropic expected to receive a high junk rating following its IPO" width={1280} height={488} />
+            <Figure number={9} caption="Real screenshot, captured 1 November 2026, of TechCrunch’s report on Blackstone’s expectation for Anthropic’s credit rating, 30 October 2026. Cropped to leave out adverts and promotions.">
+              <Pic file="junk-noads.jpg" alt="Screenshot of a TechCrunch In Brief article about Anthropic expected to receive a high junk rating following its IPO" width={910} height={488} />
             </Figure>
             <Figure number={10} caption="The two ratings in question.">
               <Junk />
@@ -279,8 +279,8 @@ export default function BeyondTheHype() {
             <p>
               History offers a useful, imperfect comparison. According to Wikipedia’s summary, the dot-com bubble peaked on 10 March 2000, when the Nasdaq Composite reached 5,048.62. Between 1995 and then the index rose 600%, only to fall 78% from its peak by October 2002, giving up all its gains.<Cite slug={S} src={U.dot} /> Wikipedia says stocks lost $5 trillion in market value from the peak to the 2002 downturn, and that Cisco lost 80% of its stock value while Amazon also lost a large part of its market value.<Cite slug={S} src={U.dot} />
             </p>
-            <Figure number={15} caption="Real screenshot, captured 1 November 2026, of Wikipedia’s “Dot-com bubble” article, showing the Nasdaq Composite chart.">
-              <Pic file="dotcom.jpg" alt="Screenshot of the Wikipedia article Dot-com bubble with a chart of the NASDAQ Composite index rising to 2000 and then falling" width={1280} height={860} />
+            <Figure number={15} caption="Real screenshot, captured 1 November 2026, of Wikipedia’s “Dot-com bubble” article, showing the Nasdaq Composite chart. Cropped to leave out the site’s header and donation links.">
+              <Pic file="dotcom-noads.jpg" alt="Screenshot of the Wikipedia article Dot-com bubble with a chart of the NASDAQ Composite index rising to 2000 and then falling" width={1280} height={790} />
             </Figure>
             <p>
               The telecom side looks eerily familiar. Wikipedia says that in the five years after the 1996 Telecommunications Act, equipment companies invested more than $500 billion, mostly financed with debt, laying fibre-optic cable and building networks.<Cite slug={S} src={U.dot} /> Many online retailers and communication companies such as Pets.com, Webvan, WorldCom and Global Crossing failed, but Wikipedia also says many firms endured: 48% of dot-com companies survived through 2004, at lower valuations.<Cite slug={S} src={U.dot} />
@@ -370,7 +370,7 @@ export default function BeyondTheHype() {
 
             <div className="rule-fade !my-14" />
             <p className="text-[13.5px] text-[var(--text-tertiary)]">
-              Alphabet, Amazon, Meta, Microsoft, Intel, Nvidia, OpenAI, Anthropic, Nscale, Blackstone, S&amp;P Global, DoorDash and the publications named are independent of MSRX, and this article is not affiliated with or endorsed by any of them. Facts were checked against the cited pages on 1 November 2026, and markets have likely moved since. The screenshots are real captures of those pages, shown for identification and commentary. This is general information and not financial advice.
+              Alphabet, Amazon, Meta, Microsoft, Intel, Nvidia, OpenAI, Anthropic, Nscale, Blackstone, S&amp;P Global, DoorDash and the publications named are independent of MSRX, and this article is not affiliated with or endorsed by any of them. Facts were checked against the cited pages on 1 November 2026, and markets have likely moved since. The screenshots are real captures of those pages, cropped to leave out advertising, shown for identification and commentary. This is general information and not financial advice.
             </p>
           </article>
 

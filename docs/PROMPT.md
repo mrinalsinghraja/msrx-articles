@@ -41,7 +41,9 @@ recent article in app/ first, and match the house style exactly.
   so they work in light and dark mode. Put wide diagrams in a sideways
   scroller so they stay readable on phones.
 - Screenshots only if real (captured, saved in public/<slug>/, captioned
-  "Real screenshot, captured <date>"). Terminal output only if from a real
+  "Real screenshot, captured <date>"). NEVER show an ad: MSRX earns nothing from
+  readers, so crop out ad slots, promos, donation prompts and sponsored blocks,
+  look at every image before shipping, and say in the caption that it was cropped. Terminal output only if from a real
   run, labelled "real run · <date>". Label every mock-up and made-up number
   as an illustration.
 - Code samples must be run or type-checked before publishing. Generate the
