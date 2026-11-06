@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "ai-selloff-2-5-trillion-day",
+    title: "The $2.5 Trillion Day: What Really Happened When Wall Street Priced In an AI Slowdown",
+    subtitle: "A number-by-number look at Thursday 5 November 2026: what fell, how the $2.5 trillion is counted, the Texas election link, the spread to Seoul, and the competing readings",
+    description:
+      "On 5 November 2026 the Nasdaq fell 5.52% and the S&P 500 4.36% as investors worried that Democratic election gains could slow AI data-centre building. This sourced explainer checks the numbers against the St. Louis Fed, shows why three outlets give $2.3, $2.5 and $2.8 trillion, and sets the competing views side by side.",
+    published: "2026-11-06",
+    updated: "2026-11-06",
+    readingMinutes: 18,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Stock market sell-off", "AI stocks", "Nasdaq", "Data centers", "Midterm elections", "Kospi", "Markets"],
+    accent: "#B91C1C",
+  },
+  {
     slug: "beyond-the-hype-ai-bubble-correction",
     title: "Beyond the Hype: The AI Bubble Burst and Why a Massive Stock Correction Won’t Extinguish the Future of Technology",
     subtitle: "What the reports of 30 and 31 October 2026 say about AI spending, cash flow, debt and funding, what the dot-com crash did and did not erase, and how to read a market fall without confusing it with the fate of a technology",
