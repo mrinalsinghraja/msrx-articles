@@ -42,6 +42,20 @@ export interface Article {
 /** Newest first. */
 export const articles: Article[] = [
   {
+    slug: "microsoft-365-24-hour-blackout",
+    title: "The 24-Hour Blackout: What Really Happened When Microsoft 365 Went Dark Worldwide",
+    subtitle: "A source-by-source account of the 12–14 November 2026 outage: what failed, how Microsoft says it happened, what is ruled out, and what nobody knows yet",
+    description:
+      "From 12 to 13 November 2026 Exchange Online, Teams and other Microsoft 365 services failed for about 24 hours. This sourced explainer uses Microsoft’s own posts and incident text, checks the “half a billion users” headline, sets out the preliminary cause and what is ruled out, and lists what is still unknown.",
+    published: "2026-11-15",
+    updated: "2026-11-15",
+    readingMinutes: 21,
+    levels: ["Beginner", "Intermediate", "Advanced"],
+    series: "The AI World",
+    tags: ["Microsoft 365", "Outage", "Exchange Online", "Teams", "Outlook", "Cloud reliability", "Incident analysis"],
+    accent: "#2563EB",
+  },
+  {
     slug: "ai-selloff-2-5-trillion-day",
     title: "The $2.5 Trillion Day: What Really Happened When Wall Street Priced In an AI Slowdown",
     subtitle: "A number-by-number look at Thursday 5 November 2026: what fell, how the $2.5 trillion is counted, the Texas election link, the spread to Seoul, and the competing readings",
